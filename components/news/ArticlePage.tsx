@@ -11,6 +11,9 @@ import { Footer } from "@/components/Footer";
 import LineReveal from "@/components/LineReveal";
 import type { Article, ContentBlock } from "@/lib/articles";
 import { categoryToSlug } from "@/lib/articles";
+import { getAuthor } from "@/lib/authors";
+import { AuthorByline, type BylineAuthor } from "@/components/news/AuthorByline";
+import { UpdatedDate } from "@/components/seo/UpdatedDate";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -151,6 +154,20 @@ export function ArticlePage({
 }) {
   const progressRef = useRef<HTMLDivElement>(null);
   const categorySlug = categoryToSlug(article.category);
+
+  // Resolve the byline: prefer the linked author entity, fall back to the
+  // inline author stored on the article.
+  const authorRecord = article.authorSlug
+    ? getAuthor(article.authorSlug)
+    : undefined;
+  const bylineAuthor: BylineAuthor = authorRecord
+    ? {
+        name: authorRecord.name,
+        role: authorRecord.role,
+        slug: authorRecord.slug,
+        headshotUrl: authorRecord.headshotUrl,
+      }
+    : { name: article.author.name, role: article.author.role };
 
   // Scroll progress bar
   useEffect(() => {
@@ -294,6 +311,11 @@ export function ArticlePage({
               <Clock size={11} />
               {article.readTime} read
             </span>
+            <UpdatedDate
+              published={article.date}
+              dateModified={article.dateModified}
+              className="text-[#bbb] text-[11px] flex items-center gap-1.5 before:content-['·'] before:text-[#ddd] before:mr-1.5"
+            />
           </div>
 
           {/* Title */}
@@ -307,23 +329,10 @@ export function ArticlePage({
           </p>
 
           {/* Author */}
-          <div className="article-author mt-10 pt-8 border-t border-[#e8e4dd] flex items-center gap-4">
-            <div
-              className="w-11 h-11 rounded-full shrink-0"
-              style={{
-                background:
-                  "linear-gradient(135deg, #FFC703 0%, #ffaa00 50%, #ff8800 100%)",
-              }}
-            />
-            <div>
-              <p className="text-[14px] font-medium text-[#0f0f0f] leading-tight">
-                {article.author.name}
-              </p>
-              <p className="text-[11px] text-[#999] mt-0.5">
-                {article.author.role}
-              </p>
-            </div>
-          </div>
+          <AuthorByline
+            author={bylineAuthor}
+            className="article-author mt-10 pt-8 border-t border-[#e8e4dd]"
+          />
         </div>
       </header>
 
@@ -392,11 +401,20 @@ export function ArticlePage({
               <p className="text-[10px] uppercase tracking-[0.25em] text-[#aaa] mb-2">
                 Written by
               </p>
-              <p className="text-[16px] font-medium text-[#0f0f0f]">
-                {article.author.name}
-              </p>
+              {bylineAuthor.slug ? (
+                <Link
+                  href={`/studio/${bylineAuthor.slug}`}
+                  className="text-[16px] font-medium text-[#0f0f0f] hover:underline decoration-[#FFC703] underline-offset-4"
+                >
+                  {bylineAuthor.name}
+                </Link>
+              ) : (
+                <p className="text-[16px] font-medium text-[#0f0f0f]">
+                  {bylineAuthor.name}
+                </p>
+              )}
               <p className="text-[12px] text-[#999] mb-3">
-                {article.author.role}
+                {bylineAuthor.role}
               </p>
               <p className="text-[14px] text-[#666] font-light leading-relaxed">
                 Rulz&amp;Co is a design and product partnership for AI-native

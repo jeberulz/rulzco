@@ -94,7 +94,7 @@ export function buildBreadcrumbList(
  */
 export function buildNewsArticle(
   article: Article,
-  opts: { authorPath?: string; images?: string[] } = {},
+  opts: { authorPath?: string; authorName?: string; images?: string[] } = {},
 ): WithContext<NewsArticle> {
   const published = toIsoDate(article.date) ?? undefined;
   const modified =
@@ -109,9 +109,10 @@ export function buildNewsArticle(
         : []
   ).map((src) => (src.startsWith("http") ? src : urlFor(src)));
 
+  const authorName = opts.authorName ?? article.author.name;
   const author: NewsArticle["author"] = opts.authorPath
-    ? { "@type": "Person", "@id": urlFor(opts.authorPath), name: article.author.name }
-    : { "@type": "Person", name: article.author.name };
+    ? { "@type": "Person", "@id": urlFor(opts.authorPath), name: authorName }
+    : { "@type": "Person", name: authorName };
 
   return {
     "@context": CONTEXT,

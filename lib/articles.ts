@@ -1,4 +1,5 @@
 import { ARTICLE_IMAGES } from "./article-image-manifest";
+import type { AuthorSlug } from "./authors";
 
 export type ContentBlock =
   | { type: "paragraph"; text: string }
@@ -12,13 +13,18 @@ export type Article = {
   category: string;
   title: string;
   excerpt: string;
+  /** Human-readable publish date, e.g. "5 Jun 2026". */
   date: string;
+  /** Optional last-substantive-update date; drives the visible "Updated:" line and schema dateModified. */
+  dateModified?: string;
   readTime: string;
   gradient: string;
   accent: string;
   featured?: boolean;
   image?: string;
   author: { name: string; role: string };
+  /** Links the article to an author entity in lib/authors.ts (E-E-A-T). */
+  authorSlug?: AuthorSlug;
   content: ContentBlock[];
 };
 
