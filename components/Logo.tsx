@@ -1,11 +1,11 @@
-import svgPaths from "@/imports/svg-88lceig9qg";
+import svgPaths from "@/lib/svg-paths";
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <svg 
-      className={className} 
-      viewBox="0 0 1367 258" 
-      fill="none" 
+    <svg
+      className={className}
+      viewBox="0 0 1367 258"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path d={svgPaths.p3efabd80} fill="#FFC703" />
