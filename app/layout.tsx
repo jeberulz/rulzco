@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import PreloaderWrapper from "@/components/PreloaderWrapper";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 import {
   SITE_DESCRIPTION,
   SITE_NAME,
@@ -50,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en-GB" suppressHydrationWarning>
+    <html lang="en-GB" className={inter.variable} suppressHydrationWarning>
       <body suppressHydrationWarning>
         <JsonLd data={buildOrganization()} />
         <JsonLd data={buildWebSite()} />
