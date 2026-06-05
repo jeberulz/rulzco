@@ -43,6 +43,8 @@ if (!API_KEY) {
 // matches the Rulz&Co brand. We deliberately avoid asking for any text
 // in the image (AI is bad at typography).
 const PROMPTS: Record<string, string> = {
+  "canvas-opened":
+    "Abstract editorial cover illustration: a vast luminous design canvas hovering in a darkened studio, two small silhouetted figures in the foreground deep in conversation with their backs to the canvas, deep indigo and violet palette, warm gold accent light glowing between the two figures rather than the canvas, conceptual minimal composition, cinematic atmosphere, soft film grain, magazine cover quality, no text, no letters",
   "ai-design-convergence":
     "Abstract editorial cover illustration: a fractured silver mirror reflecting fragments of design tool icons and abstract UI shapes, deep navy and electric violet background, a single warm gold light source from the lower left, conceptual minimal composition, dramatic atmospheric lighting, soft film grain, magazine cover quality, no text, no letters",
   "founder-market-fit":

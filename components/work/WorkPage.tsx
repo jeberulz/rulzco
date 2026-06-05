@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
 import { NavMenu } from "@/components/NavMenu";
+import { BrandMark } from "@/components/BrandMark";
 import { Footer } from "@/components/Footer";
 import { projects } from "@/lib/projects";
 import type { Project } from "@/lib/projects";
@@ -252,6 +253,9 @@ export function WorkPage() {
 
       {/* Header */}
       <header ref={headerRef} className="px-6 md:px-12 pt-20 md:pt-28 pb-16 max-w-[1920px] mx-auto">
+        <div className="mb-10 work-meta">
+          <BrandMark variant="dark" />
+        </div>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-12">
           <div>
             <div className="flex items-center gap-4 mb-6 work-meta">

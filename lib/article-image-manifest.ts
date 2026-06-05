@@ -4,6 +4,7 @@
 export const ARTICLE_IMAGES: Record<string, string> = {
   "ai-design-convergence": "/images/news/ai-design-convergence.png",
   "betting-on-taste": "/images/news/betting-on-taste.png",
+  "canvas-opened": "/images/news/canvas-opened.png",
   "design-systems": "/images/news/design-systems.png",
   "designing-agents": "/images/news/designing-agents.png",
   "enterprise-ux-debt": "/images/news/enterprise-ux-debt.png",
