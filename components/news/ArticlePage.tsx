@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowLeft, ArrowUpRight, Clock, Calendar } from "lucide-react";
@@ -88,16 +89,30 @@ function RelatedCard({ article }: { article: Article }) {
       className="related-card group flex flex-col overflow-hidden rounded-xl border border-[#ece9e3] bg-white hover:border-[#d4cfca] transition-all duration-300 h-full hover:-translate-y-0.5 hover:shadow-[0_8px_32px_-8px_rgba(0,0,0,0.07)]"
     >
       <div className="relative overflow-hidden" style={{ paddingBottom: "52%" }}>
-        <div
-          className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.04]"
-          style={{ background: article.gradient }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background: `radial-gradient(circle at 30% 60%, ${article.accent}33 0%, transparent 60%)`,
-          }}
-        />
+        {article.image ? (
+          <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.04]">
+            <Image
+              src={article.image}
+              alt={article.title}
+              fill
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+        ) : (
+          <>
+            <div
+              className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.04]"
+              style={{ background: article.gradient }}
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: `radial-gradient(circle at 30% 60%, ${article.accent}33 0%, transparent 60%)`,
+              }}
+            />
+          </>
+        )}
       </div>
       <div className="flex flex-col flex-1 p-6">
         <div className="flex items-center gap-2 mb-3">
@@ -319,23 +334,36 @@ export function ArticlePage({
             className="article-hero-img relative overflow-hidden rounded-2xl"
             style={{ paddingBottom: "50%" }}
           >
-            <div
-              className="absolute inset-0"
-              style={{ background: article.gradient }}
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background: `radial-gradient(ellipse at 20% 80%, ${article.accent}44 0%, transparent 55%)`,
-              }}
-            />
-            <div
-              className="absolute inset-0 opacity-[0.035]"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-                backgroundSize: "180px 180px",
-              }}
-            />
+            {article.image ? (
+              <Image
+                src={article.image}
+                alt={article.title}
+                fill
+                priority
+                sizes="(min-width: 1024px) 960px, 100vw"
+                className="object-cover"
+              />
+            ) : (
+              <>
+                <div
+                  className="absolute inset-0"
+                  style={{ background: article.gradient }}
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: `radial-gradient(ellipse at 20% 80%, ${article.accent}44 0%, transparent 55%)`,
+                  }}
+                />
+                <div
+                  className="absolute inset-0 opacity-[0.035]"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+                    backgroundSize: "180px 180px",
+                  }}
+                />
+              </>
+            )}
           </div>
         </div>
       </section>

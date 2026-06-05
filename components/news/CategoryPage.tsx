@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowLeft, ArrowUpRight, Clock } from "lucide-react";
@@ -22,16 +23,30 @@ function ArticleCard({ article }: { article: Article }) {
       className="article-card group flex flex-col overflow-hidden rounded-xl border border-[#ece9e3] bg-white hover:border-[#d4cfca] transition-all duration-300 h-full hover:-translate-y-0.5 hover:shadow-[0_8px_32px_-8px_rgba(0,0,0,0.07)]"
     >
       <div className="relative overflow-hidden" style={{ paddingBottom: "52%" }}>
-        <div
-          className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.04]"
-          style={{ background: article.gradient }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background: `radial-gradient(circle at 30% 60%, ${article.accent}33 0%, transparent 60%)`,
-          }}
-        />
+        {article.image ? (
+          <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.04]">
+            <Image
+              src={article.image}
+              alt={article.title}
+              fill
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+        ) : (
+          <>
+            <div
+              className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.04]"
+              style={{ background: article.gradient }}
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: `radial-gradient(circle at 30% 60%, ${article.accent}33 0%, transparent 60%)`,
+              }}
+            />
+          </>
+        )}
       </div>
 
       <div className="flex flex-col flex-1 p-6">

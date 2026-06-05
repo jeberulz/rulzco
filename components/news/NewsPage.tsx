@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight, Clock } from "lucide-react";
@@ -22,16 +23,31 @@ function FeaturedCard({ article }: { article: Article }) {
       href={`/news/${article.id}`}
       className="featured-card group relative flex overflow-hidden rounded-2xl h-full min-h-[400px] cursor-pointer"
     >
-      <div
-        className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.03]"
-        style={{ background: article.gradient }}
-      />
-      <div
-        className="absolute inset-0"
-        style={{
-          background: `radial-gradient(ellipse at 20% 80%, ${article.accent}44 0%, transparent 55%)`,
-        }}
-      />
+      {article.image ? (
+        <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.03]">
+          <Image
+            src={article.image}
+            alt={article.title}
+            fill
+            priority
+            sizes="(min-width: 1024px) 66vw, 100vw"
+            className="object-cover"
+          />
+        </div>
+      ) : (
+        <>
+          <div
+            className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.03]"
+            style={{ background: article.gradient }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `radial-gradient(ellipse at 20% 80%, ${article.accent}44 0%, transparent 55%)`,
+            }}
+          />
+        </>
+      )}
       <div
         className="absolute inset-0 opacity-[0.035]"
         style={{
@@ -97,16 +113,30 @@ function ArticleCard({
       {/* Thumbnail strip (full cards only) */}
       {!compact && (
         <div className="relative overflow-hidden" style={{ paddingBottom: "52%" }}>
-          <div
-            className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.04]"
-            style={{ background: article.gradient }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background: `radial-gradient(circle at 30% 60%, ${article.accent}33 0%, transparent 60%)`,
-            }}
-          />
+          {article.image ? (
+            <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.04]">
+              <Image
+                src={article.image}
+                alt={article.title}
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+          ) : (
+            <>
+              <div
+                className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.04]"
+                style={{ background: article.gradient }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: `radial-gradient(circle at 30% 60%, ${article.accent}33 0%, transparent 60%)`,
+                }}
+              />
+            </>
+          )}
         </div>
       )}
 

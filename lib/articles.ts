@@ -1,3 +1,5 @@
+import { ARTICLE_IMAGES } from "./article-image-manifest";
+
 export type ContentBlock =
   | { type: "paragraph"; text: string }
   | { type: "heading"; text: string }
@@ -15,6 +17,7 @@ export type Article = {
   gradient: string;
   accent: string;
   featured?: boolean;
+  image?: string;
   author: { name: string; role: string };
   content: ContentBlock[];
 };
@@ -30,7 +33,7 @@ export const CATEGORIES = [
 
 const DEFAULT_AUTHOR = { name: "Rulz&Co Editorial", role: "Studio Team" };
 
-export const articles: Article[] = [
+const _rawArticles: Article[] = [
   {
     id: "ai-design-convergence",
     category: "AI & Design",
@@ -453,6 +456,11 @@ export const articles: Article[] = [
     ],
   },
 ];
+
+export const articles: Article[] = _rawArticles.map((a) => ({
+  ...a,
+  image: a.image ?? ARTICLE_IMAGES[a.id],
+}));
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
