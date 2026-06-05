@@ -25,6 +25,8 @@ export type Article = {
   author: { name: string; role: string };
   /** Links the article to an author entity in lib/authors.ts (E-E-A-T). */
   authorSlug?: AuthorSlug;
+  /** Optional Q&A pairs; rendered as a visible accordion + FAQPage JSON-LD. */
+  faqs?: { q: string; a: string }[];
   content: ContentBlock[];
 };
 

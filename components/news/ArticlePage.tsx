@@ -16,6 +16,7 @@ import { AuthorByline, type BylineAuthor } from "@/components/news/AuthorByline"
 import { UpdatedDate } from "@/components/seo/UpdatedDate";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { breadcrumbsForArticle } from "@/lib/seo/breadcrumbs";
+import { FAQ } from "@/components/news/FAQ";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -425,6 +426,9 @@ export function ArticlePage({
           </div>
         </div>
       </section>
+
+      {/* ── FAQ ─────────────────────────────────────────────────── */}
+      <FAQ items={article.faqs} className="pb-16 md:pb-20" />
 
       {/* ── RELATED ─────────────────────────────────────────────── */}
       {related.length > 0 && (
