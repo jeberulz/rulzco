@@ -8,6 +8,8 @@ import {
   SITE_URL,
 } from "@/lib/seo/site-config";
 import { sharedOpenGraph, sharedTwitter } from "@/lib/seo/shared-metadata";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildOrganization, buildWebSite } from "@/lib/seo/jsonld";
 
 const DEFAULT_TITLE = `${SITE_NAME} — ${SITE_TAGLINE}`;
 
@@ -50,6 +52,8 @@ export default function RootLayout({
   return (
     <html lang="en-GB" suppressHydrationWarning>
       <body suppressHydrationWarning>
+        <JsonLd data={buildOrganization()} />
+        <JsonLd data={buildWebSite()} />
         <PreloaderWrapper />
         {children}
       </body>

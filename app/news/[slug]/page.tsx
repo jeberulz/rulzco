@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArticlePage } from "@/components/news/ArticlePage";
 import { articles, getArticle, getRelatedArticles } from "@/lib/articles";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildNewsArticle } from "@/lib/seo/jsonld";
 
 export async function generateStaticParams() {
   return articles.map((a) => ({ slug: a.id }));
@@ -30,5 +32,10 @@ export default async function ArticleRoute({
   const article = getArticle(slug);
   if (!article) notFound();
   const related = getRelatedArticles(slug, 3);
-  return <ArticlePage article={article} related={related} />;
+  return (
+    <>
+      <JsonLd data={buildNewsArticle(article)} />
+      <ArticlePage article={article} related={related} />
+    </>
+  );
 }

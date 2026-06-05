@@ -7,6 +7,8 @@ import {
   getArticlesByCategory,
   slugToCategory,
 } from "@/lib/articles";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildCollectionPage } from "@/lib/seo/jsonld";
 
 export async function generateStaticParams() {
   return CATEGORIES.filter((c) => c !== "All").map((c) => ({
@@ -37,5 +39,20 @@ export default async function CategoryRoute({
   const category = slugToCategory(slug);
   if (!category) notFound();
   const items = getArticlesByCategory(category);
-  return <CategoryPage category={category} articles={items} />;
+  return (
+    <>
+      <JsonLd
+        data={buildCollectionPage({
+          name: `${category} — The Dispatch`,
+          description: `All articles in ${category} from Rulz&Co.`,
+          path: `/news/category/${slug}`,
+          items: items.map((a) => ({
+            name: a.title,
+            path: `/news/${a.id}`,
+          })),
+        })}
+      />
+      <CategoryPage category={category} articles={items} />
+    </>
+  );
 }

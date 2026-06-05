@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getProject, projects } from "@/lib/projects";
 import { CaseStudyPage } from "@/components/work/CaseStudyPage";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildCreativeWork } from "@/lib/seo/jsonld";
 
 export async function generateStaticParams() {
   return projects.map((p) => ({ slug: p.id }));
@@ -29,5 +31,10 @@ export default async function WorkCaseStudy({
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) notFound();
-  return <CaseStudyPage project={project} />;
+  return (
+    <>
+      <JsonLd data={buildCreativeWork(project)} />
+      <CaseStudyPage project={project} />
+    </>
+  );
 }
