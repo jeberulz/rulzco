@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { getProject, projects } from "@/lib/projects";
 import { CaseStudyPage } from "@/components/work/CaseStudyPage";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { buildCreativeWork } from "@/lib/seo/jsonld";
+import { buildCreativeWork, buildBreadcrumbList } from "@/lib/seo/jsonld";
+import { breadcrumbsForProject } from "@/lib/seo/breadcrumbs";
 import { buildMetadata } from "@/lib/seo/shared-metadata";
 
 export async function generateStaticParams() {
@@ -36,6 +37,7 @@ export default async function WorkCaseStudy({
   return (
     <>
       <JsonLd data={buildCreativeWork(project)} />
+      <JsonLd data={buildBreadcrumbList(breadcrumbsForProject(project))} />
       <CaseStudyPage project={project} />
     </>
   );

@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowLeft, ArrowUpRight, Clock, Calendar } from "lucide-react";
+import { ArrowUpRight, Clock, Calendar } from "lucide-react";
 import { NavMenu } from "@/components/NavMenu";
 import { Footer } from "@/components/Footer";
 import LineReveal from "@/components/LineReveal";
@@ -14,6 +14,8 @@ import { categoryToSlug } from "@/lib/articles";
 import { getAuthor } from "@/lib/authors";
 import { AuthorByline, type BylineAuthor } from "@/components/news/AuthorByline";
 import { UpdatedDate } from "@/components/seo/UpdatedDate";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { breadcrumbsForArticle } from "@/lib/seo/breadcrumbs";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -285,14 +287,12 @@ export function ArticlePage({
       {/* ── ARTICLE HEADER ──────────────────────────────────────── */}
       <header className="px-8 md:px-14 pt-20 pb-10 md:pb-14">
         <div className="max-w-3xl mx-auto">
-          {/* Back to dispatch */}
-          <Link
-            href="/news"
-            className="article-meta-top inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-[#999] hover:text-[#0f0f0f] transition-colors"
-          >
-            <ArrowLeft size={11} />
-            The Dispatch
-          </Link>
+          {/* Breadcrumb trail */}
+          <Breadcrumbs
+            items={breadcrumbsForArticle(article)}
+            tone="light"
+            className="article-meta-top"
+          />
 
           {/* Category + date */}
           <div className="article-meta-row mt-10 flex items-center gap-3 flex-wrap">

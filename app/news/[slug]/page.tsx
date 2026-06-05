@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { ArticlePage } from "@/components/news/ArticlePage";
 import { articles, getArticle, getRelatedArticles } from "@/lib/articles";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { buildNewsArticle } from "@/lib/seo/jsonld";
+import { buildNewsArticle, buildBreadcrumbList } from "@/lib/seo/jsonld";
+import { breadcrumbsForArticle } from "@/lib/seo/breadcrumbs";
 import { getAuthor } from "@/lib/authors";
 import { buildMetadata } from "@/lib/seo/shared-metadata";
 
@@ -47,6 +48,7 @@ export default async function ArticleRoute({
             : {},
         )}
       />
+      <JsonLd data={buildBreadcrumbList(breadcrumbsForArticle(article))} />
       <ArticlePage article={article} related={related} />
     </>
   );

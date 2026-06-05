@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { ServicesPage } from "@/components/services/ServicesPage";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { buildServiceItemList, buildFAQPage } from "@/lib/seo/jsonld";
+import {
+  buildServiceItemList,
+  buildFAQPage,
+  buildBreadcrumbList,
+} from "@/lib/seo/jsonld";
+import { breadcrumbsForService } from "@/lib/seo/breadcrumbs";
 import { tiers, faqs } from "@/lib/services-data";
 import { buildMetadata } from "@/lib/seo/shared-metadata";
 
@@ -18,6 +23,7 @@ export default function Services() {
     <>
       <JsonLd data={buildServiceItemList(tiers)} />
       {faqPage && <JsonLd data={faqPage} />}
+      <JsonLd data={buildBreadcrumbList(breadcrumbsForService())} />
       <ServicesPage />
     </>
   );

@@ -8,7 +8,8 @@ import {
   slugToCategory,
 } from "@/lib/articles";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { buildCollectionPage } from "@/lib/seo/jsonld";
+import { buildCollectionPage, buildBreadcrumbList } from "@/lib/seo/jsonld";
+import { breadcrumbsForCategory } from "@/lib/seo/breadcrumbs";
 import { buildMetadata } from "@/lib/seo/shared-metadata";
 
 export async function generateStaticParams() {
@@ -54,6 +55,7 @@ export default async function CategoryRoute({
           })),
         })}
       />
+      <JsonLd data={buildBreadcrumbList(breadcrumbsForCategory(category))} />
       <CategoryPage category={category} articles={items} />
     </>
   );

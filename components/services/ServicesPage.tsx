@@ -10,6 +10,8 @@ import { BrandMark } from "@/components/BrandMark";
 import { Footer } from "@/components/Footer";
 import LineReveal from "@/components/LineReveal";
 import { tiers, faqs } from "@/lib/services-data";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { breadcrumbsForService } from "@/lib/seo/breadcrumbs";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -461,8 +463,9 @@ export function ServicesPage() {
       {/* ── HERO ─────────────────────────────────────────────────── */}
       <section className="bg-[#0a0a0a] text-white pt-28 pb-20 px-8 md:px-14">
         <div className="max-w-[1600px] mx-auto">
-          <div className="mb-10">
+          <div className="mb-10 flex items-center justify-between gap-4">
             <BrandMark variant="dark" />
+            <Breadcrumbs items={breadcrumbsForService()} tone="dark" />
           </div>
           <div className="flex items-center gap-3 mb-10">
             <div className="w-1.5 h-5 bg-[#FFC703]" />
