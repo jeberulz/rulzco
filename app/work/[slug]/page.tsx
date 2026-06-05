@@ -4,6 +4,7 @@ import { getProject, projects } from "@/lib/projects";
 import { CaseStudyPage } from "@/components/work/CaseStudyPage";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildCreativeWork } from "@/lib/seo/jsonld";
+import { buildMetadata } from "@/lib/seo/shared-metadata";
 
 export async function generateStaticParams() {
   return projects.map((p) => ({ slug: p.id }));
@@ -17,10 +18,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) return {};
-  return {
-    title: `${project.title} — Rulz&Co`,
+  return buildMetadata({
+    title: project.title,
     description: project.description,
-  };
+    path: `/work/${slug}`,
+  });
 }
 
 export default async function WorkCaseStudy({

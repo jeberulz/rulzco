@@ -25,7 +25,7 @@ export async function generateMetadata({
   const record = getAuthor(author);
   if (!record) return { title: "Author not found" };
   return buildMetadata({
-    title: `${record.name} — Rulz&Co`,
+    title: record.name,
     description: record.bio.slice(0, 160),
     path: `/studio/${record.slug}`,
     type: "profile",

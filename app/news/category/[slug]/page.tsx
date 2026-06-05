@@ -9,6 +9,7 @@ import {
 } from "@/lib/articles";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildCollectionPage } from "@/lib/seo/jsonld";
+import { buildMetadata } from "@/lib/seo/shared-metadata";
 
 export async function generateStaticParams() {
   return CATEGORIES.filter((c) => c !== "All").map((c) => ({
@@ -24,10 +25,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const category = slugToCategory(slug);
   if (!category) return { title: "Not found — The Dispatch" };
-  return {
+  return buildMetadata({
     title: `${category} — The Dispatch`,
     description: `All articles in ${category} from Rulz&Co.`,
-  };
+    path: `/news/category/${slug}`,
+  });
 }
 
 export default async function CategoryRoute({

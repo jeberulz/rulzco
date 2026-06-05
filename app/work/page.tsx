@@ -3,12 +3,14 @@ import { WorkPage } from "@/components/work/WorkPage";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildCollectionPage } from "@/lib/seo/jsonld";
 import { projects } from "@/lib/projects";
+import { buildMetadata } from "@/lib/seo/shared-metadata";
 
-export const metadata: Metadata = {
-  title: "Work — Rulz&Co",
+export const metadata: Metadata = buildMetadata({
+  title: "Work",
   description:
     "Selected projects from Rulz&Co — AI product design, strategy, and brand work for startups building intelligent products.",
-};
+  path: "/work",
+});
 
 export default function Work() {
   return (

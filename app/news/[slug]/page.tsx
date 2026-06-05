@@ -5,6 +5,7 @@ import { articles, getArticle, getRelatedArticles } from "@/lib/articles";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildNewsArticle } from "@/lib/seo/jsonld";
 import { getAuthor } from "@/lib/authors";
+import { buildMetadata } from "@/lib/seo/shared-metadata";
 
 export async function generateStaticParams() {
   return articles.map((a) => ({ slug: a.id }));
@@ -18,10 +19,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const article = getArticle(slug);
   if (!article) return { title: "Not found — The Dispatch" };
-  return {
-    title: `${article.title} — The Dispatch`,
+  return buildMetadata({
+    title: article.title,
     description: article.excerpt,
-  };
+    path: `/news/${slug}`,
+    type: "article",
+  });
 }
 
 export default async function ArticleRoute({
