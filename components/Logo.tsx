@@ -1,26 +1,31 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
+import { onAnimationReady } from "@/lib/animation-ready";
 import svgPaths from "@/lib/svg-paths";
 
 export function Logo({ className }: { className?: string }) {
   const svgRef = useRef<SVGSVGElement>(null);
 
+  // Hide before paint so paths are never visible at their displaced position
+  useLayoutEffect(() => {
+    const svg = svgRef.current;
+    if (!svg) return;
+    gsap.set(svg.querySelectorAll("path"), { opacity: 0, y: 30 });
+  }, []);
+
   useEffect(() => {
     const svg = svgRef.current;
     if (!svg) return;
 
-    // DOM order: dot, o, C, &, z, l, u, R — reverse gives left-to-right: R u l z & C o dot
+    // DOM order: dot, o, C, &, z, l, u, R — reverse = left-to-right: R u l z & C o dot
     const paths = Array.from(svg.querySelectorAll("path")).reverse();
     const letters = paths.slice(0, 7);
     const dot = paths[7];
 
-    gsap.set(paths, { opacity: 0, y: 40 });
+    const tl = gsap.timeline({ paused: true });
 
-    const tl = gsap.timeline({ delay: 0.15 });
-
-    // Letters slide up left-to-right
     tl.to(letters, {
       opacity: 1,
       y: 0,
@@ -29,17 +34,15 @@ export function Logo({ className }: { className?: string }) {
       ease: "power3.out",
     });
 
-    // Gold dot pops in last
-    tl.to(
-      dot,
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        ease: "back.out(2)",
-      },
-      "-=0.25"
-    );
+    // Gold dot pops in with a slight bounce as the last letter lands
+    tl.to(dot, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      ease: "back.out(2)",
+    }, "-=0.25");
+
+    onAnimationReady(() => tl.play());
 
     return () => { tl.kill(); };
   }, []);

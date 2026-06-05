@@ -4,6 +4,7 @@ import React, { useRef, useLayoutEffect, ReactNode } from "react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { onAnimationReady } from "@/lib/animation-ready";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -23,7 +24,9 @@ interface LineRevealProps {
   children: ReactNode;
   /** Play immediately on mount; if false, triggers on scroll */
   animateOnScroll?: boolean;
-  /** Seconds before reveal starts */
+  /** Wait for the preloader signal before playing (use with animateOnScroll=false) */
+  waitForReady?: boolean;
+  /** Seconds before reveal starts (offset from signal when waitForReady=true) */
   delay?: number;
   /** Seconds between each line/word */
   stagger?: number;
@@ -36,6 +39,7 @@ interface LineRevealProps {
 export default function LineReveal({
   children,
   animateOnScroll = true,
+  waitForReady = false,
   delay = 0,
   stagger = 0.05,
   type = "lines",
@@ -94,13 +98,14 @@ export default function LineReveal({
       gsap.set(allUnits, { yPercent: 110 });
       root.classList.add("line-reveal-ready");
 
+      const shouldPause = animateOnScroll || waitForReady;
       tween = gsap.to(allUnits, {
         yPercent: 0,
         duration: 0.75,
         ease: "power3.out",
-        delay,
+        delay: waitForReady ? 0 : delay,
         stagger,
-        paused: animateOnScroll,
+        paused: shouldPause,
       });
 
       if (animateOnScroll) {
@@ -112,6 +117,14 @@ export default function LineReveal({
           toggleActions: "play none none none",
         });
         scrollTriggerList.push(st);
+      } else if (waitForReady) {
+        onAnimationReady(() => {
+          if (delay > 0) {
+            gsap.delayedCall(delay, () => tween?.play());
+          } else {
+            tween?.play();
+          }
+        });
       }
     };
 
@@ -140,7 +153,7 @@ export default function LineReveal({
       isActive = false;
       cleanup();
     };
-  }, [animateOnScroll, delay, stagger, type, start]);
+  }, [animateOnScroll, waitForReady, delay, stagger, type, start]);
 
   const isSingleElement =
     React.Children.count(children) === 1 && React.isValidElement(children);

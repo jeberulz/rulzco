@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowRight, Grip } from "lucide-react";
+import TrailContainer from "./TrailContainer";
 
 const projects = [
   {
@@ -99,9 +100,17 @@ export function Portfolio() {
   const col1Projects = projects.filter((p) => p.col === 1);
   const col2Projects = projects.filter((p) => p.col === 2);
 
+  const trailImages = [
+    "/images/rinkl-card.png",
+    "/images/ds-card.png",
+    "/images/hnp-card.png",
+    "/images/scan-card.png",
+  ];
+
   return (
     <>
-      <div className="w-full bg-[#111] text-white py-24 px-6 md:px-12">
+      <div className="w-full bg-[#111] text-white py-24 px-6 md:px-12 relative">
+        <TrailContainer images={trailImages} />
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
             <div className="flex flex-col gap-24">

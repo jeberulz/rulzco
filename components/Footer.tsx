@@ -72,6 +72,9 @@ export function Footer() {
                 <div className="relative border-b border-gray-700 group-focus-within:border-white transition-colors pb-4">
                   <input
                     type="email"
+                    data-lpignore="true"
+                    data-1p-ignore
+                    data-form-type="other"
                     className="w-full bg-transparent border-none outline-none text-white placeholder-transparent focus:ring-0 p-0 text-lg"
                   />
                   <button className="absolute right-0 top-0 text-gray-500 group-focus-within:text-white hover:text-[#FFC703] transition-colors">

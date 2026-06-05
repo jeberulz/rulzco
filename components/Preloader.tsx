@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { signalAnimationReady } from "@/lib/animation-ready";
 
 // persists across remounts; resets only on hard refresh
 let hasLoaded = false;
@@ -16,6 +17,7 @@ export default function Preloader() {
     // skip if already played this session
     if (hasLoaded) {
       setVisible(false);
+      signalAnimationReady();
       return;
     }
 
@@ -54,6 +56,7 @@ export default function Preloader() {
         clearTimeout(counterTimer);
         hasLoaded = true;
         document.body.style.overflow = "";
+        signalAnimationReady();
         setTimeout(() => setVisible(false), 50);
       },
     });
