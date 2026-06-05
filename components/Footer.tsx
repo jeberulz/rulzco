@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowUp, ArrowRight } from "lucide-react";
 import { Logo } from "./Logo";
 
@@ -96,6 +97,24 @@ export function Footer() {
                 LinkedIn <ArrowUp size={12} className="rotate-45" />
               </a>
             </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 border-t border-gray-800/50 pt-8 text-[10px] uppercase tracking-widest text-gray-500">
+          <span>© {new Date().getFullYear()} Rulz&amp;Co. All rights reserved.</span>
+          <div className="flex gap-8">
+            <Link
+              href="/policies/corrections"
+              className="hover:text-white transition-colors"
+            >
+              Corrections
+            </Link>
+            <Link
+              href="/policies/ai-disclosure"
+              className="hover:text-white transition-colors"
+            >
+              AI Disclosure
+            </Link>
           </div>
         </div>
       </div>

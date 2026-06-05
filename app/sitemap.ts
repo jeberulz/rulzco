@@ -46,6 +46,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/news", { priority: 0.8, changeFrequency: "daily" }),
     entry("/partnership", { priority: 0.8, changeFrequency: "monthly" }),
     entry("/studio", { priority: 0.8, changeFrequency: "monthly" }),
+    entry("/policies/corrections", { priority: 0.2, changeFrequency: "yearly" }),
+    entry("/policies/ai-disclosure", { priority: 0.2, changeFrequency: "yearly" }),
   ];
 
   const categoryPages: MetadataRoute.Sitemap = CATEGORIES.filter(
