@@ -1,57 +1,92 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Link from "next/link";
 import { gsap } from "gsap";
 import { X, ArrowUpRight } from "lucide-react";
+import {
+  type ScrambleSplit,
+  scrambleIn,
+  scrambleVisible,
+  revertScrambleInstance,
+} from "@/utils/scramble";
 
 interface NavMenuProps {
   className?: string;
 }
 
 const menuItems = [
-  { number: "00", label: "Home", sub: "Where the creative heart is.", href: "#" },
-  { number: "00", label: "News", sub: "Our updates, thoughts, resources, and more.", href: "#" },
-  { number: "08", label: "Work", sub: "Projects we have worked on.", href: "#" },
-  { number: "04", label: "Partnership", sub: "We partner & invest in companies & ideas.", href: "#" },
-  { number: "", label: "Studio", sub: "About the Studio, principles & values.", href: "#" },
-  { number: "", label: "Services", sub: "What we do and how we do it.", href: "#" },
+  { number: "01", label: "Home", sub: "Where the creative heart is.", href: "/" },
+  { number: "02", label: "Work", sub: "Projects we have worked on.", href: "/work" },
+  { number: "03", label: "Services", sub: "What we do and how we do it.", href: "/services" },
+  { number: "04", label: "Studio", sub: "About the Studio, principles & values.", href: "/studio" },
+  { number: "05", label: "Partnership", sub: "We partner & invest in companies & ideas.", href: "/partnership" },
+  { number: "06", label: "News", sub: "Our updates, thoughts, resources, and more.", href: "/news" },
 ];
+
+const SCRAMBLE_OPTS = { duration: 0.18, charDelay: 45, stagger: 30, maxIterations: 5 };
+const HOVER_OPTS = { duration: 0.2, charDelay: 40, stagger: 25, maxIterations: 8 };
 
 export function NavMenu({ className }: NavMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
-  const itemsRef = useRef<HTMLAnchorElement[]>([]);
   const contentRef = useRef<HTMLDivElement>(null);
+  const labelRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const openSplits = useRef<(ScrambleSplit | null)[]>([]);
+  const hoverSplits = useRef<(ScrambleSplit | null)[]>([]);
 
   const openMenu = () => {
     setIsOpen(true);
     requestAnimationFrame(() => {
       const tl = gsap.timeline();
+
+      // slide overlay in + fade content
       tl.fromTo(
         overlayRef.current,
         { y: "-100%" },
-        { y: "0%", duration: 0.6, ease: "power3.out" }
-      ).fromTo(
-        itemsRef.current,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.4, stagger: 0.06, ease: "power2.out" },
-        "-=0.2"
+        { y: "0%", duration: 0.55, ease: "power3.out" }
       ).fromTo(
         contentRef.current,
-        { opacity: 0, y: 20 },
+        { opacity: 0, y: 16 },
         { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
-        "-=0.35"
+        "-=0.2"
       );
+
+      // scramble in each nav label with stagger
+      openSplits.current.forEach((s) => revertScrambleInstance(s));
+      openSplits.current = [];
+
+      labelRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const delay = 0.2 + i * 0.07;
+        const instance = scrambleIn(el, delay, SCRAMBLE_OPTS);
+        openSplits.current[i] = instance;
+      });
     });
   };
 
   const closeMenu = () => {
+    // revert scramble splits before the overlay leaves
+    openSplits.current.forEach((s) => revertScrambleInstance(s));
+    openSplits.current = [];
+    hoverSplits.current.forEach((s) => revertScrambleInstance(s));
+    hoverSplits.current = [];
+
     gsap.to(overlayRef.current, {
       y: "-100%",
       duration: 0.5,
       ease: "power3.in",
       onComplete: () => setIsOpen(false),
     });
+  };
+
+  const handleLabelHover = (idx: number) => {
+    const el = labelRefs.current[idx];
+    if (!el) return;
+
+    // revert any in-progress hover split for this slot then scramble
+    revertScrambleInstance(hoverSplits.current[idx] ?? null);
+    hoverSplits.current[idx] = scrambleVisible(el, 0, HOVER_OPTS);
   };
 
   return (
@@ -124,16 +159,18 @@ export function NavMenu({ className }: NavMenuProps) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-12 gap-x-8 pb-12 content-start">
                 {menuItems.map((item, idx) => (
-                  <a
+                  <Link
                     key={idx}
                     href={item.href}
-                    ref={(el) => {
-                      if (el) itemsRef.current[idx] = el;
-                    }}
                     className="group block"
+                    onClick={closeMenu}
+                    onMouseEnter={() => handleLabelHover(idx)}
                   >
                     <div className="relative inline-block">
-                      <span className="text-5xl md:text-7xl font-light group-hover:text-gray-300 transition-colors block">
+                      <span
+                        ref={(el) => { labelRefs.current[idx] = el; }}
+                        className="text-5xl md:text-7xl font-light block"
+                      >
                         {item.label}
                       </span>
                       {item.number && (
@@ -145,7 +182,7 @@ export function NavMenu({ className }: NavMenuProps) {
                     <p className="text-sm text-gray-500 mt-2 max-w-[200px]">
                       {item.sub}
                     </p>
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>

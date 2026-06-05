@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { Logo } from "./Logo";
 import { NavMenu } from "./NavMenu";
+import LineReveal from "./LineReveal";
 
 const services = [
   {
@@ -65,13 +66,17 @@ export function Hero() {
           </div>
 
           <div className="order-first xl:order-none xl:max-w-[560px] flex flex-col items-start gap-8 pt-2">
-            <h1 className="text-3xl md:text-[32px] leading-[1.3] font-medium text-[#F3F5F3]">
-              AI Product Design & Strategy partner for startups shipping
-              intelligent products.
-            </h1>
-            <p className="text-[24px] text-[#797A7A] leading-tight font-light">
-              From idea → MVP → launch, with AI at the core.
-            </p>
+            <LineReveal animateOnScroll={false} delay={0.2}>
+              <h1 className="text-3xl md:text-[32px] leading-[1.3] font-medium text-[#F3F5F3]">
+                AI Product Design & Strategy partner for startups shipping
+                intelligent products.
+              </h1>
+            </LineReveal>
+            <LineReveal animateOnScroll={false} delay={0.5} type="words" stagger={0.04}>
+              <p className="text-[24px] text-[#797A7A] leading-tight font-light">
+                From idea → MVP → launch, with AI at the core.
+              </p>
+            </LineReveal>
             <button className="mt-2 border border-[#FFC703] text-[#FFC703] rounded-full px-8 py-3 text-[13px] font-medium tracking-[0.05em] uppercase flex items-center gap-2 hover:bg-[#FFC703] hover:text-black transition-all duration-300 group">
               Start a project
               <ArrowRight

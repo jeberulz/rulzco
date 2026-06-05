@@ -1,4 +1,5 @@
 import { ArrowRight, Grip } from "lucide-react";
+import LineReveal from "./LineReveal";
 
 const benefits = [
   {
@@ -22,10 +23,12 @@ export function Benefits() {
           </div>
 
           <div className="lg:col-span-11">
-            <h2 className="text-4xl md:text-5xl lg:text-[56px] font-medium text-black leading-[1.1] mb-10 max-w-5xl tracking-tight">
-              At Rulz&amp;Co. we focus on clarity, speed, and outcomes, not
-              decks or over-engineered processes
-            </h2>
+            <LineReveal stagger={0.06}>
+              <h2 className="text-4xl md:text-5xl lg:text-[56px] font-medium text-black leading-[1.1] mb-10 max-w-5xl tracking-tight">
+                At Rulz&amp;Co. we focus on clarity, speed, and outcomes, not
+                decks or over-engineered processes
+              </h2>
+            </LineReveal>
 
             <button className="bg-black text-[#FFC703] rounded-full px-8 py-4 text-[13px] font-bold tracking-widest uppercase flex items-center gap-2 hover:opacity-90 transition-opacity mb-24">
               Start a project <ArrowRight size={16} />

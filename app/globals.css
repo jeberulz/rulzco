@@ -83,6 +83,30 @@
   --font-sans: 'Inter', sans-serif;
 }
 
+/* Ticker marquee */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-ticker {
+  animation: ticker 30s linear infinite;
+  will-change: transform;
+}
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
+/* LineReveal — masked line/word slide-up animation */
+.gsap-line,
+.gsap-word {
+  display: inline-block;
+  will-change: transform;
+}
+
+[data-line-reveal]:not(.line-reveal-ready) {
+  visibility: hidden;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
