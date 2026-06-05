@@ -5,7 +5,6 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight, Plus, Minus, ArrowRight, Check } from "lucide-react";
-import { Logo } from "@/components/Logo";
 import { NavMenu } from "@/components/NavMenu";
 import { Footer } from "@/components/Footer";
 import LineReveal from "@/components/LineReveal";
@@ -739,11 +738,6 @@ export function ServicesPage() {
           </div>
         </div>
       </section>
-
-      {/* Logo watermark */}
-      <div className="overflow-hidden bg-[#050505] border-t border-[#0d0d0d]">
-        <Logo className="w-full h-auto text-[#0d0d0d] -mb-[1.5vw]" />
-      </div>
 
       <Footer />
     </div>

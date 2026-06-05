@@ -50,12 +50,15 @@ export function Hero() {
   const ctaRef = useRef<HTMLButtonElement>(null);
 
   // Set initial hidden state before paint — prevents flash of unstyled content
+  // Nav gets opacity-only (no y transform) — a CSS transform on the wrapper would
+  // create a new containing block for the fixed-position overlay inside NavMenu.
   useLayoutEffect(() => {
     const serviceColumns = servicesRef.current
       ? Array.from(servicesRef.current.children)
       : [];
+    gsap.set(navRef.current, { opacity: 0 });
     gsap.set(
-      [navRef.current, ...serviceColumns, ctaRef.current].filter(Boolean),
+      [...serviceColumns, ctaRef.current].filter(Boolean),
       { opacity: 0, y: 16 }
     );
   }, []);
@@ -66,10 +69,10 @@ export function Hero() {
         ? Array.from(servicesRef.current.children)
         : [];
 
-      // Nav trigger — early, short offset so it's present when logo lands
+      // Nav trigger — opacity only. Any transform here (even y:0) creates a
+      // containing block for the fixed-position overlay inside NavMenu.
       gsap.to(navRef.current, {
         opacity: 1,
-        y: 0,
         duration: 0.5,
         delay: 0.1,
         ease: "power2.out",

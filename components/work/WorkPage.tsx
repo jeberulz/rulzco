@@ -5,7 +5,6 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
-import { Logo } from "@/components/Logo";
 import { NavMenu } from "@/components/NavMenu";
 import { Footer } from "@/components/Footer";
 import { projects } from "@/lib/projects";
@@ -380,11 +379,6 @@ export function WorkPage() {
           </a>
         </div>
       </main>
-
-      {/* Logo watermark divider */}
-      <div className="px-6 md:px-0 border-t border-[#111] overflow-hidden">
-        <Logo className="w-full h-auto text-[#161616] -mb-[1.5vw]" />
-      </div>
 
       <Footer />
     </div>

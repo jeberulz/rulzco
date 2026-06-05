@@ -5,7 +5,6 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowLeft, ArrowUpRight, ArrowRight } from "lucide-react";
-import { Logo } from "@/components/Logo";
 import { NavMenu } from "@/components/NavMenu";
 import { Footer } from "@/components/Footer";
 import { type Project, getAdjacentProjects } from "@/lib/projects";
@@ -537,11 +536,6 @@ export function CaseStudyPage({ project }: { project: Project }) {
           </div>
         </section>
       )}
-
-      {/* Logo watermark */}
-      <div className="overflow-hidden border-t border-[#111]">
-        <Logo className="w-full h-auto text-[#141414] -mb-[1.5vw]" />
-      </div>
 
       <Footer />
     </div>

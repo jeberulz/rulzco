@@ -5,7 +5,6 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight, ArrowDown, Check, ArrowRight } from "lucide-react";
-import { Logo } from "@/components/Logo";
 import { NavMenu } from "@/components/NavMenu";
 import { Footer } from "@/components/Footer";
 import LineReveal from "@/components/LineReveal";
@@ -853,11 +852,6 @@ export function PartnershipPage() {
           </div>
         </div>
       </section>
-
-      {/* Logo watermark */}
-      <div className="overflow-hidden bg-[#FFC703] border-t border-black/10">
-        <Logo className="w-full h-auto text-black/10 -mb-[1.5vw]" />
-      </div>
 
       <Footer />
     </div>

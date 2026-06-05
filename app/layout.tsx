@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import PreloaderWrapper from "@/components/PreloaderWrapper";
 
 export const metadata: Metadata = {
   title: "Rulz&Co — AI Product Design & Strategy",
@@ -18,7 +19,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        <PreloaderWrapper />
+        {children}
+      </body>
     </html>
   );
 }

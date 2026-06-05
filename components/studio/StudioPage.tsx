@@ -5,7 +5,6 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
-import { Logo } from "@/components/Logo";
 import { NavMenu } from "@/components/NavMenu";
 import { Footer } from "@/components/Footer";
 import LineReveal from "@/components/LineReveal";
@@ -533,11 +532,6 @@ export function StudioPage() {
           </div>
         </div>
       </section>
-
-      {/* Logo watermark */}
-      <div className="overflow-hidden bg-[#0a0a0a] border-t border-[#111]">
-        <Logo className="w-full h-auto text-[#141414] -mb-[1.5vw]" />
-      </div>
 
       <Footer />
     </div>
