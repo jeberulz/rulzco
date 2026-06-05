@@ -8,116 +8,11 @@ import { ArrowUpRight, Clock } from "lucide-react";
 import { NavMenu } from "@/components/NavMenu";
 import { Footer } from "@/components/Footer";
 import LineReveal from "@/components/LineReveal";
+import { articles, CATEGORIES as ALL_CATEGORIES, type Article } from "@/lib/articles";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// ─── Types & Data ──────────────────────────────────────────────────────────────
-
-type Article = {
-  id: string;
-  category: string;
-  title: string;
-  excerpt: string;
-  date: string;
-  readTime: string;
-  gradient: string;
-  accent: string;
-  featured?: boolean;
-};
-
-const articles: Article[] = [
-  {
-    id: "ai-design-convergence",
-    category: "AI & Design",
-    title: "The Convergence Nobody Is Talking About",
-    excerpt:
-      "AI isn't replacing designers. It's revealing which designers were never really designing. The tools are a mirror — and not everyone likes what they see.",
-    date: "5 Jun 2025",
-    readTime: "5 min",
-    featured: true,
-    gradient: "linear-gradient(135deg, #0f0c29 0%, #302070 50%, #24243e 100%)",
-    accent: "#8b7cf8",
-  },
-  {
-    id: "founder-market-fit",
-    category: "Founders",
-    title: "Founder–Market Fit Comes Before Product–Market Fit",
-    excerpt:
-      "Most startups fail not because the product was wrong — but because the founder never truly understood the problem they were solving.",
-    date: "28 May 2025",
-    readTime: "7 min",
-    gradient: "linear-gradient(135deg, #1a0f00 0%, #4a2800 50%, #2d1800 100%)",
-    accent: "#FFA500",
-  },
-  {
-    id: "design-systems",
-    category: "Design",
-    title: "Design Systems Are Eating Themselves",
-    excerpt:
-      "When everyone ships with the same component library, the only differentiator left is the judgment to know when to break the rules.",
-    date: "20 May 2025",
-    readTime: "4 min",
-    gradient: "linear-gradient(135deg, #0d1f14 0%, #193d28 50%, #0f2b1c 100%)",
-    accent: "#69DB7C",
-  },
-  {
-    id: "enterprise-ux-debt",
-    category: "Industry",
-    title: "The $400 Billion UX Debt in Enterprise Software",
-    excerpt:
-      "Enterprise software is broken by design — and that's the opportunity. The founders who fix it will build the next Salesforce.",
-    date: "12 May 2025",
-    readTime: "6 min",
-    gradient: "linear-gradient(135deg, #050510 0%, #0d0d2b 50%, #080820 100%)",
-    accent: "#4DABF7",
-  },
-  {
-    id: "studio-notes-q1",
-    category: "Studio Notes",
-    title: "What We Shipped in Q1 2025",
-    excerpt:
-      "Six projects, two partnerships, one rebrand, and a lesson about moving too fast on the wrong brief.",
-    date: "2 May 2025",
-    readTime: "8 min",
-    gradient: "linear-gradient(135deg, #1a0a0a 0%, #3d1212 50%, #2b0f0f 100%)",
-    accent: "#FF6B6B",
-  },
-  {
-    id: "betting-on-taste",
-    category: "AI & Design",
-    title: "Betting on Taste in the Age of Infinite Generation",
-    excerpt:
-      "When anyone can generate anything, curation becomes the rarest skill. The teams that invest in genuine taste will win.",
-    date: "24 Apr 2025",
-    readTime: "5 min",
-    gradient: "linear-gradient(135deg, #0f1a0a 0%, #1f3d14 50%, #152b0e 100%)",
-    accent: "#A9E34B",
-  },
-  {
-    id: "designing-agents",
-    category: "AI & Design",
-    title: "Designing Products That Think",
-    excerpt:
-      "The UX patterns we borrowed from chatbots are fundamentally wrong for what agents actually do. We need new primitives.",
-    date: "15 Apr 2025",
-    readTime: "6 min",
-    gradient: "linear-gradient(135deg, #09090f 0%, #12122b 50%, #0a0a1f 100%)",
-    accent: "#74C0FC",
-  },
-  {
-    id: "pitch-deck-design",
-    category: "Founders",
-    title: "What Your Deck Says About Your Product Thinking",
-    excerpt:
-      "The design of your pitch deck is the first demonstration of your product taste. Most founders get this catastrophically wrong.",
-    date: "5 Apr 2025",
-    readTime: "4 min",
-    gradient: "linear-gradient(135deg, #0f0a00 0%, #2b2000 50%, #1f1700 100%)",
-    accent: "#FCC419",
-  },
-];
-
-const CATEGORIES = ["All", "AI & Design", "Founders", "Design", "Industry", "Studio Notes"];
+const CATEGORIES = ALL_CATEGORIES;
 
 // ─── Featured card ─────────────────────────────────────────────────────────────
 
@@ -226,10 +121,7 @@ function ArticleCard({
         )}
 
         <div className="flex items-center gap-2 mb-3 pr-6">
-          <span
-            className="text-[9px] uppercase tracking-widest font-medium"
-            style={{ color: article.accent }}
-          >
+          <span className="text-[9px] uppercase tracking-widest font-medium text-[#0f0f0f]">
             {article.category}
           </span>
           <span className="text-[#ddd]">·</span>
