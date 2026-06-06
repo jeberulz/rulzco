@@ -1,5 +1,6 @@
 import { ARTICLE_IMAGES } from "./article-image-manifest";
 import type { AuthorSlug } from "./authors";
+import type { Faq } from "./seo/jsonld";
 
 export type ContentBlock =
   | { type: "paragraph"; text: string }
@@ -26,7 +27,7 @@ export type Article = {
   /** Links the article to an author entity in lib/authors.ts (E-E-A-T). */
   authorSlug?: AuthorSlug;
   /** Optional Q&A pairs; rendered as a visible accordion + FAQPage JSON-LD. */
-  faqs?: { q: string; a: string }[];
+  faqs?: Faq[];
   content: ContentBlock[];
 };
 
@@ -544,6 +545,9 @@ const _rawArticles: Article[] = [
 export const articles: Article[] = _rawArticles.map((a) => ({
   ...a,
   image: a.image ?? ARTICLE_IMAGES[a.id],
+  // Attribute editorial to the studio's principal designer unless an article
+  // overrides it. Drives the linked byline + NewsArticle author Person @id.
+  authorSlug: a.authorSlug ?? "john-iseghohi",
 }));
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────

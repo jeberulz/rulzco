@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { articles, CATEGORIES, categoryToSlug } from "@/lib/articles";
 import { projects } from "@/lib/projects";
+import { authorSlugs, getAuthor, isPlaceholderAuthor } from "@/lib/authors";
 import { SITE_LOCALE, urlFor } from "@/lib/seo/site-config";
 import { parseContentDate } from "@/lib/seo/dates";
 
@@ -76,10 +77,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
+  // Only index author pages with a real (non-placeholder) identity.
+  const authorPages: MetadataRoute.Sitemap = authorSlugs
+    .filter((slug) => {
+      const author = getAuthor(slug);
+      return author && !isPlaceholderAuthor(author);
+    })
+    .map((slug) =>
+      entry(`/studio/${slug}`, {
+        priority: 0.5,
+        changeFrequency: "monthly",
+      }),
+    );
+
   return [
     ...staticPages,
     ...categoryPages,
     ...articlePages,
     ...projectPages,
+    ...authorPages,
   ];
 }
