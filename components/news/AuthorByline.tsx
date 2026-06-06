@@ -1,6 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 
+/** Brand fallback avatar fill used when an author has no headshot. */
+export const AVATAR_GRADIENT =
+  "linear-gradient(135deg, #FFC703 0%, #ffaa00 50%, #ff8800 100%)";
+
 export type BylineAuthor = {
   name: string;
   role: string;
@@ -33,10 +37,7 @@ export function AuthorByline({
   ) : (
     <div
       className="w-11 h-11 rounded-full shrink-0"
-      style={{
-        background:
-          "linear-gradient(135deg, #FFC703 0%, #ffaa00 50%, #ff8800 100%)",
-      }}
+      style={{ background: AVATAR_GRADIENT }}
       aria-hidden="true"
     />
   );

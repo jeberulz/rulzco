@@ -1,6 +1,7 @@
 import { categoryToSlug, type Article } from "@/lib/articles";
 import type { Project } from "@/lib/projects";
 import type { Crumb } from "./jsonld";
+import { PUBLICATION_NAME } from "./site-config";
 
 /**
  * Breadcrumb trails — the single source for both the visible <Breadcrumbs> UI
@@ -9,7 +10,7 @@ import type { Crumb } from "./jsonld";
  */
 
 const HOME: Crumb = { name: "Home", path: "/" };
-const DISPATCH: Crumb = { name: "The Dispatch", path: "/news" };
+const DISPATCH: Crumb = { name: PUBLICATION_NAME, path: "/news" };
 const WORK: Crumb = { name: "Work", path: "/work" };
 
 export function breadcrumbsForArticle(article: Article): Crumb[] {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import {
   SITE_DESCRIPTION,
+  SITE_LOCALE,
   SITE_NAME,
   SITE_OG_LOCALE,
   TWITTER_HANDLE,
@@ -69,7 +70,7 @@ export function buildMetadata(opts: BuildMetadataOptions): Metadata {
     alternates: {
       canonical: path,
       languages: {
-        "en-GB": path,
+        [SITE_LOCALE]: path,
         "x-default": path,
       },
     },

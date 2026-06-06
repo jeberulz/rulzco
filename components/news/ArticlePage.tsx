@@ -12,7 +12,11 @@ import LineReveal from "@/components/LineReveal";
 import type { Article, ContentBlock } from "@/lib/articles";
 import { categoryToSlug } from "@/lib/articles";
 import { getAuthor } from "@/lib/authors";
-import { AuthorByline, type BylineAuthor } from "@/components/news/AuthorByline";
+import {
+  AuthorByline,
+  AVATAR_GRADIENT,
+  type BylineAuthor,
+} from "@/components/news/AuthorByline";
 import { UpdatedDate } from "@/components/seo/UpdatedDate";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { breadcrumbsForArticle } from "@/lib/seo/breadcrumbs";
@@ -393,10 +397,7 @@ export function ArticlePage({
           <div className="flex gap-5 md:gap-6 p-6 md:p-7 rounded-2xl border border-[#ece9e3] bg-white">
             <div
               className="w-14 h-14 md:w-16 md:h-16 rounded-full shrink-0"
-              style={{
-                background:
-                  "linear-gradient(135deg, #FFC703 0%, #ffaa00 50%, #ff8800 100%)",
-              }}
+              style={{ background: AVATAR_GRADIENT }}
             />
             <div>
               <p className="text-[10px] uppercase tracking-[0.25em] text-[#aaa] mb-2">

@@ -4,11 +4,14 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { buildCollectionPage } from "@/lib/seo/jsonld";
 import { articles } from "@/lib/articles";
 import { buildMetadata } from "@/lib/seo/shared-metadata";
+import { PUBLICATION_NAME, SITE_NAME } from "@/lib/seo/site-config";
+
+const DESCRIPTION =
+  "Perspectives on design, AI, and building products that matter. Published when we have something worth saying.";
 
 export const metadata: Metadata = buildMetadata({
-  title: "The Dispatch",
-  description:
-    "Perspectives on design, AI, and building products that matter. Published when we have something worth saying.",
+  title: PUBLICATION_NAME,
+  description: DESCRIPTION,
   path: "/news",
 });
 
@@ -17,9 +20,8 @@ export default function News() {
     <>
       <JsonLd
         data={buildCollectionPage({
-          name: "The Dispatch — Rulz&Co",
-          description:
-            "Perspectives on design, AI, and building products that matter. Published when we have something worth saying.",
+          name: `${PUBLICATION_NAME} — ${SITE_NAME}`,
+          description: DESCRIPTION,
           path: "/news",
           items: articles.map((a) => ({
             name: a.title,

@@ -11,6 +11,7 @@ import {
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildPerson } from "@/lib/seo/jsonld";
 import { buildMetadata } from "@/lib/seo/shared-metadata";
+import { AVATAR_GRADIENT } from "@/components/news/AuthorByline";
 
 export function generateStaticParams() {
   return authorSlugs.map((author) => ({ author }));
@@ -79,10 +80,7 @@ export default async function AuthorRoute({
             ) : (
               <div
                 className="w-[72px] h-[72px] rounded-full shrink-0"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #FFC703 0%, #ffaa00 50%, #ff8800 100%)",
-                }}
+                style={{ background: AVATAR_GRADIENT }}
                 aria-hidden="true"
               />
             )}

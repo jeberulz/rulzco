@@ -1,6 +1,7 @@
 import { Plus } from "lucide-react";
+import type { Faq } from "@/lib/seo/jsonld";
 
-export type FaqItem = { q: string; a: string };
+export type FaqItem = Faq;
 
 /**
  * Visible FAQ accordion using native <details>/<summary> — accessible,

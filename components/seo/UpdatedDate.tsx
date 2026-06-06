@@ -1,6 +1,7 @@
 import { parseContentDate } from "@/lib/seo/dates";
+import { SITE_LOCALE } from "@/lib/seo/site-config";
 
-const FMT = new Intl.DateTimeFormat("en-GB", {
+const FMT = new Intl.DateTimeFormat(SITE_LOCALE, {
   day: "numeric",
   month: "long",
   year: "numeric",

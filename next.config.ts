@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
   },
   // Tree-shake barrel imports to keep the client bundle (and INP) lean.
   experimental: {
-    optimizePackageImports: ["lucide-react", "@mui/icons-material"],
+    optimizePackageImports: ["lucide-react"],
   },
 };
 

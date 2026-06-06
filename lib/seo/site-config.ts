@@ -45,6 +45,8 @@ export const SITE_URL = resolveSiteUrl();
 
 export const SITE_NAME = "Rulz&Co";
 export const SITE_SHORT_NAME = "Rulz&Co";
+/** The editorial publication brand (the /news section). */
+export const PUBLICATION_NAME = "The Dispatch";
 export const SITE_LOCALE = "en-GB";
 /** BCP-47 → Open Graph locale (underscore form). */
 export const SITE_OG_LOCALE = "en_GB";

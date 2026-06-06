@@ -6,6 +6,7 @@ import "./globals.css";
 import PreloaderWrapper from "@/components/PreloaderWrapper";
 import {
   SITE_DESCRIPTION,
+  SITE_LOCALE,
   SITE_NAME,
   SITE_TAGLINE,
   SITE_URL,
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
     languages: {
-      "en-GB": "/",
+      [SITE_LOCALE]: "/",
       "x-default": "/",
     },
   },

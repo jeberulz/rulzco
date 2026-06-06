@@ -18,6 +18,7 @@ import {
   ORG_ID,
   ORG_SAME_AS,
   SITE_DESCRIPTION,
+  SITE_LOCALE,
   SITE_NAME,
   SITE_URL,
   STUDIO_ADDRESS,
@@ -27,11 +28,19 @@ import {
 import { toIsoDate } from "./dates";
 import type { Article } from "@/lib/articles";
 import type { Project } from "@/lib/projects";
-import type { ServiceTier, ServiceFaq } from "@/lib/services-data";
+import type { ServiceTier } from "@/lib/services-data";
 
 const CONTEXT = "https://schema.org" as const;
 
 export type Crumb = { name: string; path: string };
+
+/** Canonical question/answer shape shared by services, articles and FAQ UI. */
+export type Faq = { q: string; a: string };
+
+/** Resolve a possibly-relative asset path to an absolute URL. */
+function toAbsolute(src: string): string {
+  return src.startsWith("http") ? src : urlFor(src);
+}
 
 /** The publishing/brand entity. Referenced everywhere via ORG_ID. */
 export function buildOrganization(): WithContext<Organization> {
@@ -66,7 +75,7 @@ export function buildWebSite(): WithContext<WebSite> {
     url: SITE_URL,
     name: SITE_NAME,
     description: SITE_DESCRIPTION,
-    inLanguage: "en-GB",
+    inLanguage: SITE_LOCALE,
     publisher: { "@id": ORG_ID },
   };
 }
@@ -97,17 +106,14 @@ export function buildNewsArticle(
   opts: { authorPath?: string; authorName?: string; images?: string[] } = {},
 ): WithContext<NewsArticle> {
   const published = toIsoDate(article.date) ?? undefined;
-  const modified =
-    toIsoDate((article as { dateModified?: string }).dateModified) ??
-    published;
+  const modified = toIsoDate(article.dateModified) ?? published;
   const pageUrl = urlFor(`/news/${article.id}`);
-  const images = (
-    opts.images && opts.images.length
-      ? opts.images
-      : article.image
-        ? [article.image]
-        : []
-  ).map((src) => (src.startsWith("http") ? src : urlFor(src)));
+  const rawImages = opts.images?.length
+    ? opts.images
+    : article.image
+      ? [article.image]
+      : [];
+  const images = rawImages.map(toAbsolute);
 
   const authorName = opts.authorName ?? article.author.name;
   const author: NewsArticle["author"] = opts.authorPath
@@ -129,7 +135,7 @@ export function buildNewsArticle(
     publisher: { "@id": ORG_ID },
     mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
     url: pageUrl,
-    inLanguage: "en-GB",
+    inLanguage: SITE_LOCALE,
   };
 }
 
@@ -148,7 +154,7 @@ export function buildCreativeWork(
     url: pageUrl,
     creator: { "@id": ORG_ID },
     keywords: project.tags.join(", "),
-    inLanguage: "en-GB",
+    inLanguage: SITE_LOCALE,
     ...(project.year ? { dateCreated: project.year } : {}),
   };
 }
@@ -181,7 +187,7 @@ export function buildServiceItemList(
   };
 }
 
-export function buildFAQPage(faqs: ServiceFaq[]): WithContext<FAQPage> | null {
+export function buildFAQPage(faqs: Faq[]): WithContext<FAQPage> | null {
   if (!faqs.length) return null;
   return {
     "@context": CONTEXT,
@@ -208,7 +214,7 @@ export function buildCollectionPage(opts: {
     description: opts.description,
     url: urlFor(opts.path),
     isPartOf: { "@id": WEBSITE_ID },
-    inLanguage: "en-GB",
+    inLanguage: SITE_LOCALE,
     mainEntity: {
       "@type": "ItemList",
       itemListElement: opts.items.map((it, i) => ({
@@ -234,7 +240,7 @@ export function buildAboutPage(opts: {
     url: urlFor(opts.path),
     isPartOf: { "@id": WEBSITE_ID },
     about: { "@id": ORG_ID },
-    inLanguage: "en-GB",
+    inLanguage: SITE_LOCALE,
   };
 }
 
@@ -257,9 +263,7 @@ export function buildPerson(person: {
     url: pageUrl,
     ...(person.role ? { jobTitle: person.role } : {}),
     ...(person.bio ? { description: person.bio } : {}),
-    ...(person.headshotUrl
-      ? { image: person.headshotUrl.startsWith("http") ? person.headshotUrl : urlFor(person.headshotUrl) }
-      : {}),
+    ...(person.headshotUrl ? { image: toAbsolute(person.headshotUrl) } : {}),
     worksFor: { "@id": ORG_ID },
     affiliation: { "@id": ORG_ID },
     ...(person.sameAs && person.sameAs.length ? { sameAs: person.sameAs } : {}),

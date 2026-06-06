@@ -5,6 +5,8 @@
  * out of sync with on-page content (a Google manual-action risk for FAQPage).
  */
 
+import type { Faq } from "@/lib/seo/jsonld";
+
 export type ServiceTier = {
   id: string;
   num: string;
@@ -20,10 +22,8 @@ export type ServiceTier = {
   cta: string;
 };
 
-export type ServiceFaq = {
-  q: string;
-  a: string;
-};
+/** Alias of the canonical Faq shape (see lib/seo/jsonld.ts). */
+export type ServiceFaq = Faq;
 
 export const tiers: ServiceTier[] = [
   {
