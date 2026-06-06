@@ -5,12 +5,22 @@ import Link from "next/link";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowLeft, ArrowUpRight, Clock, Calendar } from "lucide-react";
+import { ArrowUpRight, Clock, Calendar } from "lucide-react";
 import { NavMenu } from "@/components/NavMenu";
 import { Footer } from "@/components/Footer";
 import LineReveal from "@/components/LineReveal";
 import type { Article, ContentBlock } from "@/lib/articles";
 import { categoryToSlug } from "@/lib/articles";
+import { getAuthor } from "@/lib/authors";
+import {
+  AuthorByline,
+  AVATAR_GRADIENT,
+  type BylineAuthor,
+} from "@/components/news/AuthorByline";
+import { UpdatedDate } from "@/components/seo/UpdatedDate";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { breadcrumbsForArticle } from "@/lib/seo/breadcrumbs";
+import { FAQ } from "@/components/news/FAQ";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -152,6 +162,20 @@ export function ArticlePage({
   const progressRef = useRef<HTMLDivElement>(null);
   const categorySlug = categoryToSlug(article.category);
 
+  // Resolve the byline: prefer the linked author entity, fall back to the
+  // inline author stored on the article.
+  const authorRecord = article.authorSlug
+    ? getAuthor(article.authorSlug)
+    : undefined;
+  const bylineAuthor: BylineAuthor = authorRecord
+    ? {
+        name: authorRecord.name,
+        role: authorRecord.role,
+        slug: authorRecord.slug,
+        headshotUrl: authorRecord.headshotUrl,
+      }
+    : { name: article.author.name, role: article.author.role };
+
   // Scroll progress bar
   useEffect(() => {
     const update = () => {
@@ -268,14 +292,12 @@ export function ArticlePage({
       {/* ── ARTICLE HEADER ──────────────────────────────────────── */}
       <header className="px-8 md:px-14 pt-20 pb-10 md:pb-14">
         <div className="max-w-3xl mx-auto">
-          {/* Back to dispatch */}
-          <Link
-            href="/news"
-            className="article-meta-top inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-[#999] hover:text-[#0f0f0f] transition-colors"
-          >
-            <ArrowLeft size={11} />
-            The Dispatch
-          </Link>
+          {/* Breadcrumb trail */}
+          <Breadcrumbs
+            items={breadcrumbsForArticle(article)}
+            tone="light"
+            className="article-meta-top"
+          />
 
           {/* Category + date */}
           <div className="article-meta-row mt-10 flex items-center gap-3 flex-wrap">
@@ -294,6 +316,11 @@ export function ArticlePage({
               <Clock size={11} />
               {article.readTime} read
             </span>
+            <UpdatedDate
+              published={article.date}
+              dateModified={article.dateModified}
+              className="text-[#bbb] text-[11px] flex items-center gap-1.5 before:content-['·'] before:text-[#ddd] before:mr-1.5"
+            />
           </div>
 
           {/* Title */}
@@ -307,23 +334,10 @@ export function ArticlePage({
           </p>
 
           {/* Author */}
-          <div className="article-author mt-10 pt-8 border-t border-[#e8e4dd] flex items-center gap-4">
-            <div
-              className="w-11 h-11 rounded-full shrink-0"
-              style={{
-                background:
-                  "linear-gradient(135deg, #FFC703 0%, #ffaa00 50%, #ff8800 100%)",
-              }}
-            />
-            <div>
-              <p className="text-[14px] font-medium text-[#0f0f0f] leading-tight">
-                {article.author.name}
-              </p>
-              <p className="text-[11px] text-[#999] mt-0.5">
-                {article.author.role}
-              </p>
-            </div>
-          </div>
+          <AuthorByline
+            author={bylineAuthor}
+            className="article-author mt-10 pt-8 border-t border-[#e8e4dd]"
+          />
         </div>
       </header>
 
@@ -383,20 +397,26 @@ export function ArticlePage({
           <div className="flex gap-5 md:gap-6 p-6 md:p-7 rounded-2xl border border-[#ece9e3] bg-white">
             <div
               className="w-14 h-14 md:w-16 md:h-16 rounded-full shrink-0"
-              style={{
-                background:
-                  "linear-gradient(135deg, #FFC703 0%, #ffaa00 50%, #ff8800 100%)",
-              }}
+              style={{ background: AVATAR_GRADIENT }}
             />
             <div>
               <p className="text-[10px] uppercase tracking-[0.25em] text-[#aaa] mb-2">
                 Written by
               </p>
-              <p className="text-[16px] font-medium text-[#0f0f0f]">
-                {article.author.name}
-              </p>
+              {bylineAuthor.slug ? (
+                <Link
+                  href={`/studio/${bylineAuthor.slug}`}
+                  className="text-[16px] font-medium text-[#0f0f0f] hover:underline decoration-[#FFC703] underline-offset-4"
+                >
+                  {bylineAuthor.name}
+                </Link>
+              ) : (
+                <p className="text-[16px] font-medium text-[#0f0f0f]">
+                  {bylineAuthor.name}
+                </p>
+              )}
               <p className="text-[12px] text-[#999] mb-3">
-                {article.author.role}
+                {bylineAuthor.role}
               </p>
               <p className="text-[14px] text-[#666] font-light leading-relaxed">
                 Rulz&amp;Co is a design and product partnership for AI-native
@@ -407,6 +427,9 @@ export function ArticlePage({
           </div>
         </div>
       </section>
+
+      {/* ── FAQ ─────────────────────────────────────────────────── */}
+      <FAQ items={article.faqs} className="pb-16 md:pb-20" />
 
       {/* ── RELATED ─────────────────────────────────────────────── */}
       {related.length > 0 && (

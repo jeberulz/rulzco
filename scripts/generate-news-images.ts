@@ -8,13 +8,19 @@
  *   FORCE=1 npm run gen:news-images  # regenerates all
  */
 
-import "dotenv/config";
+import dotenv from "dotenv";
 import fs from "node:fs/promises";
 import path from "node:path";
+
+// Load .env.local first (Next.js convention), then fall back to .env.
+dotenv.config({ path: ".env.local" });
+dotenv.config();
+
 import { articles } from "../lib/articles";
 
 const API_KEY = process.env.RECRAFT_API_KEY;
 const API_URL = "https://external.api.recraft.ai/v1/images/generations";
+const STYLE_ID = process.env.RECRAFT_STYLE_ID || undefined;
 const STYLE = process.env.RECRAFT_STYLE || "digital_illustration";
 const SUBSTYLE = process.env.RECRAFT_SUBSTYLE || undefined;
 const SIZE = process.env.RECRAFT_SIZE || "1820x1024";
@@ -37,6 +43,8 @@ if (!API_KEY) {
 // matches the Rulz&Co brand. We deliberately avoid asking for any text
 // in the image (AI is bad at typography).
 const PROMPTS: Record<string, string> = {
+  "canvas-opened":
+    "Abstract editorial cover illustration: a vast luminous design canvas hovering in a darkened studio, two small silhouetted figures in the foreground deep in conversation with their backs to the canvas, deep indigo and violet palette, warm gold accent light glowing between the two figures rather than the canvas, conceptual minimal composition, cinematic atmosphere, soft film grain, magazine cover quality, no text, no letters",
   "ai-design-convergence":
     "Abstract editorial cover illustration: a fractured silver mirror reflecting fragments of design tool icons and abstract UI shapes, deep navy and electric violet background, a single warm gold light source from the lower left, conceptual minimal composition, dramatic atmospheric lighting, soft film grain, magazine cover quality, no text, no letters",
   "founder-market-fit":
@@ -80,12 +88,17 @@ async function generateOne(article: (typeof articles)[number]) {
 
   const body: Record<string, unknown> = {
     prompt,
-    style: STYLE,
     size: SIZE,
     n: 1,
     model: "recraftv3",
   };
-  if (SUBSTYLE) body.substyle = SUBSTYLE;
+  if (STYLE_ID) {
+    // Custom style overrides built-in style/substyle.
+    body.style_id = STYLE_ID;
+  } else {
+    body.style = STYLE;
+    if (SUBSTYLE) body.substyle = SUBSTYLE;
+  }
 
   const res = await fetch(API_URL, {
     method: "POST",
@@ -145,9 +158,10 @@ async function main() {
   await fs.mkdir(OUTPUT_DIR, { recursive: true });
 
   console.log(`📁 output: ${path.relative(ROOT, OUTPUT_DIR)}`);
-  console.log(
-    `🎨 style: ${STYLE}${SUBSTYLE ? ` / ${SUBSTYLE}` : ""}  size: ${SIZE}  force: ${FORCE}\n`
-  );
+  const styleLabel = STYLE_ID
+    ? `style_id ${STYLE_ID}`
+    : `${STYLE}${SUBSTYLE ? ` / ${SUBSTYLE}` : ""}`;
+  console.log(`🎨 ${styleLabel}  size: ${SIZE}  force: ${FORCE}\n`);
 
   let generated = 0;
   let skipped = 0;

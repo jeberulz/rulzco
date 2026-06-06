@@ -5,12 +5,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowLeft, ArrowUpRight, Clock } from "lucide-react";
+import { ArrowUpRight, Clock } from "lucide-react";
 import { NavMenu } from "@/components/NavMenu";
 import { Footer } from "@/components/Footer";
 import LineReveal from "@/components/LineReveal";
 import type { Article } from "@/lib/articles";
 import { CATEGORIES, categoryToSlug } from "@/lib/articles";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { breadcrumbsForCategory } from "@/lib/seo/breadcrumbs";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -173,14 +175,12 @@ export function CategoryPage({
       {/* ── HEADER ──────────────────────────────────────────────── */}
       <header className="border-b border-[#e8e4dd] px-8 md:px-14 pt-20">
         <div className="max-w-[1600px] mx-auto">
-          {/* Back link */}
-          <Link
-            href="/news"
-            className="category-meta inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-[#999] hover:text-[#0f0f0f] transition-colors mb-8"
-          >
-            <ArrowLeft size={11} />
-            The Dispatch
-          </Link>
+          {/* Breadcrumb trail */}
+          <Breadcrumbs
+            items={breadcrumbsForCategory(category)}
+            tone="light"
+            className="category-meta mb-8"
+          />
 
           {/* Meta top row */}
           <div className="category-meta flex items-center justify-between pb-4 border-b border-[#e8e4dd] text-[10px] uppercase tracking-[0.3em] text-[#c0bab0]">

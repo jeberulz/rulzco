@@ -7,6 +7,10 @@ import {
   getArticlesByCategory,
   slugToCategory,
 } from "@/lib/articles";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildCollectionPage, buildBreadcrumbList } from "@/lib/seo/jsonld";
+import { breadcrumbsForCategory } from "@/lib/seo/breadcrumbs";
+import { buildMetadata } from "@/lib/seo/shared-metadata";
 
 export async function generateStaticParams() {
   return CATEGORIES.filter((c) => c !== "All").map((c) => ({
@@ -22,10 +26,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const category = slugToCategory(slug);
   if (!category) return { title: "Not found — The Dispatch" };
-  return {
+  return buildMetadata({
     title: `${category} — The Dispatch`,
     description: `All articles in ${category} from Rulz&Co.`,
-  };
+    path: `/news/category/${slug}`,
+  });
 }
 
 export default async function CategoryRoute({
@@ -37,5 +42,21 @@ export default async function CategoryRoute({
   const category = slugToCategory(slug);
   if (!category) notFound();
   const items = getArticlesByCategory(category);
-  return <CategoryPage category={category} articles={items} />;
+  return (
+    <>
+      <JsonLd
+        data={buildCollectionPage({
+          name: `${category} — The Dispatch`,
+          description: `All articles in ${category} from Rulz&Co.`,
+          path: `/news/category/${slug}`,
+          items: items.map((a) => ({
+            name: a.title,
+            path: `/news/${a.id}`,
+          })),
+        })}
+      />
+      <JsonLd data={buildBreadcrumbList(breadcrumbsForCategory(category))} />
+      <CategoryPage category={category} articles={items} />
+    </>
+  );
 }

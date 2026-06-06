@@ -4,10 +4,12 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowLeft, ArrowUpRight, ArrowRight } from "lucide-react";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { NavMenu } from "@/components/NavMenu";
 import { Footer } from "@/components/Footer";
 import { type Project, getAdjacentProjects } from "@/lib/projects";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { breadcrumbsForProject } from "@/lib/seo/breadcrumbs";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -279,14 +281,12 @@ export function CaseStudyPage({ project }: { project: Project }) {
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
 
         <div className="relative z-10 px-8 md:px-14 pb-14 pt-32 max-w-[1600px] mx-auto w-full">
-          {/* Back link */}
-          <Link
-            href="/work"
-            className="hero-meta inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-white/50 hover:text-white transition-colors mb-12 group"
-          >
-            <ArrowLeft size={12} className="group-hover:-translate-x-1 transition-transform" />
-            All Work
-          </Link>
+          {/* Breadcrumb trail */}
+          <Breadcrumbs
+            items={breadcrumbsForProject(project)}
+            tone="dark"
+            className="hero-meta mb-12"
+          />
 
           {/* Tags + number */}
           <div className="flex items-center gap-4 mb-8 hero-meta">

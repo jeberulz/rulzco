@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight, ArrowDown, Check, ArrowRight } from "lucide-react";
 import { NavMenu } from "@/components/NavMenu";
+import { BrandMark } from "@/components/BrandMark";
 import { Footer } from "@/components/Footer";
 import LineReveal from "@/components/LineReveal";
 
@@ -540,11 +541,16 @@ export function PartnershipPage() {
         />
 
         {/* Top label */}
-        <div className="flex items-center gap-3 relative z-10">
-          <div className="w-1.5 h-5 bg-black/40" />
-          <span className="text-[11px] uppercase tracking-[0.3em] text-black/50">
-            Partnership & Investment
-          </span>
+        <div className="relative z-10">
+          <div className="mb-6">
+            <BrandMark variant="light" />
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-1.5 h-5 bg-black/40" />
+            <span className="text-[11px] uppercase tracking-[0.3em] text-black/50">
+              Partnership & Investment
+            </span>
+          </div>
         </div>
 
         {/* Big statement */}

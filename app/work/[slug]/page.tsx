@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getProject, projects } from "@/lib/projects";
 import { CaseStudyPage } from "@/components/work/CaseStudyPage";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildCreativeWork, buildBreadcrumbList } from "@/lib/seo/jsonld";
+import { breadcrumbsForProject } from "@/lib/seo/breadcrumbs";
+import { buildMetadata } from "@/lib/seo/shared-metadata";
 
 export async function generateStaticParams() {
   return projects.map((p) => ({ slug: p.id }));
@@ -15,10 +19,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) return {};
-  return {
-    title: `${project.title} — Rulz&Co`,
+  return buildMetadata({
+    title: project.title,
     description: project.description,
-  };
+    path: `/work/${slug}`,
+  });
 }
 
 export default async function WorkCaseStudy({
@@ -29,5 +34,11 @@ export default async function WorkCaseStudy({
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) notFound();
-  return <CaseStudyPage project={project} />;
+  return (
+    <>
+      <JsonLd data={buildCreativeWork(project)} />
+      <JsonLd data={buildBreadcrumbList(breadcrumbsForProject(project))} />
+      <CaseStudyPage project={project} />
+    </>
+  );
 }

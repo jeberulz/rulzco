@@ -1,4 +1,6 @@
 import { ARTICLE_IMAGES } from "./article-image-manifest";
+import type { AuthorSlug } from "./authors";
+import type { Faq } from "./seo/jsonld";
 
 export type ContentBlock =
   | { type: "paragraph"; text: string }
@@ -12,13 +14,20 @@ export type Article = {
   category: string;
   title: string;
   excerpt: string;
+  /** Human-readable publish date, e.g. "5 Jun 2026". */
   date: string;
+  /** Optional last-substantive-update date; drives the visible "Updated:" line and schema dateModified. */
+  dateModified?: string;
   readTime: string;
   gradient: string;
   accent: string;
   featured?: boolean;
   image?: string;
   author: { name: string; role: string };
+  /** Links the article to an author entity in lib/authors.ts (E-E-A-T). */
+  authorSlug?: AuthorSlug;
+  /** Optional Q&A pairs; rendered as a visible accordion + FAQPage JSON-LD. */
+  faqs?: Faq[];
   content: ContentBlock[];
 };
 
@@ -34,6 +43,82 @@ export const CATEGORIES = [
 const DEFAULT_AUTHOR = { name: "Rulz&Co Editorial", role: "Studio Team" };
 
 const _rawArticles: Article[] = [
+  {
+    id: "canvas-opened",
+    category: "AI & Design",
+    title: "The Canvas Opened. The Job Didn't.",
+    excerpt:
+      "On 20 May, Figma and Google shipped agents that turn a sentence into a layout. The chorus called it a promotion for designers. It isn't. It's a redistribution — and the bill is coming for the seat in the middle.",
+    date: "5 Jun 2026",
+    readTime: "6 min",
+    gradient: "linear-gradient(135deg, #0a0a1f 0%, #4c1d95 50%, #08000f 100%)",
+    accent: "#c084fc",
+    author: DEFAULT_AUTHOR,
+    content: [
+      {
+        type: "paragraph",
+        text: "On 20 May, the canvas got smart. Figma shipped its AI design agent — natural language in, layouts out, iterations on demand. Google's Stitch did the same thing in real time at I/O the same morning, the UI components reflowing as the designer spoke. Inside a week the discourse had picked a shape: designers are now orchestrators, the job is now strategy, the bottleneck has moved upstream. Comfortable framing. Mostly wrong.",
+      },
+      {
+        type: "paragraph",
+        text: "The bottleneck was never generation. Designers who were good at the job had stopped being limited by how fast they could push pixels years ago. The limit was always how fast they could be sure they were pushing the right ones. The agents are extraordinary at the first half of that sentence and useless at the second. Anyone selling the agentic canvas as a promotion is selling a productivity story to a judgment problem.",
+      },
+      {
+        type: "heading",
+        text: "What actually changed",
+      },
+      {
+        type: "paragraph",
+        text: "What the 20 May launches changed is exposure. The Figma file is now a public stage where the prompt history is the artifact, and the work behind the work — the conversation with the PM, the call where you talked the founder out of the third tab, the version you didn't ship because it solved the wrong thing — sits offstage where it always sat. The output side of the studio just got a thousand times louder. The input side got no louder at all.",
+      },
+      {
+        type: "paragraph",
+        text: "Watch which designers are excited this week. The ones who were already getting paid for taste and refusal aren't dazzled. They've been doing the part the agent can't do. Watch which ones are quietly anxious. They built a career on craft execution against a clear brief — the brief someone else wrote, the system someone else set — and the floor just collapsed underneath that role. The mid-level seat in the org chart is the most exposed seat on the canvas right now.",
+      },
+      {
+        type: "quote",
+        text: "The agent renders the brief you gave it. It does not render the brief you should have given it.",
+      },
+      {
+        type: "paragraph",
+        text: "This isn't a doom take. It's a redistribution take. The designers who survive 20 May are the ones who can hold a brief against the founder when the founder is wrong, name the second-order problem the PM hasn't framed yet, and walk away from the obvious answer when the obvious answer is what the agent already gave them. None of that is new. All of it is suddenly the only part of the job that pays.",
+      },
+      {
+        type: "heading",
+        text: "What didn't change",
+      },
+      {
+        type: "paragraph",
+        text: "Read the release notes. Read the demos. Now read the parts nobody is demoing:",
+      },
+      {
+        type: "list",
+        items: [
+          "Whether the brief was right to begin with.",
+          "Whether the design system the agent generates against was load-bearing or decorative.",
+          "Whether the screen the agent produced solves the problem the PM thinks it solves, or the one it actually does.",
+          "Whether the founder can hold a single thesis across the three pivots the next eighteen months will demand.",
+          "Whether you can disagree with the obvious answer when disagreeing is the work.",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "None of those decisions sit on the canvas. None of them are downstream of the agent. All of them are upstream of where the screen even gets to exist. The agent does not see them, will not see them, and was never going to see them — not because the model is weak but because they aren't visible from inside the file. They are visible from inside the room.",
+      },
+      {
+        type: "heading",
+        text: "Where the work goes",
+      },
+      {
+        type: "paragraph",
+        text: "We're going to spend the next year watching agencies and studios that priced themselves on output get squeezed by clients who can now press a button and get a layout. That's fine. The studios that priced themselves on output were running a productivity arbitrage that didn't pencil out. What's left, and what's about to be more expensive than it has ever been, is the small group of senior designers and studios that can sit in the room and hold the brief. The canvas is no longer the bottleneck. The room is.",
+      },
+      {
+        type: "callout",
+        text: "The canvas opened. The job didn't. If a generation tool makes you feel more valuable, you were doing the wrong half of the work. If it makes you nervous, you were probably doing the right half — and now you have to charge for it.",
+      },
+    ],
+  },
   {
     id: "ai-design-convergence",
     category: "AI & Design",
@@ -460,6 +545,9 @@ const _rawArticles: Article[] = [
 export const articles: Article[] = _rawArticles.map((a) => ({
   ...a,
   image: a.image ?? ARTICLE_IMAGES[a.id],
+  // Attribute editorial to the studio's principal designer unless an article
+  // overrides it. Drives the linked byline + NewsArticle author Person @id.
+  authorSlug: a.authorSlug ?? "john-iseghohi",
 }));
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
