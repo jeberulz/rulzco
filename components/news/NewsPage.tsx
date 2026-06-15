@@ -123,9 +123,11 @@ function ArticleCard({
       href={`/news/${article.id}`}
       className="article-card group flex flex-col overflow-hidden rounded-xl border border-[#ece9e3] bg-white hover:border-[#d4cfca] transition-all duration-300 h-full hover:-translate-y-0.5 hover:shadow-[0_8px_32px_-8px_rgba(0,0,0,0.07)]"
     >
-      {/* Thumbnail strip (full cards only) */}
-      {!compact && (
-        <div className="relative overflow-hidden" style={{ paddingBottom: "52%" }}>
+      {/* Thumbnail strip */}
+      <div
+        className="relative overflow-hidden"
+        style={{ paddingBottom: compact ? "46%" : "52%" }}
+      >
           {article.image ? (
             <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.04]">
               <Image
@@ -151,12 +153,11 @@ function ArticleCard({
             </>
           )}
         </div>
-      )}
 
       {/* Text body */}
       <div className={`flex flex-col flex-1 relative ${compact ? "p-5 pt-4" : "p-6"}`}>
-        {/* Colored dot for compact cards */}
-        {compact && (
+        {/* Colored dot for compact cards without a thumbnail */}
+        {compact && !article.image && (
           <div
             className="absolute top-4 right-4 w-2.5 h-2.5 rounded-full opacity-80"
             style={{ background: article.accent }}
