@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { articles, CATEGORIES, categoryToSlug } from "@/lib/articles";
 import { projects } from "@/lib/projects";
+import { getVisibleExperiments } from "@/lib/experiments";
 import { authorSlugs, getAuthor, isPlaceholderAuthor } from "@/lib/authors";
 import { SITE_LOCALE, urlFor } from "@/lib/seo/site-config";
 import { parseContentDate } from "@/lib/seo/dates";
@@ -77,6 +78,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
+  // Rulz Labs — only when at least one experiment is published, so an empty
+  // /labs never gets indexed. (Proposals are intentionally excluded: noindex.)
+  const visibleExperiments = getVisibleExperiments();
+  const labsPages: MetadataRoute.Sitemap =
+    visibleExperiments.length > 0
+      ? [
+          entry("/labs", { priority: 0.7, changeFrequency: "weekly" }),
+          ...visibleExperiments.map((e) =>
+            entry(`/labs/${e.slug}`, {
+              priority: 0.6,
+              changeFrequency: "monthly",
+              lastModified: parseContentDate(e.date) ?? undefined,
+            }),
+          ),
+        ]
+      : [];
+
   // Only index author pages with a real (non-placeholder) identity.
   const authorPages: MetadataRoute.Sitemap = authorSlugs
     .filter((slug) => {
@@ -95,6 +113,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...categoryPages,
     ...articlePages,
     ...projectPages,
+    ...labsPages,
     ...authorPages,
   ];
 }
