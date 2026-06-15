@@ -9,6 +9,7 @@ import { ArrowUpRight, Clock } from "lucide-react";
 import { NavMenu } from "@/components/NavMenu";
 import { Footer } from "@/components/Footer";
 import LineReveal from "@/components/LineReveal";
+import { NewsletterSignup } from "@/components/news/NewsletterSignup";
 import type { Article } from "@/lib/articles";
 import { CATEGORIES, categoryToSlug } from "@/lib/articles";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
@@ -95,16 +96,17 @@ export function CategoryPage({
   useEffect(() => {
     const update = () => {
       const total = document.documentElement.scrollHeight - window.innerHeight;
-      if (progressRef.current)
+      if (progressRef.current && total > 0)
         progressRef.current.style.height = `${(window.scrollY / total) * 100}%`;
     };
     window.addEventListener("scroll", update, { passive: true });
     return () => window.removeEventListener("scroll", update);
   }, []);
 
-  // Mount animations
+  // Mount animations — skipped for reduced-motion users (content stays visible).
   useEffect(() => {
-    const ctx = gsap.context(() => {
+    const mm = gsap.matchMedia();
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
       gsap.fromTo(
         ".category-meta",
         { opacity: 0, y: -10 },
@@ -153,7 +155,7 @@ export function CategoryPage({
         }
       );
     });
-    return () => ctx.revert();
+    return () => mm.revert();
   }, []);
 
   return (
@@ -282,25 +284,7 @@ export function CategoryPage({
           </div>
 
           <div>
-            <form
-              className="flex flex-col sm:flex-row gap-3"
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <input
-                type="email"
-                placeholder="your@email.com"
-                className="flex-1 bg-[#1a1a1a] border border-[#2a2a2a] rounded-full px-6 py-3.5 text-sm text-white placeholder:text-[#444] focus:outline-none focus:border-[#FFC703] transition-colors"
-              />
-              <button
-                type="submit"
-                className="bg-[#FFC703] text-black rounded-full px-7 py-3.5 text-[10px] font-bold uppercase tracking-widest hover:bg-yellow-300 transition-colors whitespace-nowrap cursor-pointer"
-              >
-                Subscribe
-              </button>
-            </form>
-            <p className="text-[#2e2e2e] text-[10px] uppercase tracking-widest mt-3">
-              No spam. Unsubscribe anytime.
-            </p>
+            <NewsletterSignup />
           </div>
         </div>
       </section>

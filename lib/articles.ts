@@ -1,6 +1,7 @@
 import { ARTICLE_IMAGES } from "./article-image-manifest";
 import type { AuthorSlug } from "./authors";
 import type { Faq } from "./seo/jsonld";
+import { parseContentDate } from "./seo/dates";
 
 export type ContentBlock =
   | { type: "paragraph"; text: string }
@@ -51,6 +52,7 @@ const _rawArticles: Article[] = [
       "On 20 May, Figma and Google shipped agents that turn a sentence into a layout. The chorus called it a promotion for designers. It isn't. It's a redistribution — and the bill is coming for the seat in the middle.",
     date: "5 Jun 2026",
     readTime: "6 min",
+    featured: true,
     gradient: "linear-gradient(135deg, #0a0a1f 0%, #4c1d95 50%, #08000f 100%)",
     accent: "#c084fc",
     author: DEFAULT_AUTHOR,
@@ -127,7 +129,6 @@ const _rawArticles: Article[] = [
       "AI isn't replacing designers. It's revealing which designers were never really designing. The tools are a mirror — and not everyone likes what they see.",
     date: "5 Jun 2025",
     readTime: "5 min",
-    featured: true,
     gradient: "linear-gradient(135deg, #0f0c29 0%, #302070 50%, #24243e 100%)",
     accent: "#8b7cf8",
     author: DEFAULT_AUTHOR,
@@ -542,13 +543,22 @@ const _rawArticles: Article[] = [
   },
 ];
 
-export const articles: Article[] = _rawArticles.map((a) => ({
-  ...a,
-  image: a.image ?? ARTICLE_IMAGES[a.id],
-  // Attribute editorial to the studio's principal designer unless an article
-  // overrides it. Drives the linked byline + NewsArticle author Person @id.
-  authorSlug: a.authorSlug ?? "john-iseghohi",
-}));
+export const articles: Article[] = _rawArticles
+  .map((a) => ({
+    ...a,
+    image: a.image ?? ARTICLE_IMAGES[a.id],
+    // Attribute editorial to the studio's principal designer unless an article
+    // overrides it. Drives the linked byline + NewsArticle author Person @id.
+    authorSlug: a.authorSlug ?? "john-iseghohi",
+  }))
+  // Canonical order is newest-first. Everything downstream (listing hero,
+  // category pages, adjacent/related lookups, JSON-LD) inherits this, so the
+  // source array can be edited in any order without breaking chronology.
+  .sort(
+    (a, b) =>
+      (parseContentDate(b.date)?.getTime() ?? 0) -
+      (parseContentDate(a.date)?.getTime() ?? 0),
+  );
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 

@@ -9,11 +9,24 @@ import { ArrowUpRight, Clock } from "lucide-react";
 import { NavMenu } from "@/components/NavMenu";
 import { Footer } from "@/components/Footer";
 import LineReveal from "@/components/LineReveal";
-import { articles, CATEGORIES as ALL_CATEGORIES, type Article } from "@/lib/articles";
+import { NewsletterSignup } from "@/components/news/NewsletterSignup";
+import {
+  articles,
+  CATEGORIES,
+  categoryToSlug,
+  slugToCategory,
+  type Article,
+} from "@/lib/articles";
+import { parseContentDate } from "@/lib/seo/dates";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const CATEGORIES = ALL_CATEGORIES;
+const ISSUE_LABEL = (() => {
+  const d = parseContentDate(articles[0]?.date);
+  return d
+    ? d.toLocaleDateString("en-GB", { month: "long", year: "numeric" })
+    : "";
+})();
 
 // ─── Featured card ─────────────────────────────────────────────────────────────
 
@@ -204,20 +217,40 @@ export function NewsPage() {
   const sideArticles = rest.slice(0, 2);
   const gridArticles = rest.slice(2);
 
+  // Sync the active category from / to the URL so a filtered view is
+  // shareable and survives reload, without leaving the client-filtered page.
+  useEffect(() => {
+    const slug = new URLSearchParams(window.location.search).get("category");
+    if (!slug) return;
+    const cat = slugToCategory(slug);
+    if (cat) setActiveCategory(cat);
+  }, []);
+
+  const selectCategory = (cat: string) => {
+    if (cat === activeCategory) return;
+    setActiveCategory(cat);
+    const url = new URL(window.location.href);
+    if (cat === "All") url.searchParams.delete("category");
+    else url.searchParams.set("category", categoryToSlug(cat));
+    window.history.replaceState(null, "", url);
+  };
+
   // Scroll progress
   useEffect(() => {
     const update = () => {
       const total = document.documentElement.scrollHeight - window.innerHeight;
-      if (progressRef.current)
+      if (progressRef.current && total > 0)
         progressRef.current.style.height = `${(window.scrollY / total) * 100}%`;
     };
     window.addEventListener("scroll", update, { passive: true });
     return () => window.removeEventListener("scroll", update);
   }, []);
 
-  // Initial mount animations
+  // Initial mount animations — skipped entirely for reduced-motion users
+  // (content is visible by default, so nothing is gated behind the timeline).
   useEffect(() => {
-    const ctx = gsap.context(() => {
+    const mm = gsap.matchMedia();
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
       // Masthead char reveal
       gsap.fromTo(
         ".masthead-char",
@@ -283,7 +316,7 @@ export function NewsPage() {
         );
       });
     });
-    return () => ctx.revert();
+    return () => mm.revert();
   }, []);
 
   // Filter transition
@@ -292,11 +325,15 @@ export function NewsPage() {
       hasMounted.current = true;
       return;
     }
-    gsap.fromTo(
-      ".featured-card, .side-card, .article-card",
-      { opacity: 0, y: 14 },
-      { opacity: 1, y: 0, duration: 0.4, stagger: 0.045, ease: "power2.out" }
-    );
+    const mm = gsap.matchMedia();
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      gsap.fromTo(
+        ".featured-card, .side-card, .article-card",
+        { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, duration: 0.4, stagger: 0.045, ease: "power2.out" }
+      );
+    });
+    return () => mm.revert();
   }, [activeCategory]);
 
   return (
@@ -321,7 +358,7 @@ export function NewsPage() {
           {/* Meta top row */}
           <div className="masthead-meta flex items-center justify-between pb-4 border-b border-[#e8e4dd] text-[10px] uppercase tracking-[0.3em] text-[#c0bab0]">
             <span>Rulz&amp;Co</span>
-            <span>Issue&nbsp;№&nbsp;14&nbsp;·&nbsp;June 2025</span>
+            {ISSUE_LABEL && <span>{ISSUE_LABEL}</span>}
           </div>
 
           {/* Big title */}
@@ -373,9 +410,8 @@ export function NewsPage() {
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
-              onClick={() => {
-                if (cat !== activeCategory) setActiveCategory(cat);
-              }}
+              onClick={() => selectCategory(cat)}
+              aria-pressed={activeCategory === cat}
               className="whitespace-nowrap text-[10px] uppercase tracking-widest px-4 py-2 rounded-full border transition-all duration-200 shrink-0 cursor-pointer"
               style={{
                 background: activeCategory === cat ? "#FFC703" : "transparent",
@@ -447,25 +483,7 @@ export function NewsPage() {
           </div>
 
           <div className="reveal-up">
-            <form
-              className="flex flex-col sm:flex-row gap-3"
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <input
-                type="email"
-                placeholder="your@email.com"
-                className="flex-1 bg-[#1a1a1a] border border-[#2a2a2a] rounded-full px-6 py-3.5 text-sm text-white placeholder:text-[#444] focus:outline-none focus:border-[#FFC703] transition-colors"
-              />
-              <button
-                type="submit"
-                className="bg-[#FFC703] text-black rounded-full px-7 py-3.5 text-[10px] font-bold uppercase tracking-widest hover:bg-yellow-300 transition-colors whitespace-nowrap cursor-pointer"
-              >
-                Subscribe
-              </button>
-            </form>
-            <p className="text-[#2e2e2e] text-[10px] uppercase tracking-widest mt-3">
-              No spam. Unsubscribe anytime.
-            </p>
+            <NewsletterSignup />
           </div>
         </div>
       </section>
