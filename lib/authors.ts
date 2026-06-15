@@ -37,7 +37,7 @@ export const authors = {
     // NOTE: draft bio — refine in your own voice. Facts here are role-level and
     // intentionally non-specific to avoid overclaiming.
     bio: "John Iseghohi is the Principal Designer at Rulz&Co, where he partners with founders to take AI products from first idea to shipped MVP. His work sits at the intersection of product strategy, interface design, and the messy reality of building with AI — agentic flows, model-shaped UX, and the judgement calls that don't fit on a canvas. He writes The Dispatch on what's actually changing in design and AI, and what isn't. Rulz&Co stays deliberately small so the people doing the thinking are the people doing the work.",
-    headshotUrl: undefined,
+    headshotUrl: "/images/authors/john-iseghohi.jpg",
     credentials: [],
     sameAs: [
       "https://www.linkedin.com/in/johniseghohi/",
