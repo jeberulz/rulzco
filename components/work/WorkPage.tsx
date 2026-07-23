@@ -274,7 +274,7 @@ export function WorkPage() {
 
           <div className="flex flex-col items-start md:items-end gap-3 pb-3 work-meta">
             <span className="text-[11px] uppercase tracking-[0.2em] text-[#4A4A4A]">
-              2023 — 2025
+              2023 — 2026
             </span>
             <span className="text-5xl md:text-7xl font-light text-[#222] leading-none tabular-nums">
               {String(filtered.length).padStart(2, "0")}

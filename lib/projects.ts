@@ -9,6 +9,15 @@ export type Project = {
   outcome: string;
   interfaceProof: string;
   proofPoints: string[];
+  projectType?: string;
+  gallery?: {
+    number: string;
+    label: string;
+    caption: string;
+    lead?: boolean;
+  }[];
+  builtWith?: string[];
+  ctaLine?: string;
   gradient: string;
   accent: string;
   size: string;
@@ -37,8 +46,118 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: "rinkl",
+    id: "extract",
     num: "01",
+    title: "Extract",
+    tagline: "Turn a messy document into verified, structured data.",
+    year: "2026",
+    tags: ["AI", "Web"],
+    description:
+      "Turn a messy document into verified, structured data—with every field linked to the exact place it came from.",
+    outcome: "Self-initiated click-to-source product demo",
+    projectType: "Self-initiated product demo",
+    interfaceProof:
+      "Extract is direct proof of the interface layer Rulz&Co wants to own. It makes an AI system’s work visible, marks uncertainty before it becomes an error, and keeps the person in control from upload to verified output.",
+    proofPoints: [
+      "Every extracted field links back to its exact source",
+      "Low-confidence output becomes a visible review queue",
+      "The user corrects the draft before anything is exported",
+    ],
+    gallery: [
+      {
+        number: "01",
+        label: "Upload",
+        caption: "A single drop zone. No form and no fields to complete first.",
+      },
+      {
+        number: "02",
+        label: "Working",
+        caption:
+          "The document stays visible while a processing pass shows what the system is doing.",
+      },
+      {
+        number: "03",
+        label: "Extracted, side by side",
+        caption:
+          "The source document and structured fields remain in one verification view.",
+      },
+      {
+        number: "04",
+        label: "Click to verify",
+        caption:
+          "Select a field and the exact source passage highlights. This is the core interaction.",
+        lead: true,
+      },
+      {
+        number: "05",
+        label: "Low confidence, flagged",
+        caption:
+          "Uncertain fields are marked in amber with a plain-language label, not colour alone.",
+      },
+      {
+        number: "06",
+        label: "Correct in place",
+        caption:
+          "A wrong value can be edited directly in the extraction grid before approval.",
+      },
+      {
+        number: "07",
+        label: "Done",
+        caption:
+          "Verified structured data is ready to export or send into the next workflow.",
+      },
+    ],
+    builtWith: [
+      "AIInput",
+      "Citation",
+      "ConfidenceTag",
+      "ExtractionGrid",
+      "DraftReview",
+      "ErrorState",
+    ],
+    ctaLine: "Have a document workflow like this? Let’s talk.",
+    gradient:
+      "linear-gradient(135deg, #0A0A0B 0%, #141416 55%, #2A251C 100%)",
+    accent: "#C9A96A",
+    size: "large",
+    role: "Agentic Interface Design + Build",
+    timeline: "Ongoing",
+    deliverables: [
+      "Interaction Model",
+      "Source-linked Extraction",
+      "Confidence States",
+      "Review + Correction",
+      "Working Prototype",
+    ],
+    challenge:
+      "Most document AI hides its work. It reads a file and returns structured data, but the user cannot see where a value came from or which fields deserve a second look. In document-heavy workflows, an answer without a fast path to verification is not usable evidence.",
+    approach:
+      "Extract is designed around verification rather than generation. The source stays visible while the system works. Every field carries a citation and confidence state, low-confidence values move to the front of the review, and nothing is exported until the person has checked or corrected the draft.",
+    sections: [
+      {
+        label: "Citation",
+        heading: "The source never leaves the answer.",
+        body:
+          "The core view keeps the document and the ExtractionGrid side by side. Selecting any field activates its Citation and highlights the exact passage that produced it. Verification becomes one click, not a manual search through pages.",
+      },
+      {
+        label: "System state",
+        heading: "Working is visible, not a spinner.",
+        body:
+          "Upload moves into a visible processing pass across the document. The interface acknowledges the file, shows that extraction is underway, and keeps the user oriented until the first fields arrive. Error and empty states explain the next useful action.",
+      },
+      {
+        label: "Human control",
+        heading: "Uncertainty becomes the review queue.",
+        body:
+          "ConfidenceTag marks high and low certainty in words as well as colour. Low-confidence fields are surfaced before the user has to find the mistake, then DraftReview lets them correct the value in place and approve the structured output before export.",
+      },
+    ],
+    stats: [],
+  },
+  {
+    id: "rinkl",
+    num: "02",
     title: "Rinkl",
     tagline: "Owning your money starts with understanding it.",
     year: "2024",
@@ -98,7 +217,7 @@ export const projects: Project[] = [
   },
   {
     id: "deskscapes",
-    num: "02",
+    num: "03",
     title: "DeskScapes",
     tagline: "Your setup deserves an audience.",
     year: "2024",
@@ -152,7 +271,7 @@ export const projects: Project[] = [
   },
   {
     id: "human-node",
-    num: "03",
+    num: "04",
     title: "Human Node Project",
     tagline: "Your identity. Unbreakable.",
     year: "2023",
@@ -206,7 +325,7 @@ export const projects: Project[] = [
   },
   {
     id: "scan-com",
-    num: "04",
+    num: "05",
     title: "Scan.com",
     tagline: "Healthcare, found faster.",
     year: "2023",
@@ -266,7 +385,7 @@ export const projects: Project[] = [
   },
   {
     id: "novamind",
-    num: "05",
+    num: "06",
     title: "NovaMind AI",
     tagline: "Knowledge that connects itself.",
     year: "2024",
@@ -320,7 +439,7 @@ export const projects: Project[] = [
   },
   {
     id: "flux",
-    num: "06",
+    num: "07",
     title: "Flux Protocol",
     tagline: "Data infrastructure, finally designed.",
     year: "2024",
@@ -374,7 +493,7 @@ export const projects: Project[] = [
   },
   {
     id: "meridian",
-    num: "07",
+    num: "08",
     title: "Meridian Health",
     tagline: "Your health data, working for you.",
     year: "2023",

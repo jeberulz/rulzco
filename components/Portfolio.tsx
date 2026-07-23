@@ -3,7 +3,26 @@ import Link from "next/link";
 import { ArrowRight, Grip } from "lucide-react";
 import TrailContainer from "./TrailContainer";
 
-const projects = [
+type FeaturedProject = {
+  id: string;
+  title: string;
+  description: string;
+  tags: string[];
+  image?: string;
+  accent?: string;
+  col: number;
+};
+
+const projects: FeaturedProject[] = [
+  {
+    id: "extract",
+    title: "Extract",
+    description:
+      "A self-initiated document interface where every extracted field links to its source, uncertainty is visible, and the user approves the final data.",
+    tags: ["Click-to-source", "Confidence states", "Document AI"],
+    accent: "#C9A96A",
+    col: 1,
+  },
   {
     id: "rinkl",
     title: "Rinkl",
@@ -65,17 +84,50 @@ const fitItems = [
   },
 ];
 
-function ProjectCard({ project }: { project: (typeof projects)[0] }) {
+function ProjectCard({ project }: { project: FeaturedProject }) {
   return (
-    <div className="flex flex-col gap-6">
+    <Link
+      href={`/work/${project.id}`}
+      className="group flex flex-col gap-6 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC703]"
+    >
       <div className="w-full overflow-hidden rounded-lg bg-[#1a1a1a] aspect-[4/3] relative">
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          className="object-cover hover:scale-105 transition-transform duration-500"
-          sizes="(max-width: 1024px) 100vw, 50vw"
-        />
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+        ) : (
+          <>
+            <div
+              className="absolute inset-0"
+              style={{
+                background: `
+                  radial-gradient(circle at 75% 25%, ${project.accent}33 0%, transparent 30%),
+                  linear-gradient(135deg, #0A0A0B 0%, #141416 58%, #211e18 100%)
+                `,
+              }}
+            />
+            <div className="absolute inset-x-0 top-1/2 h-px bg-white/10" />
+            <div className="absolute inset-y-0 left-1/2 w-px bg-white/10" />
+            <div className="absolute left-5 top-5 flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-white/45">
+              <span
+                className="h-2.5 w-2.5"
+                style={{ backgroundColor: project.accent }}
+              />
+              Self-initiated demo
+            </div>
+            <div className="absolute inset-x-6 bottom-6 border-t border-white/15 pt-4">
+              <p className="text-xl leading-tight text-white md:text-2xl">
+                Click a field.
+                <br />
+                See its source.
+              </p>
+            </div>
+          </>
+        )}
       </div>
       <div className="flex flex-col gap-3">
         <h3 className="text-2xl font-medium">{project.title}</h3>
@@ -93,7 +145,7 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
           ))}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

@@ -7,7 +7,7 @@ import { buildMetadata } from "@/lib/seo/shared-metadata";
 import { SITE_NAME } from "@/lib/seo/site-config";
 
 const DESCRIPTION =
-  "Selected Rulz&Co work across complex product workflows, trust-sensitive interactions, and interface systems for startups and growth teams.";
+  "Selected Rulz&Co work and self-initiated agentic interface demos across source verification, human control, complex workflows, and trust-sensitive product systems.";
 
 export const metadata: Metadata = buildMetadata({
   title: "Work",

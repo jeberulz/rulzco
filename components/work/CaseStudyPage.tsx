@@ -17,6 +17,7 @@ type VisualPlaceholderProps = {
   project: Project;
   index: string;
   label: string;
+  caption?: string;
   aspectClass?: string;
   className?: string;
 };
@@ -25,40 +26,55 @@ function VisualPlaceholder({
   project,
   index,
   label,
+  caption,
   aspectClass = "aspect-[16/10]",
   className = "",
 }: VisualPlaceholderProps) {
   return (
     <figure
-      className={`case-visual relative isolate overflow-hidden border border-black/10 bg-[#e9e6df] ${aspectClass} ${className}`}
+      className={`case-visual ${className}`}
       aria-label={`${label} image placeholder`}
     >
       <div
-        className="absolute inset-0"
-        style={{
-          background: `
-            radial-gradient(circle at 78% 22%, ${project.accent}35 0%, transparent 30%),
-            radial-gradient(circle at 18% 82%, ${project.accent}1f 0%, transparent 28%),
-            linear-gradient(135deg, #e4e1d9 0%, #f4f1e9 52%, #dedbd3 100%)
-          `,
-        }}
-      />
-      <div className="absolute inset-x-0 top-1/2 h-px bg-black/8" />
-      <div className="absolute inset-y-0 left-1/2 w-px bg-black/8" />
-      <div className="absolute left-5 top-5 flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-black/45 md:left-7 md:top-7">
-        <span
-          className="h-2.5 w-2.5"
-          style={{ backgroundColor: project.accent }}
+        className={`relative isolate overflow-hidden border border-black/10 bg-[#e9e6df] ${aspectClass}`}
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(circle at 78% 22%, ${project.accent}35 0%, transparent 30%),
+              radial-gradient(circle at 18% 82%, ${project.accent}1f 0%, transparent 28%),
+              linear-gradient(135deg, #e4e1d9 0%, #f4f1e9 52%, #dedbd3 100%)
+            `,
+          }}
         />
-        {project.title}
+        <div className="absolute inset-x-0 top-1/2 h-px bg-black/8" />
+        <div className="absolute inset-y-0 left-1/2 w-px bg-black/8" />
+        <div className="absolute left-5 top-5 flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-black/45 md:left-7 md:top-7">
+          <span
+            className="h-2.5 w-2.5"
+            style={{ backgroundColor: project.accent }}
+          />
+          {project.title}
+        </div>
+        <span className="absolute right-4 top-2 font-mono text-[clamp(4rem,12vw,11rem)] font-light leading-none tracking-[-0.08em] text-black/[0.055] md:right-8">
+          {index}
+        </span>
+        <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4 border-t border-black/15 pt-3 text-[10px] uppercase tracking-[0.18em] text-black/45 md:bottom-7 md:left-7 md:right-7">
+          <span>{label}</span>
+          <span>Image placeholder</span>
+        </div>
       </div>
-      <span className="absolute right-4 top-2 font-mono text-[clamp(4rem,12vw,11rem)] font-light leading-none tracking-[-0.08em] text-black/[0.055] md:right-8">
-        {index}
-      </span>
-      <figcaption className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4 border-t border-black/15 pt-3 text-[10px] uppercase tracking-[0.18em] text-black/45 md:bottom-7 md:left-7 md:right-7">
-        <span>{label}</span>
-        <span>Image placeholder</span>
-      </figcaption>
+      {caption && (
+        <figcaption className="grid grid-cols-1 gap-2 border-b border-black/15 py-4 md:grid-cols-12 md:gap-6">
+          <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-black/50 md:col-span-3">
+            {label}
+          </span>
+          <span className="max-w-[58ch] text-sm leading-relaxed text-black/65 md:col-span-7">
+            {caption}
+          </span>
+        </figcaption>
+      )}
     </figure>
   );
 }
@@ -85,6 +101,9 @@ function ProjectMeta({
 export function CaseStudyPage({ project }: { project: Project }) {
   const progressBarRef = useRef<HTMLDivElement>(null);
   const { next } = getAdjacentProjects(project.id);
+  const gallery = project.gallery ?? [];
+  const leadVisual = gallery.find((visual) => visual.lead);
+  const supportingVisuals = gallery.filter((visual) => !visual.lead);
 
   useEffect(() => {
     const updateProgress = () => {
@@ -219,6 +238,11 @@ export function CaseStudyPage({ project }: { project: Project }) {
               </p>
 
               <div className="case-hero-meta flex flex-wrap content-start gap-x-4 gap-y-2 md:col-span-3 md:col-start-10 md:justify-end">
+                {project.projectType && (
+                  <span className="border-b border-black/20 pb-1 text-[10px] uppercase tracking-[0.2em] text-black/55">
+                    {project.projectType}
+                  </span>
+                )}
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
@@ -238,8 +262,9 @@ export function CaseStudyPage({ project }: { project: Project }) {
         <section className="px-3 md:px-5">
           <VisualPlaceholder
             project={project}
-            index="01"
-            label="Lead project image"
+            index={leadVisual?.number ?? "01"}
+            label={leadVisual?.label ?? "Lead project image"}
+            caption={leadVisual?.caption}
             aspectClass="aspect-[4/3] md:aspect-[16/8]"
           />
         </section>
@@ -259,6 +284,9 @@ export function CaseStudyPage({ project }: { project: Project }) {
             <dl className="case-reveal grid grid-cols-2 gap-x-5 gap-y-7 md:col-span-3 md:grid-cols-1">
               <ProjectMeta label="Role" value={project.role} />
               <ProjectMeta label="Timeline" value={project.timeline} />
+              {project.projectType && (
+                <ProjectMeta label="Type" value={project.projectType} />
+              )}
               <ProjectMeta
                 label="Output"
                 value={project.deliverables.slice(0, 3).join(", ")}
@@ -270,14 +298,16 @@ export function CaseStudyPage({ project }: { project: Project }) {
         <section className="grid grid-cols-1 gap-3 px-3 md:grid-cols-2 md:gap-5 md:px-5">
           <VisualPlaceholder
             project={project}
-            index="02"
-            label="Interface detail"
+            index={supportingVisuals[0]?.number ?? "02"}
+            label={supportingVisuals[0]?.label ?? "Interface detail"}
+            caption={supportingVisuals[0]?.caption}
             aspectClass="aspect-[4/5]"
           />
           <VisualPlaceholder
             project={project}
-            index="03"
-            label="Product in context"
+            index={supportingVisuals[1]?.number ?? "03"}
+            label={supportingVisuals[1]?.label ?? "Product in context"}
+            caption={supportingVisuals[1]?.caption}
             aspectClass="aspect-[4/5]"
           />
         </section>
@@ -316,8 +346,9 @@ export function CaseStudyPage({ project }: { project: Project }) {
         <section className="px-3 md:px-5">
           <VisualPlaceholder
             project={project}
-            index="04"
-            label="Core interaction sequence"
+            index={supportingVisuals[2]?.number ?? "04"}
+            label={supportingVisuals[2]?.label ?? "Core interaction sequence"}
+            caption={supportingVisuals[2]?.caption}
             aspectClass="aspect-[5/4] md:aspect-[16/7]"
           />
         </section>
@@ -346,8 +377,15 @@ export function CaseStudyPage({ project }: { project: Project }) {
                 </p>
                 <VisualPlaceholder
                   project={project}
-                  index={String(index + 5).padStart(2, "0")}
-                  label={`${section.label} detail`}
+                  index={
+                    supportingVisuals[index + 3]?.number ??
+                    String(index + 5).padStart(2, "0")
+                  }
+                  label={
+                    supportingVisuals[index + 3]?.label ??
+                    `${section.label} detail`
+                  }
+                  caption={supportingVisuals[index + 3]?.caption}
                   aspectClass={
                     index % 2 === 0 ? "aspect-[4/3]" : "aspect-[5/4]"
                   }
@@ -357,21 +395,23 @@ export function CaseStudyPage({ project }: { project: Project }) {
           ))}
         </div>
 
-        <section className="px-3 py-3 md:px-5 md:py-5">
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-5">
-            {["State detail", "Workflow view", "System response"].map(
-              (label, index) => (
-                <VisualPlaceholder
-                  key={label}
-                  project={project}
-                  index={String(index + 8).padStart(2, "0")}
-                  label={label}
-                  aspectClass={index === 1 ? "aspect-[3/4]" : "aspect-[4/3]"}
-                />
-              ),
-            )}
-          </div>
-        </section>
+        {gallery.length === 0 && (
+          <section className="px-3 py-3 md:px-5 md:py-5">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-5">
+              {["State detail", "Workflow view", "System response"].map(
+                (label, index) => (
+                  <VisualPlaceholder
+                    key={label}
+                    project={project}
+                    index={String(index + 8).padStart(2, "0")}
+                    label={label}
+                    aspectClass={index === 1 ? "aspect-[3/4]" : "aspect-[4/3]"}
+                  />
+                ),
+              )}
+            </div>
+          </section>
+        )}
 
         <section className="bg-[#FFC703] px-6 py-24 text-black md:px-10 md:py-36 lg:px-14">
           <div className="mx-auto grid max-w-[1500px] grid-cols-1 gap-12 md:grid-cols-12 md:gap-6">
@@ -401,6 +441,12 @@ export function CaseStudyPage({ project }: { project: Project }) {
                   </li>
                 ))}
               </ul>
+              {project.builtWith && (
+                <p className="case-reveal mt-10 border-t border-black/30 pt-5 text-sm leading-relaxed text-black/65">
+                  <span className="font-medium text-black">Built with:</span>{" "}
+                  {project.builtWith.join(", ")}.
+                </p>
+              )}
             </div>
           </div>
         </section>
@@ -409,7 +455,8 @@ export function CaseStudyPage({ project }: { project: Project }) {
           <div className="mx-auto max-w-[1500px]">
             <div className="grid grid-cols-1 gap-10 border-t border-black/20 pt-6 md:grid-cols-12 md:gap-6">
               <p className="case-reveal text-[10px] uppercase tracking-[0.22em] text-black/45 md:col-span-3">
-                Your AI can work. Can people work with it?
+                {project.ctaLine ??
+                  "Your AI can work. Can people work with it?"}
               </p>
               <div className="md:col-span-8 md:col-start-5">
                 <h2 className="case-reveal max-w-[13ch] text-4xl font-normal leading-[0.96] tracking-[-0.04em] md:text-6xl lg:text-7xl">
