@@ -6,7 +6,7 @@ export const contentType = OG_CONTENT_TYPE;
 
 export default function OpengraphImage() {
   return renderOgImage({
-    eyebrow: "Services",
-    title: "AI product design, strategy & MVP builds",
+    eyebrow: "Agentic Interface Services",
+    title: "Direction, interaction design & working builds",
   });
 }

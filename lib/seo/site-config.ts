@@ -52,9 +52,9 @@ export const SITE_LOCALE = "en-GB";
 export const SITE_OG_LOCALE = "en_GB";
 
 export const SITE_DESCRIPTION =
-  "AI Product Design & Strategy partner for startups shipping intelligent products. From idea to MVP to launch, with AI at the core.";
+  "Rulz&Co designs and builds agentic interfaces: clear, trustworthy products where people understand, steer, verify, and approve AI work.";
 
-export const SITE_TAGLINE = "AI Product Design & Strategy";
+export const SITE_TAGLINE = "Agentic Interface Design & Build";
 
 /** Square wordmark used for Organization/Publisher logo in JSON-LD. */
 export const LOGO_PATH = "/logo.svg";

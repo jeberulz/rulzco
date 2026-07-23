@@ -44,9 +44,9 @@ export function Footer() {
           <div className="flex flex-col justify-between h-full gap-16">
             <div className="space-y-4">
               <h2 className="text-3xl md:text-5xl lg:text-6xl font-normal leading-[1.1] tracking-tight">
-                CRAFTING MEMORABLE
+                DESIGNING HOW PEOPLE
                 <br />
-                DIGITAL EXPERIENCES
+                WORK WITH AI
               </h2>
               <a
                 href="mailto:hello@rulz.co"
@@ -57,10 +57,10 @@ export function Footer() {
             </div>
 
             <div className="flex flex-wrap gap-8 text-xs uppercase tracking-widest text-gray-400">
-              <a href="#" className="hover:text-white transition-colors">Work</a>
-              <a href="#" className="hover:text-white transition-colors">Studio</a>
-              <a href="#" className="hover:text-white transition-colors">Services</a>
-              <a href="#" className="hover:text-white transition-colors">Contact</a>
+              <Link href="/work" className="hover:text-white transition-colors">Work</Link>
+              <Link href="/studio" className="hover:text-white transition-colors">Studio</Link>
+              <Link href="/services" className="hover:text-white transition-colors">Services</Link>
+              <a href="mailto:hello@rulz.co" className="hover:text-white transition-colors">Contact</a>
             </div>
           </div>
 
@@ -83,17 +83,17 @@ export function Footer() {
                   </button>
                 </div>
                 <p className="text-gray-500 text-xs leading-relaxed mt-4 max-w-sm">
-                  Join our newsletter to stay informed about new tips, tutorials,
-                  projects, products, investments, and more.
+                  Field notes on agentic interfaces, product decisions, and the
+                  work of making AI usable.
                 </p>
               </div>
             </div>
 
             <div className="flex justify-start lg:justify-end gap-12 text-xs uppercase tracking-widest text-gray-400">
-              <a href="#" className="flex items-center gap-1 hover:text-white transition-colors">
+              <a href="https://x.com/rulzandco" className="flex items-center gap-1 hover:text-white transition-colors">
                 Twitter <ArrowUp size={12} className="rotate-45" />
               </a>
-              <a href="#" className="flex items-center gap-1 hover:text-white transition-colors">
+              <a href="https://www.linkedin.com/company/rulzandco" className="flex items-center gap-1 hover:text-white transition-colors">
                 LinkedIn <ArrowUp size={12} className="rotate-45" />
               </a>
             </div>

@@ -18,58 +18,58 @@ gsap.registerPlugin(ScrollTrigger);
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const tickerItems = [
-  "Product UI/UX Design", "AI Strategy", "Design Systems",
-  "Agentic UX", "MVP Prototyping", "Go-To-Market", "UX Research",
-  "Workflow Automation", "Prompt Design", "PRDs & Feature Specs",
-  "AI MVP Builds", "Launch Planning", "Competitive Analysis",
+  "Agentic Interface Design", "Human-Agent Workflows", "Interface Strategy",
+  "Source & Confidence UI", "Approval Flows", "Agent Activity",
+  "Streaming States", "Failure & Recovery", "React Frontends",
+  "Live Model Integrations", "AI Design Systems", "Adoption Signals",
 ];
 
 const serviceAreas = [
   {
     num: "01",
     category: "Design",
-    headline: "Making complex things feel simple.",
+    headline: "Make AI behaviour legible and controllable.",
     description:
-      "From the first rough flow to a polished, engineer-ready file — we design products that work before they're built and land with the people who use them.",
+      "We design how people direct an agent, see its progress, verify its output, and intervene when the work needs judgment. Every state matters, not only the successful one.",
     items: [
-      "Product UI/UX design",
-      "Rapid prototyping",
-      "Design systems",
-      "UX for complex workflows",
-      "Lightweight user research",
-      "Vibe-coded products",
+      "Agentic interaction models",
+      "Multi-step workflow design",
+      "Source and confidence display",
+      "Approval and intervention flows",
+      "Failure, recovery, and handoff",
+      "AI interface design systems",
     ],
     accent: "#6C63FF",
   },
   {
     num: "02",
     category: "Strategy",
-    headline: "Clarity on what to build, and why.",
+    headline: "Choose the workflow before the interface.",
     description:
-      "Product strategy isn't about decks. It's about making the right decision at the right time. We bring structure and rigour to the moments that matter most.",
+      "We define where the agent should act, where a person must stay in control, and which outcome makes the interface worth building. The goal is a sharper product, not a longer deck.",
     items: [
-      "MVP definition & roadmap",
-      "Product strategy & prioritisation",
-      "PRDs & feature specs",
-      "Competitive analysis",
-      "Go-To-Market strategy",
-      "Launch planning",
+      "Interface opportunity audit",
+      "Workflow and user mapping",
+      "Agent responsibility definition",
+      "Product scope and PRDs",
+      "Trust and risk review",
+      "Adoption metrics",
     ],
     accent: "#D4845A",
   },
   {
     num: "03",
-    category: "AI",
-    headline: "AI that earns its place in the product.",
+    category: "Build",
+    headline: "Turn the interaction model into a working product.",
     description:
-      "We don't add AI for the pitch deck. We design AI-native experiences where the intelligence is invisible, useful, and genuinely earns user trust.",
+      "We build the frontend on your existing AI stack: live model responses, tool states, streaming, approvals, errors, and recovery. The interface is ready for real behaviour, not a static demo path.",
     items: [
-      "AI-first product concepts",
-      "Agentic UX design",
-      "Workflow automation design",
-      "AI feature discovery",
-      "Prompt & interaction design",
-      "AI MVP prototyping",
+      "Production-ready React interfaces",
+      "Model and tool integrations",
+      "Streaming and long-running states",
+      "Agent activity and controls",
+      "Analytics and instrumentation",
+      "MVP and pilot interfaces",
     ],
     accent: "#FFA500",
   },
@@ -79,23 +79,23 @@ const serviceAreas = [
 const processSteps = [
   {
     num: "01",
-    heading: "Discovery call",
-    body: "30 minutes. We understand where you are, what you're trying to build, and whether this is the right fit.",
+    heading: "Diagnose",
+    body: "We map the workflow, the people involved, the technical boundary, and where trust or control currently breaks.",
   },
   {
     num: "02",
-    heading: "Proposal",
-    body: "Within 48 hours we'll share a clear scope, timeline, and approach — tailored to your stage and goals.",
+    heading: "Design",
+    body: "We define the interaction model, system states, evidence, approvals, and recovery before polishing the interface.",
   },
   {
     num: "03",
-    heading: "Kickoff",
-    body: "We align on the brief, the problem, and how we'll work together. Work starts immediately.",
+    heading: "Build",
+    body: "We turn the model into a working frontend connected to your real AI, tools, and data services.",
   },
   {
     num: "04",
-    heading: "Ship",
-    body: "Every deliverable is built to move. Files are clean, annotated, and ready for your engineers.",
+    heading: "Refine",
+    body: "We ship, observe where people hesitate or intervene, and improve the interface around real use.",
   },
 ];
 
@@ -478,15 +478,15 @@ export function ServicesPage() {
             <div className="lg:col-span-7">
               <LineReveal animateOnScroll={false} delay={0.1} stagger={0.07}>
                 <h1 className="text-[clamp(44px,7vw,112px)] font-light leading-[0.9] tracking-[-0.03em] text-white">
-                  Design. Strategy. AI.
+                  Agentic interfaces. Designed and built.
                 </h1>
               </LineReveal>
             </div>
             <div className="lg:col-span-5 flex flex-col justify-end pb-2">
               <LineReveal animateOnScroll={false} delay={0.6} stagger={0.04}>
                 <p className="text-lg text-[#555] font-light leading-relaxed">
-                  Three disciplines. Three engagement models. One studio that
-                  stays hands-on from the first call to the final handoff.
+                  We turn models, tools, and automated workflows into clear
+                  products people can understand, steer, verify, and trust.
                 </p>
               </LineReveal>
               <div className="mt-8 flex items-center gap-4">
@@ -514,15 +514,15 @@ export function ServicesPage() {
               </p>
               <LineReveal stagger={0.07} start="top 82%">
                 <h2 className="text-[clamp(28px,4vw,56px)] font-light text-black leading-[0.95] tracking-tight">
-                  Three things we do exceptionally well.
+                  Three parts of one interface practice.
                 </h2>
               </LineReveal>
             </div>
             <div className="lg:col-span-6 lg:col-start-7 flex items-end reveal-up">
               <p className="text-[#888] font-light leading-relaxed">
-                Most engagements draw from all three. Some start with strategy
-                and move to design. Others need AI thinking woven in from day one.
-                We work across them fluidly.
+                Direction decides where the agent belongs. Design makes its
+                behaviour understandable. Build proves the interaction against
+                the real system.
               </p>
             </div>
           </div>
@@ -551,9 +551,9 @@ export function ServicesPage() {
             </div>
             <div className="lg:col-span-5 lg:col-start-8 flex items-end reveal-up">
               <p className="text-[#555] font-light leading-relaxed">
-                Choose based on your stage. Most clients start with a sprint
-                and stay for a build. Some jump straight to a partnership.
-                We&apos;ll tell you honestly which fits.
+                Start with the uncertainty you need to remove: what to build,
+                how it should work, or how to evolve an interface already in
+                use. We&apos;ll tell you honestly which fits.
               </p>
             </div>
           </div>
@@ -567,7 +567,7 @@ export function ServicesPage() {
           </div>
 
           <p className="text-center text-[#333] text-xs uppercase tracking-widest mt-10 reveal-up">
-            All engagements begin with a free 30-minute discovery call.
+            Every engagement begins with a focused 30-minute fit call.
           </p>
         </div>
       </section>
@@ -579,7 +579,7 @@ export function ServicesPage() {
             <p className="text-[10px] uppercase tracking-[0.3em] text-[#999] mb-4">Process</p>
             <LineReveal stagger={0.07} start="top 82%">
               <h2 className="text-[clamp(28px,4vw,52px)] font-light text-black leading-[0.95] tracking-tight max-w-2xl">
-                From first conversation to shipping.
+                From opaque capability to usable product.
               </h2>
             </LineReveal>
           </div>
@@ -631,7 +631,7 @@ export function ServicesPage() {
         <div className="max-w-[1600px] mx-auto">
           <LineReveal stagger={0.07} start="top 82%">
             <h2 className="text-[clamp(36px,6vw,96px)] font-light leading-[0.9] tracking-[-0.02em] max-w-5xl">
-              Ready to build something worth building?
+              Ready to make your AI usable?
             </h2>
           </LineReveal>
           <div className="mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-6 reveal-up">

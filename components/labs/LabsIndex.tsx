@@ -30,11 +30,12 @@ export function LabsIndex() {
 
         <section className="max-w-4xl mb-20">
           <h1 className="text-4xl md:text-6xl font-medium leading-[1.05] tracking-tight">
-            AI-native UX experiments,{" "}
-            <span className="text-[#FFC703]">shipped fast.</span>
+            Agentic interface experiments,{" "}
+            <span className="text-[#FFC703]">shipped in public.</span>
           </h1>
           <p className="text-lg md:text-2xl text-gray-400 mt-6 max-w-2xl">
-            Ideas → live prototypes → real user signal → V2. This is how I work.
+            Focused prototypes for the hard parts of working with AI: sources,
+            confidence, approvals, agent activity, failure, and recovery.
           </p>
         </section>
 

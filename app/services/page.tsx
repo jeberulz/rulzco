@@ -11,9 +11,9 @@ import { tiers, faqs } from "@/lib/services-data";
 import { buildMetadata } from "@/lib/seo/shared-metadata";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Services",
+  title: "Agentic Interface Services",
   description:
-    "AI product design, strategy, and MVP builds for startups. Three engagement models — from a focused sprint to an ongoing product partnership.",
+    "Agentic interface strategy, design, and React builds for teams turning models and automated workflows into clear, trustworthy products.",
   path: "/services",
 });
 

@@ -1,7 +1,7 @@
 import { SITE_TAGLINE } from "@/lib/seo/site-config";
 import { OG_CONTENT_TYPE, OG_SIZE, renderOgImage } from "@/lib/seo/og";
 
-export const alt = "Rulz&Co — AI Product Design & Strategy";
+export const alt = "Rulz&Co — Agentic Interface Design & Build";
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 

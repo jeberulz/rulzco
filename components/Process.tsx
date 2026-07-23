@@ -5,78 +5,78 @@ import { clsx } from "clsx";
 
 const steps = [
   {
-    title: "Clarify the problem",
+    title: "Find the right job",
     description:
-      "We align on the real problem worth solving, not just the initial idea. This includes goals, constraints, users, and where AI actually creates leverage.",
-    tags: ["Problem framing", "User need", "Success metric"],
+      "We identify the work your AI should own, the decisions people must keep, and the outcome worth designing for before we draw a screen.",
+    tags: ["Workflow audit", "User need", "Success metric"],
   },
   {
-    title: "Design the system",
+    title: "Design human control",
     description:
-      "I design the product logic first, flows, states, decisions, and AI behaviour. Screens come after the system makes sense.",
-    tags: ["User flows", "AI behaviour", "System logic"],
+      "We design how people direct the agent, see its progress, verify its evidence, and step in before anything consequential happens.",
+    tags: ["Interaction model", "Agent behaviour", "Trust & control"],
   },
   {
-    title: "Build the MVP",
+    title: "Build the interface",
     description:
-      "Rapid design first, from flows to interaction. Designs are MVP ready and can be handed to engineers without translation.",
-    tags: ["Design library", "Active states", "DEV ready"],
+      "We turn the interaction model into a working frontend on your AI stack, with real data, live states, and recovery paths—not a static happy path.",
+    tags: ["React build", "Live integrations", "All states"],
   },
   {
-    title: "Ship and iterate",
+    title: "Ship and learn",
     description:
-      "Real-time user analytics, hotjar heatmaps, and prepare the product for launch, scale, and fundraising.",
-    tags: ["Observation", "Solutions", "Launch strategy"],
+      "We release the interface, observe where trust or momentum breaks, and refine the product around real use.",
+    tags: ["Instrumentation", "Adoption", "Iteration"],
   },
 ];
 
 const engagementModels = [
   {
-    title: "Product sprint",
-    subtitle: "early clarity, new ideas, stuck teams",
+    title: "Interface Diagnostic",
+    subtitle: "working AI, unclear workflow",
     description:
-      "A focused sprint to align on the problem, define the product, and design the core experience. Ideal when you need direction before committing to a full build.",
+      "A focused engagement to find where the interface is blocking trust, control, or adoption—and define the right thing to build next.",
     tags: [
-      "Problem definition",
-      "Product strategy",
-      "Core UX flows",
-      "AI feature concepts",
+      "Workflow and user audit",
+      "Agent responsibility map",
+      "Risk and trust review",
+      "Interface recommendation",
     ],
     duration: "1 - 2 weeks",
     outcome:
-      "A clear product direction and a prototype you can confidently move forward with.",
+      "A prioritised interface direction, core flow, and build brief your team can act on.",
   },
   {
-    title: "AI MVP Build",
-    subtitle: "founders ready to ship",
+    title: "Agentic Interface Build",
+    subtitle: "teams ready to ship",
     description:
-      "An end-to-end engagement to design and prototype a real MVP, with AI and system thinking at the core.",
+      "We design and build one working interface on top of your models, tools, and workflows—from interaction logic to production-ready frontend.",
     tags: [
-      "End-to-end product design",
-      "Agentic UX and AI interactions",
-      "MVP-ready prototypes",
-      "Design system foundations",
-      "Launch support",
+      "Agentic interaction design",
+      "Working React frontend",
+      "Live model and tool states",
+      "Human approval and recovery",
+      "Launch instrumentation",
     ],
-    duration: "4 - 6 weeks",
+    duration: "2 - 6 weeks",
     outcome:
-      "A testable, investor-ready MVP built to be shipped or handed off to engineering.",
+      "A deployed, testable interface people can use with your real AI capability.",
   },
   {
-    title: "Ongoing Product Partner",
-    subtitle: "startups scaling or iterating",
+    title: "Interface Partner",
+    subtitle: "agentic products growing in scope",
     description:
-      "A monthly partnership where I work closely with your team to shape product direction, design new features, and evolve your AI capabilities over time.",
+      "Ongoing product direction, interface design, and frontend delivery as your agents take on more workflows and responsibility.",
     tags: [
-      "Product strategy support",
-      "UX and AI feature design",
-      "Workflow and automation thinking",
-      "Continuous iteration",
-      "Launch support",
+      "Product direction",
+      "New agentic workflows",
+      "Interface system evolution",
+      "Adoption and trust signals",
+      "Continuous delivery",
     ],
     duration: "Monthly",
     outcome:
-      "A senior product partner embedded in your team, without the overhead of a full-time hire.",
+      "A senior interface partner who keeps the human experience coherent as the AI system evolves.",
   },
 ];
 
@@ -96,7 +96,7 @@ export function Process() {
                 : "bg-[#222] text-gray-500 hover:bg-[#333]"
             )}
           >
-            How I work
+            How we work
           </button>
           <button
             onClick={() => setActiveTab("model")}
@@ -115,8 +115,8 @@ export function Process() {
           {activeTab === "work" ? (
             <div className="space-y-16">
               <p className="text-xl text-gray-800 max-w-3xl mb-16">
-                You&apos;re building an ambitious product and need a senior
-                product partner to bring clarity, speed, and execution.
+                Your AI can already reason and act. The interface determines
+                whether people can use it with confidence.
               </p>
               <div className="space-y-16">
                 {steps.map((step, index) => (
@@ -151,8 +151,8 @@ export function Process() {
           ) : (
             <div className="space-y-16">
               <p className="text-xl text-gray-800 max-w-3xl mb-16">
-                Flexible ways to work together, depending on your stage, goals,
-                and speed.
+                Start with the uncertainty you need to remove: what to build,
+                how it should work, or how to keep improving it.
               </p>
               <div className="space-y-16">
                 {engagementModels.map((model, index) => (
@@ -204,8 +204,8 @@ export function Process() {
               </div>
               <div className="pt-8 border-t border-gray-100">
                 <p className="text-xl text-[#1e1e1e]">
-                  I work with a small number of teams at a time to stay focused,
-                  hands-on, and high impact.
+                  Rulz&amp;Co works with a small number of teams at a time to
+                  stay senior, hands-on, and close to the shipped product.
                 </p>
               </div>
             </div>

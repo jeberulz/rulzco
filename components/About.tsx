@@ -4,13 +4,13 @@ export function About() {
   return (
     <AnimeText
       paragraphs={[
-        "Rulz&Co is intentionally small. That's how I stay hands-on, move fast, and stay close to the work, from early ideas through to shipped products.",
+        "Rulz&Co stays intentionally small. The person defining your agent's behaviour is the person designing and building the interface around it.",
       ]}
-      keywords={["intentionally", "hands-on", "fast"]}
+      keywords={["intentionally", "designing", "building"]}
       keywordColors={{
         intentionally: "#FFC703",
-        "hands-on": "#FFC703",
-        fast: "#FFC703",
+        designing: "#FFC703",
+        building: "#FFC703",
       }}
       pinDuration={3}
     />

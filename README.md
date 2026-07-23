@@ -1,30 +1,41 @@
 # Rulz & Co
 
-AI product design & strategy partner for startups shipping intelligent products.
+Agentic interface design and build for startups and mid-market product teams.
 
-> "From idea → MVP → launch, with AI at the core."
+> We design the interfaces where people and AI agents work together.
 
 ## What We Do
 
-Rulz & Co is a boutique consultancy based in Manchester, UK, working worldwide across three disciplines:
+Rulz & Co is a specialist studio based in Manchester, UK, working worldwide.
+We turn models, tools, and automated workflows into clear, trustworthy
+products people can understand, steer, and use.
 
-- **Design** — UI/UX, rapid prototyping, design systems, user research
-- **Strategy** — MVP definition, roadmaps, competitive analysis, go-to-market
-- **AI** — AI-first product concepts, agentic UX, prompt design, LLM integration
+- **Design** — Agentic interaction models, sources and confidence, approvals,
+  intervention, failure, recovery, and handoff
+- **Strategy** — Workflow audits, agent responsibility, product scope, PRDs,
+  trust reviews, and adoption metrics
+- **Build** — Working React interfaces, model and tool integrations, streaming,
+  agent activity, and AI interface design systems
 
 ## How We Work
 
-**Product Sprint** — 1–2 weeks. Fast, focused design sprint to clarify the problem and define the solution.
+**Interface Diagnostic** — 1–2 weeks. Find where the interface is blocking
+clarity, control, trust, or adoption, then define the right thing to build.
 
-**AI MVP Build** — 4–6 weeks. End-to-end product design and strategy from concept to a shippable MVP.
+**Agentic Interface Build** — 2–6 weeks. Design and build one working interface
+on top of an existing AI capability.
 
-**Ongoing Product Partner** — Monthly retainer. Embedded design and strategy support as you scale.
+**Interface Partner** — Monthly retainer. Ongoing product direction, interface
+design, and frontend delivery as the AI system evolves.
 
 ## Who We Work With
 
-We're a good fit if you're an early-stage startup, a founder who wants clarity over process, or an AI-native team ready to ship.
+We're a good fit for startups and mid-market teams with working AI but a clunky
+or missing interface, product leaders shaping agentic workflows before heavy
+engineering, and teams ready to test a working frontend.
 
-We're not the right fit for pixel-only work, fixed-scope projects, or large agency-style engagements.
+We're not the right fit for chatbot reskins, pixel-only work, large agency
+processes, or projects where AI is bolted on at the end.
 
 ## Let's Work Together
 

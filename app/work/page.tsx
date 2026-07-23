@@ -7,7 +7,7 @@ import { buildMetadata } from "@/lib/seo/shared-metadata";
 import { SITE_NAME } from "@/lib/seo/site-config";
 
 const DESCRIPTION =
-  "Selected projects from Rulz&Co — AI product design, strategy, and brand work for startups building intelligent products.";
+  "Selected Rulz&Co work across complex product workflows, trust-sensitive interactions, and interface systems for startups and growth teams.";
 
 export const metadata: Metadata = buildMetadata({
   title: "Work",

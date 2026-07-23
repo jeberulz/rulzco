@@ -281,9 +281,9 @@ export function StudioPage() {
           <div className="mt-12 max-w-xl">
             <LineReveal animateOnScroll={false} delay={0.6} stagger={0.05}>
               <p className="text-lg md:text-xl text-black/50 font-light leading-relaxed">
-                AI product design &amp; strategy for founders who need to ship
-                the right thing, fast — without a 40-person agency between them
-                and the thinking.
+                Agentic interface design and build for teams turning working AI
+                into products people can understand, steer, and trust—without
+                a 40-person agency between them and the work.
               </p>
             </LineReveal>
           </div>
@@ -526,7 +526,7 @@ export function StudioPage() {
             <span className="text-[#444] text-sm">Manchester, UK</span>
             <div className="mt-4 w-full border-t border-[#1a1a1a]" />
             <span className="text-[10px] uppercase tracking-[0.3em] text-[#333] mt-4">Available for</span>
-            {["Product sprints", "AI MVP builds", "Ongoing partnerships"].map((s) => (
+            {["Interface diagnostics", "Agentic interface builds", "Ongoing partnerships"].map((s) => (
               <span key={s} className="text-[#444] text-sm">{s}</span>
             ))}
           </div>

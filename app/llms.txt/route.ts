@@ -42,7 +42,7 @@ function buildLlmsTxt(): string {
 
   return `# ${SITE_NAME}
 
-> ${SITE_NAME} is an AI Product Design & Strategy partner for startups shipping intelligent products. Manchester-based and deliberately small (two to three clients at a time), the studio takes founders from idea to MVP to launch across three disciplines — design, strategy, and AI — through three engagement models.
+> ${SITE_NAME} is an agentic interface design studio for startups and mid-market product teams. Manchester-based and deliberately small, the studio designs and builds the product layer where people understand, steer, verify, and approve AI work. Engagements range from a focused interface diagnostic to a working React build and ongoing interface partnership.
 
 ## Services
 ${services}

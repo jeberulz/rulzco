@@ -12,34 +12,34 @@ const services = [
   {
     category: "Design",
     items: [
-      "Product UI/UX design",
+      "Agentic interface design",
+      "Human-agent interaction models",
+      "Trust, confidence & sources",
+      "Approval & intervention flows",
+      "Failure, recovery & handoff",
       "Rapid prototyping",
-      "Design systems",
-      "UX for complex workflows",
-      "Lightweight user research",
-      "Vibe-coded products",
     ],
   },
   {
     category: "Strategy",
     items: [
-      "MVP definition & roadmap",
-      "Product strategy & prioritisation",
-      "PRDs & feature specs",
-      "Competitive analysis",
-      "Go-To-Market strategy",
-      "Launch planning",
+      "Interface opportunity audits",
+      "Workflow & user mapping",
+      "Agent behaviour definition",
+      "Product scope & PRDs",
+      "Risk & trust reviews",
+      "Adoption metrics",
     ],
   },
   {
-    category: "AI",
+    category: "Build",
     items: [
-      "AI-first product concepts",
-      "Agentic UX design",
-      "Workflow automation design",
-      "AI feature discovery",
-      "Prompt & interaction design",
-      "AI MVP prototyping",
+      "Working React interfaces",
+      "Live model & tool integrations",
+      "Streaming & long-running states",
+      "Agent activity & controls",
+      "AI interface design systems",
+      "MVPs & pilot interfaces",
     ],
   },
 ];
@@ -47,7 +47,7 @@ const services = [
 export function Hero() {
   const navRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
-  const ctaRef = useRef<HTMLButtonElement>(null);
+  const ctaRef = useRef<HTMLAnchorElement>(null);
 
   // Set initial hidden state before paint — prevents flash of unstyled content
   // Nav gets opacity-only (no y transform) — a CSS transform on the wrapper would
@@ -132,8 +132,8 @@ export function Hero() {
           <div className="order-first xl:order-none xl:max-w-[560px] flex flex-col items-start gap-8 pt-2">
             <LineReveal animateOnScroll={false} waitForReady delay={0.35}>
               <h1 className="text-3xl md:text-[32px] leading-[1.3] font-medium text-[#F3F5F3]">
-                AI Product Design & Strategy partner for startups shipping
-                intelligent products.
+                We design the interfaces where people and AI agents work
+                together.
               </h1>
             </LineReveal>
             <LineReveal
@@ -144,11 +144,14 @@ export function Hero() {
               stagger={0.04}
             >
               <p className="text-[24px] text-[#797A7A] leading-tight font-light">
-                From idea → MVP → launch, with AI at the core.
+                Rulz&amp;Co turns models, tools, and automated workflows into
+                clear, trustworthy products people can understand, steer, and
+                use.
               </p>
             </LineReveal>
-            <button
+            <a
               ref={ctaRef}
+              href="mailto:hello@rulz.co?subject=Agentic%20interface%20project"
               className="mt-2 border border-[#FFC703] text-[#FFC703] rounded-full px-8 py-3 text-[13px] font-medium tracking-[0.05em] uppercase flex items-center gap-2 hover:bg-[#FFC703] hover:text-black transition-all duration-300 group"
             >
               Start a project
@@ -156,7 +159,7 @@ export function Hero() {
                 size={16}
                 className="group-hover:translate-x-1 transition-transform"
               />
-            </button>
+            </a>
           </div>
         </div>
       </div>

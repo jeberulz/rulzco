@@ -16,12 +16,12 @@ interface NavMenuProps {
 }
 
 const menuItems = [
-  { number: "01", label: "Home", sub: "Where the creative heart is.", href: "/" },
-  { number: "02", label: "Work", sub: "Projects we have worked on.", href: "/work" },
-  { number: "03", label: "Services", sub: "What we do and how we do it.", href: "/services" },
-  { number: "04", label: "Studio", sub: "About the Studio, principles & values.", href: "/studio" },
+  { number: "01", label: "Home", sub: "Our point of view on agentic interfaces.", href: "/" },
+  { number: "02", label: "Work", sub: "Products and complex workflows we have shaped.", href: "/work" },
+  { number: "03", label: "Services", sub: "Direction, interface design, and working builds.", href: "/services" },
+  { number: "04", label: "Studio", sub: "A deliberately small, senior design partner.", href: "/studio" },
   { number: "05", label: "Partnership", sub: "We partner & invest in companies & ideas.", href: "/partnership" },
-  { number: "06", label: "News", sub: "Our updates, thoughts, resources, and more.", href: "/news" },
+  { number: "06", label: "News", sub: "Field notes on design, agents, and product work.", href: "/news" },
 ];
 
 const SCRAMBLE_OPTS = { duration: 0.18, charDelay: 45, stagger: 30, maxIterations: 5 };
@@ -123,9 +123,9 @@ export function NavMenu({ className }: NavMenuProps) {
               <div ref={contentRef} className="flex flex-col justify-between h-full pb-12">
                 <div className="max-w-2xl">
                   <p className="text-3xl md:text-5xl lg:text-[56px] leading-[1.1] font-normal tracking-tight mb-16">
-                    Rulz&amp;Co is an AI product design and strategy studio
-                    that combines clarity, craft, and AI-native thinking to
-                    ship products people actually use.
+                    Rulz&amp;Co is an agentic interface design studio. We
+                    design and build how people understand, steer, and trust AI
+                    systems.
                   </p>
                   <div className="mb-12">
                     <p className="text-xl md:text-2xl mb-2">

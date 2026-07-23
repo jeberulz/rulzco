@@ -365,10 +365,10 @@ export function WorkPage() {
         <div className="mt-24 pt-12 border-t border-[#1a1a1a] flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
             <p className="text-[#555] text-xs uppercase tracking-widest mb-2">
-              Have a project in mind?
+              Have an AI workflow in mind?
             </p>
             <p className="text-white text-2xl md:text-3xl font-light">
-              Let&apos;s build something worth remembering.
+              Let&apos;s design the interface people can trust.
             </p>
           </div>
           <a

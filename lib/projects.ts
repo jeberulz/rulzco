@@ -243,13 +243,13 @@ export const projects: Project[] = [
     tags: ["AI", "App"],
     description:
       "AI-native knowledge management for research teams. Surfaces connections across documents, transcripts, and notes in real time.",
-    outcome: "Agentic UX concept + investor prototype.",
+    outcome: "Agentic interface concept + investor prototype.",
     gradient: "linear-gradient(135deg, #1a0f00 0%, #4a2800 50%, #2d1800 100%)",
     accent: "#FFA500",
     size: "small",
     role: "AI Product Design + UX Strategy",
     timeline: "4 weeks",
-    deliverables: ["Agentic UX Design", "Interaction Model", "Investor Prototype", "Design Principles"],
+    deliverables: ["Agentic Interface Design", "Interaction Model", "Investor Prototype", "Design Principles"],
     challenge:
       "Research teams were drowning in information they couldn't connect. NovaMind's underlying AI was genuinely powerful at surfacing relationships between documents — but the interface treated it like a search engine. The product needed a UX that reflected what the AI was actually doing: thinking alongside you.",
     approach:

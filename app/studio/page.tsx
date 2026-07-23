@@ -7,7 +7,7 @@ import { buildMetadata } from "@/lib/seo/shared-metadata";
 export const metadata: Metadata = buildMetadata({
   title: "Studio",
   description:
-    "Intentionally small. Obsessively good. The principles, people, and working style behind Rulz&Co.",
+    "The deliberately small studio behind Rulz&Co's agentic interface strategy, interaction design, and working frontend builds.",
   path: "/studio",
 });
 
@@ -18,7 +18,7 @@ export default function Studio() {
         data={buildAboutPage({
           name: "Studio — Rulz&Co",
           description:
-            "Intentionally small. Obsessively good. The principles, people, and working style behind Rulz&Co.",
+            "The deliberately small studio behind Rulz&Co's agentic interface strategy, interaction design, and working frontend builds.",
           path: "/studio",
         })}
       />

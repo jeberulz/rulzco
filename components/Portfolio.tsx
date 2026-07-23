@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, Grip } from "lucide-react";
 import TrailContainer from "./TrailContainer";
 
@@ -7,8 +8,8 @@ const projects = [
     id: "rinkl",
     title: "Rinkl",
     description:
-      "Next-gen student finance tracker that helps you officially own your bank account. Real-time insights and nudges for better financial health.",
-    tags: ["App", "Fintech"],
+      "Interaction logic that turns live transaction data into timely, useful nudges—surfacing the next financial decision without adding noise.",
+    tags: ["Interaction logic", "Real-time nudges", "Fintech"],
     image: "/images/rinkl-card.png",
     col: 1,
   },
@@ -16,8 +17,8 @@ const projects = [
     id: "deskscapes",
     title: "DeskScapes",
     description:
-      "Turning your desk into a runway, we help creators show off their setups. A community-led marketplace for desk accessories and setups.",
-    tags: ["Web app", "eCommerce"],
+      "An intent-led discovery system for a creator marketplace, connecting how people explore setups with how products are found.",
+    tags: ["Discovery UX", "Information architecture", "Marketplace"],
     image: "/images/ds-card.png",
     col: 2,
   },
@@ -25,8 +26,8 @@ const projects = [
     id: "human-node",
     title: "Human Node Project",
     description:
-      "The Human Node Project uses bio-authentication technology to secure digital identities in the Web3 ecosystem.",
-    tags: ["Web", "Deep tech"],
+      "A multi-step verification flow that turns dense identity security into a clear, low-drop onboarding experience.",
+    tags: ["Trust UX", "Verification flow", "Deep tech"],
     image: "/images/hnp-card.png",
     col: 1,
   },
@@ -34,8 +35,8 @@ const projects = [
     id: "scan-com",
     title: "Scan.com",
     description:
-      "The world's largest search for medical scans. Scan.com connects patients with diagnostic centers, streamlining the booking process.",
-    tags: ["Brand", "Health"],
+      "Search, intake, and routing for a medical scan platform—making a high-friction path from patient need to diagnostic centre feel clear.",
+    tags: ["Complex workflow", "Search & routing", "Health"],
     image: "/images/scan-card.png",
     col: 2,
   },
@@ -43,24 +44,24 @@ const projects = [
 
 const fitItems = [
   {
-    good: "Early-stage startups and B2B scale-ups",
-    bad: "Pixel-only or execution-only design work",
+    good: "Teams with working AI but a clunky or missing interface",
+    bad: "Chatbot reskins looking for visual polish",
   },
   {
-    good: "Founders who want clarity, not just execution",
-    bad: "Fixed-scope projects with no room to think",
+    good: "Product leaders shaping agentic workflows before heavy engineering",
+    bad: "Pixel-only briefs with no room to shape behaviour",
   },
   {
-    good: "Teams building AI-native or AI-enabled products",
+    good: "Startups and mid-market teams ready to design and build",
     bad: "Large agency engagements or RFP processes",
   },
   {
-    good: "Leaders who value product thinking alongside design",
+    good: "Teams that value trust and control as product features",
     bad: "Teams without a clear owner or decision-maker",
   },
   {
-    good: "Decision-makers who want to move fast and ship",
-    bad: "Projects where AI is an afterthought",
+    good: "Decision-makers ready to test a working interface",
+    bad: "Projects where AI is bolted on at the end",
   },
 ];
 
@@ -126,9 +127,12 @@ export function Portfolio() {
           </div>
 
           <div className="flex justify-end mt-24">
-            <button className="text-white flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <Link
+              href="/work"
+              className="text-white flex items-center gap-2 hover:opacity-80 transition-opacity"
+            >
               View All Work <span className="transform -rotate-45">→</span>
-            </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -142,13 +146,16 @@ export function Portfolio() {
 
             <div className="lg:col-span-11">
               <h2 className="text-4xl md:text-5xl lg:text-[56px] font-medium text-black leading-[1.1] mb-12 max-w-4xl tracking-tight">
-                I work best when there&apos;s trust, momentum, and a shared
-                ambition to build something meaningful.
+                We work best with teams ready to make AI usable, not merely
+                available.
               </h2>
 
-              <button className="bg-black text-[#FFC703] rounded-full px-8 py-4 text-[13px] font-bold tracking-widest uppercase flex items-center gap-2 hover:opacity-90 transition-opacity mb-24">
+              <a
+                href="mailto:hello@rulz.co?subject=Agentic%20interface%20project"
+                className="w-fit bg-black text-[#FFC703] rounded-full px-8 py-4 text-[13px] font-bold tracking-widest uppercase flex items-center gap-2 hover:opacity-90 transition-opacity mb-24"
+              >
                 Start a project <ArrowRight size={16} />
-              </button>
+              </a>
 
               <div className="w-full">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 md:gap-x-24">

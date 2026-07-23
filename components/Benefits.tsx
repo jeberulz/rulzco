@@ -3,14 +3,17 @@ import LineReveal from "./LineReveal";
 
 const benefits = [
   {
-    left: "Turn vague ideas into clear product direction",
-    right: "Design AI-first products that actually ship",
+    left: "Turn raw AI capability into a clear user workflow",
+    right: "Let people see what the agent is doing",
   },
   {
-    left: "Reduce product risk before heavy engineering investment",
-    right: "Build MVPs users, teams, and investors understand",
+    left: "Ground outputs in sources and evidence",
+    right: "Build review and approval into consequential actions",
   },
-  { left: "Make complex systems feel simple and usable", right: "Save capital" },
+  {
+    left: "Handle waiting, failure, and recovery without breaking trust",
+    right: "Prove the interaction with a working interface",
+  },
 ];
 
 export function Benefits() {
@@ -25,14 +28,17 @@ export function Benefits() {
           <div className="lg:col-span-11">
             <LineReveal stagger={0.06}>
               <h2 className="text-4xl md:text-5xl lg:text-[56px] font-medium text-black leading-[1.1] mb-10 max-w-5xl tracking-tight">
-                At Rulz&amp;Co. we focus on clarity, speed, and outcomes, not
-                decks or over-engineered processes
+                Agentic products do not need another chat box. They need an
+                interface people can understand, steer, and trust.
               </h2>
             </LineReveal>
 
-            <button className="bg-black text-[#FFC703] rounded-full px-8 py-4 text-[13px] font-bold tracking-widest uppercase flex items-center gap-2 hover:opacity-90 transition-opacity mb-24">
+            <a
+              href="mailto:hello@rulz.co?subject=Agentic%20interface%20project"
+              className="w-fit bg-black text-[#FFC703] rounded-full px-8 py-4 text-[13px] font-bold tracking-widest uppercase flex items-center gap-2 hover:opacity-90 transition-opacity mb-24"
+            >
               Start a project <ArrowRight size={16} />
-            </button>
+            </a>
 
             <div className="w-full">
               {benefits.map((row, i) => (

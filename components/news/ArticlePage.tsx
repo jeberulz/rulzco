@@ -421,9 +421,9 @@ export function ArticlePage({
                 {bylineAuthor.role}
               </p>
               <p className="text-[14px] text-[#666] font-light leading-relaxed">
-                Rulz&amp;Co is a design and product partnership for AI-native
-                companies. We work on strategy, design, and equity partnerships
-                with founders building something worth betting on.
+                Rulz&amp;Co is an agentic interface design studio. We design
+                and build how people understand, steer, verify, and trust AI
+                systems.
               </p>
             </div>
           </div>
