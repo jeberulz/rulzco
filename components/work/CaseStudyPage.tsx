@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { gsap } from "gsap";
@@ -18,6 +19,9 @@ type VisualPlaceholderProps = {
   index: string;
   label: string;
   caption?: string;
+  image?: string;
+  imageAlt?: string;
+  imageFit?: "cover" | "contain";
   aspectClass?: string;
   className?: string;
 };
@@ -27,43 +31,72 @@ function VisualPlaceholder({
   index,
   label,
   caption,
+  image,
+  imageAlt,
+  imageFit = "cover",
   aspectClass = "aspect-[16/10]",
   className = "",
 }: VisualPlaceholderProps) {
   return (
     <figure
       className={`case-visual ${className}`}
-      aria-label={`${label} image placeholder`}
+      aria-label={
+        image ? `${label} product interface visual` : `${label} image placeholder`
+      }
     >
       <div
-        className={`relative isolate overflow-hidden border border-black/10 bg-[#e9e6df] ${aspectClass}`}
+        className={`relative isolate overflow-hidden border border-black/10 bg-[#d8d4cb] ${aspectClass}`}
       >
-        <div
-          className="absolute inset-0"
-          style={{
-            background: `
-              radial-gradient(circle at 78% 22%, ${project.accent}35 0%, transparent 30%),
-              radial-gradient(circle at 18% 82%, ${project.accent}1f 0%, transparent 28%),
-              linear-gradient(135deg, #e4e1d9 0%, #f4f1e9 52%, #dedbd3 100%)
-            `,
-          }}
-        />
-        <div className="absolute inset-x-0 top-1/2 h-px bg-black/8" />
-        <div className="absolute inset-y-0 left-1/2 w-px bg-black/8" />
-        <div className="absolute left-5 top-5 flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-black/45 md:left-7 md:top-7">
-          <span
-            className="h-2.5 w-2.5"
-            style={{ backgroundColor: project.accent }}
-          />
-          {project.title}
-        </div>
-        <span className="absolute right-4 top-2 font-mono text-[clamp(4rem,12vw,11rem)] font-light leading-none tracking-[-0.08em] text-black/[0.055] md:right-8">
-          {index}
-        </span>
-        <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4 border-t border-black/15 pt-3 text-[10px] uppercase tracking-[0.18em] text-black/45 md:bottom-7 md:left-7 md:right-7">
-          <span>{label}</span>
-          <span>Image placeholder</span>
-        </div>
+        {image ? (
+          <div
+            className={
+              imageFit === "contain"
+                ? "absolute inset-2 overflow-hidden border border-black/10 bg-[#fbfbfb] shadow-[0_14px_45px_rgba(17,17,17,0.14)] md:inset-5"
+                : "absolute inset-0 overflow-hidden bg-[#fbfbfb]"
+            }
+          >
+            <Image
+              src={image}
+              alt={imageAlt ?? `${project.title}: ${label}`}
+              fill
+              sizes="(max-width: 768px) 100vw, 92vw"
+              className={
+                imageFit === "contain"
+                  ? "object-contain"
+                  : "object-cover object-center"
+              }
+            />
+          </div>
+        ) : (
+          <>
+            <div
+              className="absolute inset-0"
+              style={{
+                background: `
+                  radial-gradient(circle at 78% 22%, ${project.accent}35 0%, transparent 30%),
+                  radial-gradient(circle at 18% 82%, ${project.accent}1f 0%, transparent 28%),
+                  linear-gradient(135deg, #e4e1d9 0%, #f4f1e9 52%, #dedbd3 100%)
+                `,
+              }}
+            />
+            <div className="absolute inset-x-0 top-1/2 h-px bg-black/8" />
+            <div className="absolute inset-y-0 left-1/2 w-px bg-black/8" />
+            <div className="absolute left-5 top-5 flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-black/45 md:left-7 md:top-7">
+              <span
+                className="h-2.5 w-2.5"
+                style={{ backgroundColor: project.accent }}
+              />
+              {project.title}
+            </div>
+            <span className="absolute right-4 top-2 font-mono text-[clamp(4rem,12vw,11rem)] font-light leading-none tracking-[-0.08em] text-black/[0.055] md:right-8">
+              {index}
+            </span>
+            <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4 border-t border-black/15 pt-3 text-[10px] uppercase tracking-[0.18em] text-black/45 md:bottom-7 md:left-7 md:right-7">
+              <span>{label}</span>
+              <span>Image placeholder</span>
+            </div>
+          </>
+        )}
       </div>
       {caption && (
         <figcaption className="grid grid-cols-1 gap-2 border-b border-black/15 py-4 md:grid-cols-12 md:gap-6">
@@ -265,6 +298,9 @@ export function CaseStudyPage({ project }: { project: Project }) {
             index={leadVisual?.number ?? "01"}
             label={leadVisual?.label ?? "Lead project image"}
             caption={leadVisual?.caption}
+            image={leadVisual?.image}
+            imageAlt={leadVisual?.imageAlt}
+            imageFit={leadVisual?.imageFit}
             aspectClass="aspect-[4/3] md:aspect-[16/8]"
           />
         </section>
@@ -301,6 +337,9 @@ export function CaseStudyPage({ project }: { project: Project }) {
             index={supportingVisuals[0]?.number ?? "02"}
             label={supportingVisuals[0]?.label ?? "Interface detail"}
             caption={supportingVisuals[0]?.caption}
+            image={supportingVisuals[0]?.image}
+            imageAlt={supportingVisuals[0]?.imageAlt}
+            imageFit={supportingVisuals[0]?.imageFit}
             aspectClass="aspect-[4/5]"
           />
           <VisualPlaceholder
@@ -308,6 +347,9 @@ export function CaseStudyPage({ project }: { project: Project }) {
             index={supportingVisuals[1]?.number ?? "03"}
             label={supportingVisuals[1]?.label ?? "Product in context"}
             caption={supportingVisuals[1]?.caption}
+            image={supportingVisuals[1]?.image}
+            imageAlt={supportingVisuals[1]?.imageAlt}
+            imageFit={supportingVisuals[1]?.imageFit}
             aspectClass="aspect-[4/5]"
           />
         </section>
@@ -349,6 +391,9 @@ export function CaseStudyPage({ project }: { project: Project }) {
             index={supportingVisuals[2]?.number ?? "04"}
             label={supportingVisuals[2]?.label ?? "Core interaction sequence"}
             caption={supportingVisuals[2]?.caption}
+            image={supportingVisuals[2]?.image}
+            imageAlt={supportingVisuals[2]?.imageAlt}
+            imageFit={supportingVisuals[2]?.imageFit}
             aspectClass="aspect-[5/4] md:aspect-[16/7]"
           />
         </section>
@@ -386,6 +431,9 @@ export function CaseStudyPage({ project }: { project: Project }) {
                     `${section.label} detail`
                   }
                   caption={supportingVisuals[index + 3]?.caption}
+                  image={supportingVisuals[index + 3]?.image}
+                  imageAlt={supportingVisuals[index + 3]?.imageAlt}
+                  imageFit={supportingVisuals[index + 3]?.imageFit}
                   aspectClass={
                     index % 2 === 0 ? "aspect-[4/3]" : "aspect-[5/4]"
                   }

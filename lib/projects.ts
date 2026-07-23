@@ -15,6 +15,9 @@ export type Project = {
     label: string;
     caption: string;
     lead?: boolean;
+    image?: string;
+    imageAlt?: string;
+    imageFit?: "cover" | "contain";
   }[];
   builtWith?: string[];
   ctaLine?: string;
@@ -68,18 +71,28 @@ export const projects: Project[] = [
         number: "01",
         label: "Upload",
         caption: "A single drop zone. No form and no fields to complete first.",
+        image: "/images/work/extract/upload.png",
+        imageAlt:
+          "Extract upload screen with one invoice input and three document suggestions.",
       },
       {
         number: "02",
         label: "Working",
         caption:
-          "The document stays visible while a processing pass shows what the system is doing.",
+          "A dedicated working state says what the system is doing instead of hiding the wait behind a generic spinner.",
+        image: "/images/work/extract/working.png",
+        imageAlt:
+          "Extract processing screen showing that invoice fields are being extracted.",
       },
       {
         number: "03",
         label: "Extracted, side by side",
         caption:
           "The source document and structured fields remain in one verification view.",
+        image: "/images/work/extract/side-by-side.png",
+        imageAlt:
+          "Extract verification screen with an invoice beside its structured fields.",
+        imageFit: "contain",
       },
       {
         number: "04",
@@ -87,24 +100,39 @@ export const projects: Project[] = [
         caption:
           "Select a field and the exact source passage highlights. This is the core interaction.",
         lead: true,
+        image: "/images/work/extract/click-to-verify.png",
+        imageAlt:
+          "A citation trace connecting an extracted invoice date to the exact source line.",
       },
       {
         number: "05",
         label: "Low confidence, flagged",
         caption:
           "Uncertain fields are marked in amber with a plain-language label, not colour alone.",
+        image: "/images/work/extract/low-confidence.png",
+        imageAlt:
+          "A low-confidence VAT field marked Check this and linked to its source value.",
+        imageFit: "contain",
       },
       {
         number: "06",
         label: "Correct in place",
         caption:
           "A wrong value can be edited directly in the extraction grid before approval.",
+        image: "/images/work/extract/correct-in-place.png",
+        imageAlt:
+          "The VAT amount being edited directly inside the extraction grid.",
+        imageFit: "contain",
       },
       {
         number: "07",
         label: "Done",
         caption:
-          "Verified structured data is ready to export or send into the next workflow.",
+          "The approved extraction is saved with the supplier, amount, and invoice reference visible.",
+        image: "/images/work/extract/done.png",
+        imageAlt:
+          "Extract completion screen confirming the invoice was approved and saved.",
+        imageFit: "contain",
       },
     ],
     builtWith: [
@@ -132,7 +160,7 @@ export const projects: Project[] = [
     challenge:
       "Most document AI hides its work. It reads a file and returns structured data, but the user cannot see where a value came from or which fields deserve a second look. In document-heavy workflows, an answer without a fast path to verification is not usable evidence.",
     approach:
-      "Extract is designed around verification rather than generation. The source stays visible while the system works. Every field carries a citation and confidence state, low-confidence values move to the front of the review, and nothing is exported until the person has checked or corrected the draft.",
+      "Extract is designed around verification rather than generation. The interface makes each system state explicit, then brings the source and extracted fields together for review. Every field carries a citation and confidence state, low-confidence values move to the front of the queue, and nothing is saved until the person has checked or corrected the draft.",
     sections: [
       {
         label: "Citation",
@@ -144,7 +172,7 @@ export const projects: Project[] = [
         label: "System state",
         heading: "Working is visible, not a spinner.",
         body:
-          "Upload moves into a visible processing pass across the document. The interface acknowledges the file, shows that extraction is underway, and keeps the user oriented until the first fields arrive. Error and empty states explain the next useful action.",
+          "Upload moves into a dedicated working state that acknowledges the file and says exactly what is happening: Extract is finding the key fields. The completion state reports how many fields were found and how many need a check, giving the wait a clear beginning and end.",
       },
       {
         label: "Human control",
