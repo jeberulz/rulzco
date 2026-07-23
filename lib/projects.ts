@@ -7,6 +7,8 @@ export type Project = {
   tags: string[];
   description: string;
   outcome: string;
+  interfaceProof: string;
+  proofPoints: string[];
   gradient: string;
   accent: string;
   size: string;
@@ -42,8 +44,15 @@ export const projects: Project[] = [
     year: "2024",
     tags: ["App", "Fintech"],
     description:
-      "Next-gen student finance tracker that helps you officially own your bank account. Real-time insights and AI-powered nudges for better financial health.",
-    outcome: "MVP shipped in 6 weeks. Seed round secured.",
+      "Interaction logic that turns live transaction data into timely, useful nudges—surfacing the next financial decision without adding noise.",
+    outcome: "Interaction model + mobile product interface",
+    interfaceProof:
+      "Rinkl was not an agentic product. It proves the interaction craft agentic products still depend on: deciding when a system should speak, what it should surface, and how to help a person act without taking control away.",
+    proofPoints: [
+      "Turn live system signals into a clear next action",
+      "Make proactive prompts useful rather than intrusive",
+      "Keep the person oriented on a small, high-pressure surface",
+    ],
     gradient: "linear-gradient(135deg, #0f0c29 0%, #1a1a6e 50%, #24243e 100%)",
     accent: "#6C63FF",
     size: "large",
@@ -71,7 +80,7 @@ export const projects: Project[] = [
         label: "Delivery",
         heading: "MVP-ready in six weeks.",
         body:
-          "Designs were handed to engineering with zero ambiguity — annotated Figma files, a working component library, and a logic spec for every AI nudge trigger. The team shipped the MVP three weeks after handoff. Rinkl went on to secure a pre-seed round within two months of launch.",
+          "We translated the product decisions into annotated interface states, reusable components, and explicit rules for when a nudge appears, changes, or stays quiet. The handoff described system behaviour as clearly as visual design — the same discipline a dependable agentic interface needs.",
       },
     ],
     stats: [
@@ -95,8 +104,15 @@ export const projects: Project[] = [
     year: "2024",
     tags: ["Web app", "eCommerce"],
     description:
-      "Turning your desk into a runway. A community-led marketplace for desk accessories and setups, helping creators show off and monetise their aesthetic.",
-    outcome: "Design system + marketplace MVP delivered.",
+      "An intent-led discovery system for a creator marketplace, connecting how people explore setups with how products are found.",
+    outcome: "Discovery architecture + marketplace system",
+    interfaceProof:
+      "DeskScapes was not an AI product. The relevant proof is structural: turning ambiguous intent into a navigable system, giving people useful routes through complexity, and keeping discovery understandable as the catalogue grows.",
+    proofPoints: [
+      "Translate fuzzy intent into visible pathways",
+      "Connect exploration with a concrete user goal",
+      "Build one interface language across different modes",
+    ],
     gradient: "linear-gradient(135deg, #2d1b0e 0%, #6b3a1f 50%, #3d2b1f 100%)",
     accent: "#D4845A",
     size: "small",
@@ -124,7 +140,7 @@ export const projects: Project[] = [
         label: "System",
         heading: "Built for a small team to move fast.",
         body:
-          "DeskScapes launched with a founding team of two. The design system was documented with this in mind — every component annotated with props, states, and 'when to use'. They needed to build fast without breaking the aesthetic. Six months post-launch, the brand is still coherent.",
+          "DeskScapes had a founding team of two, so the system had to carry decisions the team could not revisit every week. Each component documented its states, properties, and purpose, giving new marketplace and community flows a shared interface logic.",
       },
     ],
     stats: [
@@ -142,8 +158,15 @@ export const projects: Project[] = [
     year: "2023",
     tags: ["Web", "Deep tech"],
     description:
-      "Bio-authentication technology securing digital identities in the Web3 ecosystem. Complex system design made accessible.",
-    outcome: "Full brand identity + product UI shipped.",
+      "A multi-step verification flow that turns dense identity security into a clear, low-drop onboarding experience.",
+    outcome: "Trust-first onboarding + product interface",
+    interfaceProof:
+      "Human Node was not an agentic system. It demonstrates the same trust work agentic interfaces require: explain an unfamiliar process, ask for consequential input at the right moment, and show enough system state for a person to continue with confidence.",
+    proofPoints: [
+      "Explain consequential actions before asking for consent",
+      "Make invisible system activity legible",
+      "Design trust across a multi-step workflow",
+    ],
     gradient: "linear-gradient(135deg, #0a1628 0%, #0d3b4f 50%, #0a2233 100%)",
     accent: "#00C9B1",
     size: "medium",
@@ -171,7 +194,7 @@ export const projects: Project[] = [
         label: "Communication",
         heading: "A pitch deck that did the heavy lifting.",
         body:
-          "The rebrand fed directly into investor materials. We redesigned the pitch deck alongside the product, ensuring the visual language was consistent and the narrative was tight. Human Node went on to raise their first institutional round three months after the rebrand shipped.",
+          "The product logic also had to survive outside the product. We carried the same plain-language explanation, trust cues, and visual hierarchy into investor materials so the underlying system could be understood without falling back on technical shorthand.",
       },
     ],
     stats: [
@@ -189,8 +212,15 @@ export const projects: Project[] = [
     year: "2023",
     tags: ["Brand", "Health"],
     description:
-      "The world's largest search for medical scans. Connecting patients with diagnostic centres and streamlining the booking process at scale.",
-    outcome: "Brand refresh across web + product touchpoints.",
+      "Search, intake, and routing for a medical scan platform—making a high-friction path from patient need to diagnostic centre feel clear.",
+    outcome: "Search, intake + routing redesign",
+    interfaceProof:
+      "Scan.com was not an agentic product. It is evidence of the workflow design beneath good agentic experiences: gather the right information, route it through a complex system, expose progress, and help a person recover when the path changes.",
+    proofPoints: [
+      "Turn a complex service into a clear sequence",
+      "Reduce uncertainty at high-stakes moments",
+      "Connect user intent to the right operational route",
+    ],
     gradient: "linear-gradient(135deg, #0f1f0f 0%, #1a3a1a 50%, #0d2a1a 100%)",
     accent: "#4CAF7D",
     size: "medium",
@@ -212,7 +242,7 @@ export const projects: Project[] = [
         label: "Patient Experience",
         heading: "Reducing friction at the hardest moment.",
         body:
-          "Booking a medical scan involves: understanding what you need, finding a centre near you, checking availability, understanding costs, and confirming details. We mapped every step against patient anxiety levels and redesigned the flow to surface reassurance at each peak. Drop-off rate fell 34% after launch.",
+          "Booking a medical scan means understanding what you need, finding a centre, checking availability, reviewing costs, and confirming clinical details. We mapped that chain against moments of uncertainty and designed the interface to explain what was happening, what came next, and where the person still had a choice.",
       },
       {
         label: "Provider Portal",
@@ -242,8 +272,15 @@ export const projects: Project[] = [
     year: "2024",
     tags: ["AI", "App"],
     description:
-      "AI-native knowledge management for research teams. Surfaces connections across documents, transcripts, and notes in real time.",
-    outcome: "Agentic interface concept + investor prototype.",
+      "An agentic research workspace where every connection explains why it appeared, what supports it, and how confident the system is.",
+    outcome: "Agentic interaction model + working prototype",
+    interfaceProof:
+      "NovaMind explores a direct agentic-interface problem: how an AI can work alongside a researcher without becoming an opaque stream of suggestions. The design makes contribution, evidence, confidence, and dismissal part of the interaction model.",
+    proofPoints: [
+      "Show why the agent surfaced a connection",
+      "Keep evidence and confidence close to the output",
+      "Let the person accept, dismiss, or investigate",
+    ],
     gradient: "linear-gradient(135deg, #1a0f00 0%, #4a2800 50%, #2d1800 100%)",
     accent: "#FFA500",
     size: "small",
@@ -271,7 +308,7 @@ export const projects: Project[] = [
         label: "Prototype",
         heading: "Built to raise.",
         body:
-          "The deliverable was an investor-ready interactive prototype, not a static deck. We built it in Framer with realistic AI responses scripted to show the 'magic moment' — the point where a user sees an unexpected but instantly valuable connection surface. That prototype became the centrepiece of NovaMind's seed round presentations.",
+          "The deliverable was an interactive prototype rather than a static deck. Realistic responses demonstrated the critical moment: a useful connection appears, the interface explains why, and the researcher can inspect the evidence before deciding what to do with it.",
       },
     ],
     stats: [
@@ -289,8 +326,15 @@ export const projects: Project[] = [
     year: "2024",
     tags: ["Web", "Deep tech"],
     description:
-      "Decentralised data exchange layer for enterprise AI pipelines. Designed for the operators who move data at scale.",
-    outcome: "Product strategy + full design system.",
+      "A role-aware operating interface for complex AI data pipelines, translating system activity into usable controls.",
+    outcome: "Role-aware product strategy + interface system",
+    interfaceProof:
+      "Flux shows how one technical system needs different interfaces for the people building, monitoring, and funding it. That same separation of roles is essential when agents act across tools, permissions, and operational boundaries.",
+    proofPoints: [
+      "Expose the right system state for each role",
+      "Separate monitoring, control, and commercial views",
+      "Design dense information for time-critical decisions",
+    ],
     gradient: "linear-gradient(135deg, #050510 0%, #0d0d2b 50%, #080820 100%)",
     accent: "#4DABF7",
     size: "large",
@@ -318,7 +362,7 @@ export const projects: Project[] = [
         label: "Developer Experience",
         heading: "Docs as product.",
         body:
-          "Developer documentation is often treated as an afterthought. For Flux Protocol, we designed the docs UX as a first-class product surface — searchable, navigable by role, with embedded interactive examples. The docs site became one of the primary acquisition channels within three months of launch.",
+          "Developer documentation is often treated as an afterthought. For Flux Protocol, we designed it as a first-class product surface: searchable, navigable by role, and connected to interactive examples. The same language linked system concepts in the interface, controls, and implementation guidance.",
       },
     ],
     stats: [
@@ -336,8 +380,15 @@ export const projects: Project[] = [
     year: "2023",
     tags: ["Brand", "Health"],
     description:
-      "Preventative health platform for busy professionals. Transforms complex biomarker data into clear, actionable daily guidance.",
-    outcome: "Brand identity + onboarding UX.",
+      "A health interface that turns dense biomarker signals into a small number of clear, human decisions.",
+    outcome: "Signal-to-action model + onboarding",
+    interfaceProof:
+      "Meridian was not an agentic product. Its relevance is in translation: compressing complex system output into a small number of actions while preserving the path to deeper evidence when a person needs it.",
+    proofPoints: [
+      "Prioritise action over a wall of system output",
+      "Use progressive disclosure without hiding evidence",
+      "Design a repeatable rhythm for human decisions",
+    ],
     gradient: "linear-gradient(135deg, #0d1f14 0%, #193d28 50%, #0f2b1c 100%)",
     accent: "#69DB7C",
     size: "medium",
@@ -359,7 +410,7 @@ export const projects: Project[] = [
         label: "Onboarding",
         heading: "From blood test to breakthrough in 90 seconds.",
         body:
-          "The onboarding flow handles one of the highest-friction moments in health tech: interpreting your first results. We designed a 'welcome reveal' — an animated sequence that takes raw biomarker values and transforms them, in real time, into your three personal priorities. It's theatrical in the best way. Users report it as the moment they understood the product.",
+          "The onboarding flow handles one of the highest-friction moments in health tech: interpreting a first set of results. We designed a staged reveal that turns raw biomarker values into three priorities, while keeping the supporting data available for anyone who wants to understand the recommendation.",
       },
       {
         label: "Dashboard",
