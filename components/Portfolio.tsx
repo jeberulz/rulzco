@@ -152,30 +152,60 @@ export function Portfolio() {
 
               <a
                 href="mailto:hello@rulz.co?subject=Agentic%20interface%20project"
-                className="w-fit bg-black text-[#FFC703] rounded-full px-8 py-4 text-[13px] font-bold tracking-widest uppercase flex items-center gap-2 hover:opacity-90 transition-opacity mb-24"
+                className="w-fit bg-black text-[#FFC703] rounded-full px-8 py-4 text-[13px] font-bold tracking-widest uppercase flex items-center gap-2 hover:opacity-90 transition-opacity mb-16 md:mb-24"
               >
                 Start a project <ArrowRight size={16} />
               </a>
 
-              <div className="w-full">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 md:gap-x-24">
-                  <div className="text-xl md:text-2xl font-medium pb-6 border-b border-gray-200">
+              <div className="w-full md:hidden space-y-12">
+                <section>
+                  <h3 className="text-2xl font-medium pb-5 border-b border-gray-200">
+                    Good fit 👍
+                  </h3>
+                  {fitItems.map((item) => (
+                    <p
+                      key={item.good}
+                      className="text-lg text-black font-normal leading-relaxed py-5 border-b border-gray-200"
+                    >
+                      {item.good}
+                    </p>
+                  ))}
+                </section>
+
+                <section>
+                  <h3 className="text-2xl font-medium pb-5 border-b border-gray-200">
+                    Not a good fit 👎
+                  </h3>
+                  {fitItems.map((item) => (
+                    <p
+                      key={item.bad}
+                      className="text-lg text-black font-normal leading-relaxed py-5 border-b border-gray-200"
+                    >
+                      {item.bad}
+                    </p>
+                  ))}
+                </section>
+              </div>
+
+              <div className="hidden md:block w-full">
+                <div className="grid grid-cols-2 gap-x-24">
+                  <div className="text-2xl font-medium pb-6 border-b border-gray-200">
                     Good fit 👍
                   </div>
-                  <div className="text-xl md:text-2xl font-medium pb-6 border-b border-gray-200 mt-6 md:mt-0">
+                  <div className="text-2xl font-medium pb-6 border-b border-gray-200">
                     Not a good fit 👎
                   </div>
                 </div>
 
-                {fitItems.map((item, i) => (
+                {fitItems.map((item) => (
                   <div
-                    key={i}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-x-12 md:gap-x-24"
+                    key={item.good}
+                    className="grid grid-cols-2 gap-x-24"
                   >
-                    <div className="text-lg md:text-xl text-black font-normal leading-normal py-6 md:py-8 border-b border-gray-200">
+                    <div className="text-xl text-black font-normal leading-normal py-8 border-b border-gray-200">
                       {item.good}
                     </div>
-                    <div className="text-lg md:text-xl text-black font-normal leading-normal py-6 md:py-8 border-b border-gray-200">
+                    <div className="text-xl text-black font-normal leading-normal py-8 border-b border-gray-200">
                       {item.bad}
                     </div>
                   </div>

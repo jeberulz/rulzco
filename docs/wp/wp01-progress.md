@@ -146,3 +146,23 @@ Append-only progress log. Do not rely on chat history for project state.
   - Build the lead click-to-source document interface in Labs.
   - Review the partnership page against the new specialist positioning.
   - Fix the homepage asset and footer form gaps in a separate scoped WP.
+
+## 2026-07-23 — WP01-S6
+
+- Actions taken:
+  - Replaced the mobile two-column table collapse with two intentionally grouped
+    lists: Good fit first, then Not a good fit.
+  - Kept the desktop comparison as two aligned columns.
+  - Reduced the excessive mobile gap below the project CTA.
+- Checks run:
+  - `git diff --check` — passed.
+  - `npx tsc --noEmit` — passed.
+  - `npm run build` — passed; all 58 static/dynamic routes generated.
+  - Browser review at 390px — passed; headings and entries remain grouped and
+    readable.
+  - Browser review at 1280px — passed; both column headings share the same
+    vertical position and equal width.
+- Result: Passed. The fit criteria now follow the intended content hierarchy at
+  both mobile and desktop breakpoints.
+- Gotchas: None.
+- Next: Continue with the existing WP01 proof-building and page-alignment work.

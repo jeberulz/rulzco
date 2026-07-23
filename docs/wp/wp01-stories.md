@@ -76,6 +76,17 @@ the production build passes.
     - `npm run build`
     - Playwright CLI snapshots and screenshots.
 
+- [x] `WP01-S6` — Repair the mobile fit comparison
+  - Scope: `components/Portfolio.tsx`
+  - Acceptance criteria:
+    - Mobile presents all Good fit criteria as one group, followed by all Not a
+      good fit criteria.
+    - Desktop retains the side-by-side comparison.
+    - The section has no mobile content-order or spacing regression.
+  - Verification:
+    - Browser review at 390px and 1280px.
+    - TypeScript and production build.
+
 ## Out of Scope
 
 - Redesigning the visual system, page layout, motion, or component architecture.
