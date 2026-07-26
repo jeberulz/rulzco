@@ -258,3 +258,68 @@ Append-only progress log. Do not rely on chat history for project state.
     breadcrumb all use Margin.
 - Result: Passed. Margin is now the canonical page name and URL while the
   former address remains safe for existing links.
+
+## 2026-07-26 — WP01-S9 setup
+
+- Assignment: Replace case-study slot 03 with Draft, a self-initiated support
+  product demo, while keeping all case-study work on
+  `feat/wp01-agentic-interface-positioning`.
+- Route decision: Make `/work/draft` canonical and retain
+  `/work/deskscapes` only as a permanent compatibility redirect.
+- File boundaries: `lib/projects.ts`, `components/Portfolio.tsx`,
+  `next.config.ts`, and the WP01 registry/story/progress documents.
+- Required checks: `git diff --check`, TypeScript, production build, redirect
+  checks, and browser review at desktop and 390px.
+- Content guardrails:
+  - Label the work as a self-initiated product demo.
+  - Treat Thornbury Cycles, ticket TC-19442, and the policy sections as
+    invented but internally consistent demonstration data.
+  - Use placeholders for all seven gallery states until real product shots are
+    supplied, with Gate closed as the lead state.
+  - Present the send hold as deliberate product behaviour, not a broken or
+    generic error state.
+  - Never imply a client relationship, live deployment, measured outcome, or
+    autonomous approval.
+  - Leave separate historical DeskScapes references untouched.
+
+## 2026-07-26 — WP01-S9 complete
+
+- Actions taken:
+  - Replaced case-study slot 03 and its homepage card with Draft.
+  - Made `/work/draft` the canonical project route and added a permanent
+    redirect from `/work/deskscapes`.
+  - Added the supplied Thornbury Cycles ticket, all four sourced and unsupported
+    claims, claim-level interaction framing, component inventory, proof close,
+    and project CTA.
+  - Added seven numbered image placeholders and made Gate closed the lead
+    visual.
+  - Removed the former DeskScapes client framing, metrics, deliverables, and
+    missing homepage card image from the case-study slot.
+- Decisions made:
+  - Treat Draft as direct proof of the Rulz&Co agentic-interface positioning,
+    with the send gate—not the generated reply—as the product.
+  - Describe the hold as an intentional action state that names its blocker and
+    rejects send, rather than a generic error.
+  - Preserve unrelated historical DeskScapes references outside the case-study
+    slot.
+- Checks run:
+  - `git diff --check` — passed.
+  - `./node_modules/.bin/tsc --noEmit` — passed after the production build
+    regenerated the Next.js route types.
+  - `npm run build` — passed; static output includes `/work/draft` and
+    `/work/draft/opengraph-image`.
+  - `/work/draft` — HTTP 200.
+  - `/work/deskscapes` — HTTP 308 permanent redirect to `/work/draft`.
+  - Browser review at 1440px and 390px — passed; title, self-initiated label,
+    lead placeholder, and supporting copy remain readable.
+  - Homepage portfolio card — passed; Draft and its custom placeholder are
+    present and DeskScapes is absent.
+  - Browser console warnings/errors — none.
+- Result: Passed. Draft now occupies case-study slot 03 as a clearly labelled
+  self-initiated product demo with seven ready-to-replace image placeholders.
+- Gotchas:
+  - Port 3001 was occupied by the separate Margin prototype, so this website
+    remains running on port 3003 for review.
+  - Final product imagery is intentionally outside this story.
+- Next: Replace the Draft placeholders with the seven final product shots,
+  starting with Gate closed.

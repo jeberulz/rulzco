@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         destination: "/work/margin",
         permanent: true,
       },
+      {
+        source: "/work/deskscapes",
+        destination: "/work/draft",
+        permanent: true,
+      },
     ];
   },
   images: {

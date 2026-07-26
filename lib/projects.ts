@@ -297,58 +297,116 @@ export const projects: Project[] = [
     stats: [],
   },
   {
-    id: "deskscapes",
+    id: "draft",
     num: "03",
-    title: "DeskScapes",
-    tagline: "Your setup deserves an audience.",
-    year: "2024",
-    tags: ["Web app", "eCommerce"],
+    title: "Draft",
+    tagline: "An AI writes the reply. It cannot send what it cannot back up.",
+    year: "2026",
+    tags: ["AI", "Support"],
     description:
-      "An intent-led discovery system for a creator marketplace, connecting how people explore setups with how products are found.",
-    outcome: "Discovery architecture + marketplace system",
+      "A self-initiated support interface that marks every claim in an AI-written reply and holds send until each one can be backed up.",
+    outcome: "Self-initiated claim-level send-gate demo",
+    projectType: "Self-initiated product demo",
     interfaceProof:
-      "DeskScapes was not an AI product. The relevant proof is structural: turning ambiguous intent into a navigable system, giving people useful routes through complexity, and keeping discovery understandable as the catalogue grows.",
+      "This pattern belongs anywhere AI writes something a person is accountable for: support replies, clinical letters, dispute responses, and outbound sales. The draft is easy. The gate is the product.",
     proofPoints: [
-      "Translate fuzzy intent into visible pathways",
-      "Connect exploration with a concrete user goal",
-      "Build one interface language across different modes",
+      "Move confidence from the whole reply to each individual claim",
+      "Tie unsupported language to the irreversible action",
+      "Record the person who clears and sends the reply",
     ],
-    gradient: "linear-gradient(135deg, #2d1b0e 0%, #6b3a1f 50%, #3d2b1f 100%)",
-    accent: "#D4845A",
-    size: "small",
-    role: "Product Design + Brand",
-    timeline: "8 weeks",
-    deliverables: ["Brand Identity", "Design System", "Marketplace UX", "Mobile-responsive UI"],
+    gallery: [
+      {
+        number: "01",
+        label: "Queue",
+        caption:
+          "Tickets wait without AI commentary until a person opens the work.",
+      },
+      {
+        number: "02",
+        label: "The message",
+        caption:
+          "The customer’s words stay at reading size and in their own voice.",
+      },
+      {
+        number: "03",
+        label: "Drafting",
+        caption:
+          "The reply builds in the brand’s voice, visibly separate from the customer.",
+      },
+      {
+        number: "04",
+        label: "Marked",
+        caption:
+          "Every claim is underlined: solid where sourced, dashed where unsupported.",
+      },
+      {
+        number: "05",
+        label: "Gate closed",
+        caption:
+          "The send gate stays shut and names the single unsupported claim holding it.",
+        lead: true,
+      },
+      {
+        number: "06",
+        label: "Resolving the claim",
+        caption:
+          "The agent rewrites the sentence or confirms it against an approved source.",
+      },
+      {
+        number: "07",
+        label: "Cleared",
+        caption:
+          "The gate gains solid weight, the agent sends, and the approval is logged.",
+      },
+    ],
+    builtWith: [
+      "Queue",
+      "Thread",
+      "Composer",
+      "ClaimMark",
+      "SourceCard",
+      "SendGate",
+      "ErrorState",
+    ],
+    ctaLine: "Sending AI-written messages to real customers. Let’s talk.",
+    gradient:
+      "linear-gradient(135deg, #0b0909 0%, #191313 55%, #2b1915 100%)",
+    accent: "#D97A5E",
+    size: "large",
+    role: "Agentic Interface Design + Build",
+    timeline: "Ongoing",
+    deliverables: [
+      "Claim-level Evidence",
+      "Source-linked Drafting",
+      "Send Gate",
+      "Approval Log",
+      "Working Prototype",
+    ],
     challenge:
-      "The desk setup community was thriving on Reddit and Instagram, but had no true home. Creators were building incredible spaces but had nowhere to properly showcase them, sell their finds, or connect with others who cared. DeskScapes needed to become that platform — part gallery, part marketplace, part community.",
+      "Support tools often score a whole AI draft with one confidence number. That tells an agent nothing about the plausible, unsupported sentence buried among claims that are safe to send. Draft marks every claim separately: solid where policy supports it, dashed where it does not.",
     approach:
-      "We anchored the brand in the intersection of craft and commerce. Think MR PORTER meets Etsy for desk culture — elevated, editorial, but deeply community-first. The design system needed to scale across a marketplace (transactional, utility-focused) and a community feed (visual, expressive) without feeling fractured.",
+      "Draft moves the signal down to the sentence and connects it to the irreversible action. The send bar is not a button that merely turns green. It stays deliberately closed, names the unsupported claim, and refuses the keystroke until a person rewrites or confirms it.",
     sections: [
       {
-        label: "Brand",
-        heading: "Editorial without the ego.",
+        label: "Claim-level proof",
+        heading: "The risky sentence looks exactly like the safe ones.",
         body:
-          "The brand identity was built around the idea of 'considered setups' — the opposite of maximalist tech bro energy. Warm, earthy tones. A wordmark with intentional texture. Photography guidelines that favoured natural light and honest environments over studio perfection. The goal: feel like a magazine you'd actually want to live in.",
+          "Ticket TC-19442 asks Thornbury Cycles to replace a Vantage 40 wheelset before the customer leaves on 2 August. The draft correctly cites 12-month bearing cover in policy section 4, the photo requirement in section 4.2, and a three-to-five-day dispatch window in section 6. But its promise that Thornbury—not the Bristol shipping partner—will handle the warranty directly has no source.",
       },
       {
-        label: "Product",
-        heading: "Two products, one design language.",
+        label: "Irreversible action",
+        heading: "The gate is shut, not broken.",
         body:
-          "The marketplace needed ruthless UX — low friction from browse to buy. The community feed needed space and expression. We bridged them with a shared component library: card patterns that flex from product listing to inspiration post, a colour system that shifts from warm neutrals (community) to sharp contrast (checkout). One language, two registers.",
+          "Solid and dashed ClaimMarks make the difference visible inside the reply, then SendGate carries that evidence into the final action. It identifies the one sentence holding the message, explains what is missing, and will not accept the send shortcut while the unsupported promise remains.",
       },
       {
-        label: "System",
-        heading: "Built for a small team to move fast.",
+        label: "Human control",
+        heading: "Resolution changes the state—and records who did it.",
         body:
-          "DeskScapes had a founding team of two, so the system had to carry decisions the team could not revisit every week. Each component documented its states, properties, and purpose, giving new marketplace and community flows a shared interface logic.",
+          "The agent can rewrite the sentence or confirm it against an approved source. Only then does the gate settle into solid weight and allow the reply to leave. The final state logs who cleared the claim and sent the message, keeping accountability with the person making the decision.",
       },
     ],
-    stats: [
-      { value: "2400", suffix: "+", label: "Waitlist sign-ups" },
-      { value: "80", suffix: "+", label: "Components in design system" },
-      { value: "8", suffix: " weeks", label: "Brand to launch-ready" },
-      { value: "4.8", suffix: "/5", label: "Avg user satisfaction score" },
-    ],
+    stats: [],
   },
   {
     id: "human-node",

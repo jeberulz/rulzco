@@ -35,12 +35,13 @@ const projects: FeaturedProject[] = [
     col: 1,
   },
   {
-    id: "deskscapes",
-    title: "DeskScapes",
+    id: "draft",
+    title: "Draft",
     description:
-      "An intent-led discovery system for a creator marketplace, connecting how people explore setups with how products are found.",
-    tags: ["Discovery UX", "Information architecture", "Marketplace"],
-    image: "/images/ds-card.png",
+      "A self-initiated support interface that marks every claim in an AI-written reply and holds send until each one can be backed up.",
+    tags: ["Claim-level proof", "Send gate", "Support AI"],
+    accent: "#D97A5E",
+    placeholderLines: ["Mark the claim.", "Hold the send."],
     col: 2,
   },
   {

@@ -124,12 +124,36 @@ the production build passes.
     - Browser check of `/work/margin`.
     - Redirect check from `/work/rinkl`.
 
+- [x] `WP01-S9` — Replace the third case study with Draft
+  - Scope: `lib/projects.ts`, `components/Portfolio.tsx`, `next.config.ts`,
+    `docs/PROJECT_STRATEGY.md`, `docs/wp/wp01-stories.md`,
+    `docs/wp/wp01-progress.md`
+  - Acceptance criteria:
+    - Case-study slot 03 is titled Draft, clearly labelled as a self-initiated
+      product demo, and canonical at `/work/draft`.
+    - `/work/deskscapes` permanently redirects to `/work/draft`, while separate
+      historical DeskScapes references remain untouched.
+    - The case study uses the supplied Thornbury Cycles ticket, four
+      claim-level sourcing states, component inventory, proof close, and CTA
+      without implying client work or real policy data.
+    - Seven numbered placeholder states are present, with Gate closed as the
+      lead visual.
+    - The homepage portfolio card presents Draft as direct agentic-interface
+      proof and uses a placeholder rather than the missing DeskScapes image.
+  - Verification:
+    - Browser review at desktop and 390px.
+    - `./node_modules/.bin/tsc --noEmit`.
+    - `npm run build`.
+    - Redirect check from `/work/deskscapes`.
+
 ## Out of Scope
 
 - Redesigning the visual system, page layout, motion, or component architecture.
 - Inventing new case-study results, testimonials, client metrics, or compliance
   claims.
 - Building the working Margin product or replacing its placeholders with final
+  product screenshots.
+- Building the working Draft product or replacing its placeholders with final
   product screenshots.
 - Rewriting long-form articles, individual case-study bodies, proposals, or the
   partnership business model.
