@@ -146,6 +146,27 @@ the production build passes.
     - `npm run build`.
     - Redirect check from `/work/deskscapes`.
 
+- [x] `WP01-S10` — Replace the fourth case study with Brief
+  - Scope: `lib/projects.ts`, `components/Portfolio.tsx`, `next.config.ts`,
+    `docs/PROJECT_STRATEGY.md`, `docs/wp/wp01-stories.md`,
+    `docs/wp/wp01-progress.md`
+  - Acceptance criteria:
+    - Case-study slot 04 is titled Brief, clearly labelled as a self-initiated
+      product demo, and canonical at `/work/brief`.
+    - `/work/human-node` permanently redirects to `/work/brief`.
+    - The case study uses the supplied Pennine Freight question, five-source
+      research pass, split recommendation, component inventory, proof close,
+      and CTA without implying client work or real research data.
+    - Seven numbered placeholder states are present, with Mid-flight as the
+      lead visual.
+    - The homepage portfolio card presents Brief as direct agentic-interface
+      proof and uses a placeholder rather than the missing Human Node image.
+  - Verification:
+    - Browser review at desktop and 390px.
+    - `./node_modules/.bin/tsc --noEmit`.
+    - `npm run build`.
+    - Redirect check from `/work/human-node`.
+
 ## Out of Scope
 
 - Redesigning the visual system, page layout, motion, or component architecture.
@@ -154,6 +175,8 @@ the production build passes.
 - Building the working Margin product or replacing its placeholders with final
   product screenshots.
 - Building the working Draft product or replacing its placeholders with final
+  product screenshots.
+- Building the working Brief product or replacing its placeholders with final
   product screenshots.
 - Rewriting long-form articles, individual case-study bodies, proposals, or the
   partnership business model.

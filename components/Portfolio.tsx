@@ -45,12 +45,13 @@ const projects: FeaturedProject[] = [
     col: 2,
   },
   {
-    id: "human-node",
-    title: "Human Node Project",
+    id: "brief",
+    title: "Brief",
     description:
-      "A multi-step verification flow that turns dense identity security into a clear, low-drop onboarding experience.",
-    tags: ["Trust UX", "Verification flow", "Deep tech"],
-    image: "/images/hnp-card.png",
+      "A self-initiated research interface where sources arrive as they are read and remain aligned with the passages they support.",
+    tags: ["Visible progress", "Source alignment", "Research AI"],
+    accent: "#91A7D0",
+    placeholderLines: ["Watch sources land.", "See the brief grow."],
     col: 1,
   },
   {

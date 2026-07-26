@@ -18,6 +18,11 @@ const nextConfig: NextConfig = {
         destination: "/work/draft",
         permanent: true,
       },
+      {
+        source: "/work/human-node",
+        destination: "/work/brief",
+        permanent: true,
+      },
     ];
   },
   images: {

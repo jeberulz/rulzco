@@ -409,58 +409,115 @@ export const projects: Project[] = [
     stats: [],
   },
   {
-    id: "human-node",
+    id: "brief",
     num: "04",
-    title: "Human Node Project",
-    tagline: "Your identity. Unbreakable.",
-    year: "2023",
-    tags: ["Web", "Deep tech"],
+    title: "Brief",
+    tagline: "A research task that takes ninety seconds, and never once looks stuck.",
+    year: "2026",
+    tags: ["AI", "Research"],
     description:
-      "A multi-step verification flow that turns dense identity security into a clear, low-drop onboarding experience.",
-    outcome: "Trust-first onboarding + product interface",
+      "A self-initiated research interface where sources arrive as they are read, aligned to the passages they support, so the wait becomes visible work.",
+    outcome: "Self-initiated visible-research product demo",
+    projectType: "Self-initiated product demo",
     interfaceProof:
-      "Human Node was not an agentic system. It demonstrates the same trust work agentic interfaces require: explain an unfamiliar process, ask for consequential input at the right moment, and show enough system state for a person to continue with confidence.",
+      "This pattern belongs to any AI task long enough for a user to doubt it: deep research, batch analysis, document generation, and multi-step retrieval. The output is not the hard part. The ninety seconds before it are.",
     proofPoints: [
-      "Explain consequential actions before asking for consent",
-      "Make invisible system activity legible",
-      "Design trust across a multi-step workflow",
+      "Turn a ninety-second wait into visible research activity",
+      "Keep every source aligned with the passage it supports",
+      "Name slow and failed sources where they change the answer",
     ],
-    gradient: "linear-gradient(135deg, #0a1628 0%, #0d3b4f 50%, #0a2233 100%)",
-    accent: "#00C9B1",
-    size: "medium",
-    role: "Brand + Product UX",
-    timeline: "10 weeks",
-    deliverables: ["Brand Strategy", "Visual Identity", "Product UI", "Onboarding Flows", "Pitch Deck Design"],
+    gallery: [
+      {
+        number: "01",
+        label: "Ask",
+        caption: "Bare ground and one question. There is no document yet.",
+      },
+      {
+        number: "02",
+        label: "Gathering",
+        caption:
+          "Sources arrive in the rail before a word of the brief is written.",
+      },
+      {
+        number: "03",
+        label: "Mid-flight",
+        caption:
+          "Prose streams onto the page while the source rail fills alongside it.",
+        lead: true,
+      },
+      {
+        number: "04",
+        label: "Aligned",
+        caption:
+          "A finished section keeps its sources locked level with the sentences they support.",
+      },
+      {
+        number: "05",
+        label: "Slow source",
+        caption:
+          "A source running long is named and timed instead of hidden behind progress.",
+      },
+      {
+        number: "06",
+        label: "Gap marked",
+        caption:
+          "A failed source leaves a visible gap exactly where its evidence would have contributed.",
+      },
+      {
+        number: "07",
+        label: "Complete",
+        caption:
+          "The full brief retains its evidence apparatus and waits for human sign-off.",
+      },
+    ],
+    builtWith: [
+      "AskField",
+      "Page",
+      "SourceRail",
+      "SourceEntry",
+      "Alignment",
+      "GapMark",
+      "ErrorState",
+    ],
+    ctaLine: "Running AI tasks your users have to wait for. Let’s talk.",
+    gradient:
+      "linear-gradient(135deg, #090b10 0%, #131923 55%, #202b3a 100%)",
+    accent: "#91A7D0",
+    size: "large",
+    role: "Agentic Interface Design + Build",
+    timeline: "Ongoing",
+    deliverables: [
+      "Visible Research Pass",
+      "Source Rail",
+      "Evidence Alignment",
+      "Gap Handling",
+      "Human Sign-off",
+    ],
     challenge:
-      "Bio-authentication for Web3 is a genuinely hard concept to communicate — let alone make feel safe and trustworthy. Human Node had powerful underlying technology but was presenting it in a way that felt academic, opaque, and cold. They needed a brand and product experience that made the invisible feel tangible.",
+      "AI research tools ask a question, show a spinner, and eventually return a finished document with its sources collapsed at the bottom. The user spends the longest part of the task staring at nothing, then has to reconstruct which source supports which claim.",
     approach:
-      "We started by stripping the language back to first principles. Not 'decentralised biometric verification' — 'your face, your key'. From that clarity came a visual direction: organic forms meeting precision geometry, teal accents on deep navy, an identity that felt alive and intelligent rather than corporate and static.",
+      "Brief solves the wait with content instead of animation. Sources land in a rail the moment each one is read, before prose exists, then remain aligned with the passages they support. Slow and failed sources keep their names and timing, so incomplete evidence stays visible in the answer it changes.",
     sections: [
       {
-        label: "Identity",
-        heading: "Making the invisible feel real.",
+        label: "Visible progress",
+        heading: "The rail fills before the page does.",
         body:
-          "The logomark is derived from a node in a network — but rendered with organic, irregular forms that reference biometric data. It sits at the intersection of human and machine. The colour palette (deep navy, electric teal, bone white) was chosen to feel trustworthy but not institutional. Tech without the sterility.",
+          "Pennine Freight has fourteen vans and one question: “Should we switch the fleet to electric in 2027?” Brief gathers five sources in view. Each SourceEntry appears as it is read, so by the time the first sentence starts streaming the user has already seen what the recommendation will be built from.",
       },
       {
-        label: "UX",
-        heading: "Onboarding the hardest concept in crypto.",
+        label: "Honest waiting",
+        heading: "A slow source has a name. A failed source leaves a mark.",
         body:
-          "The hardest moment in the product is step one: asking someone to scan their face for the first time. We designed an onboarding flow built around progressive disclosure and clear consent — every screen answers 'what is this doing?' before it asks you to do anything. Biometric capture was treated as a moment of ritual, not a hurdle.",
+          "Four sources are read and one paywalled source cannot be opened. Three return in under four seconds; one takes twenty-two. The rail names and times the delay instead of smoothing it into a false progress bar. GapMark carries the unread source into the document at the point where route-level charging evidence is missing.",
       },
       {
-        label: "Communication",
-        heading: "A pitch deck that did the heavy lifting.",
+        label: "Recommendation",
+        heading: "Incomplete evidence changes the answer.",
         body:
-          "The product logic also had to survive outside the product. We carried the same plain-language explanation, trust cues, and visual hierarchy into investor materials so the underlying system could be understood without falling back on technical shorthand.",
+          "Electric vans cost £8,000 to £12,000 more up front, less a grant of up to £2,500. Depot charging cuts running costs from 16–19p to 7–9p per mile—£25,000 to £30,000 a year across the fleet—but only covers routes under 140 miles. With four regular routes beyond that and a 3.4–4.8-year payback range, Brief recommends converting the ten depot-based vans in 2027 and holding the four long-route vans until charging is confirmed.",
       },
     ],
-    stats: [
-      { value: "10", suffix: " weeks", label: "Full rebrand + product UI" },
-      { value: "3", suffix: "mo", label: "Time to institutional raise" },
-      { value: "40", suffix: "%", label: "Increase in demo-to-meeting conversion" },
-      { value: "1", suffix: "", label: "Coherent identity across brand + product" },
-    ],
+    stats: [],
   },
   {
     id: "scan-com",

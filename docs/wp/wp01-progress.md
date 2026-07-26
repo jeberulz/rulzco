@@ -323,3 +323,69 @@ Append-only progress log. Do not rely on chat history for project state.
   - Final product imagery is intentionally outside this story.
 - Next: Replace the Draft placeholders with the seven final product shots,
   starting with Gate closed.
+
+## 2026-07-26 — WP01-S10 setup
+
+- Assignment: Replace case-study slot 04 with Brief, a self-initiated research
+  product demo, while keeping all case-study work on
+  `feat/wp01-agentic-interface-positioning`.
+- Route decision: Make `/work/brief` canonical and retain `/work/human-node`
+  only as a permanent compatibility redirect.
+- File boundaries: `lib/projects.ts`, `components/Portfolio.tsx`,
+  `next.config.ts`, and the WP01 registry/story/progress documents.
+- Required checks: `git diff --check`, TypeScript, production build, redirect
+  checks, and browser review at desktop and 390px.
+- Content guardrails:
+  - Label the work as a self-initiated product demo.
+  - Treat Pennine Freight, the five sources, and all figures as invented but
+    internally consistent demonstration data.
+  - Use placeholders for all seven gallery states until real product shots are
+    supplied, with Mid-flight as the lead state.
+  - Make the ninety-second research pass visible through content and source
+    state, not a decorative progress animation.
+  - Name slow and failed sources and keep the evidence gap attached to the
+    recommendation it changes.
+  - Never imply a client relationship, live deployment, measured outcome, or
+    autonomous sign-off.
+
+## 2026-07-26 — WP01-S10 complete
+
+- Actions taken:
+  - Replaced case-study slot 04 and its homepage card with Brief.
+  - Made `/work/brief` the canonical project route and added a permanent
+    redirect from `/work/human-node`.
+  - Added the supplied Pennine Freight question, five-source research pass,
+    slow and failed source states, internally consistent fleet figures, split
+    recommendation, component inventory, proof close, and project CTA.
+  - Added seven numbered image placeholders and made Mid-flight the lead
+    visual.
+  - Removed the former Human Node client framing, metrics, deliverables, and
+    missing homepage card image from the case-study slot.
+- Decisions made:
+  - Treat Brief as direct proof of visible agent activity during a long-running
+    task, rather than presenting progress as decoration.
+  - Keep evidence aligned with the prose it supports and leave failed-source
+    gaps visible where they alter the recommendation.
+  - Make the incomplete evidence responsible for the split fleet decision:
+    convert ten depot vans and hold four long-route vans.
+- Checks run:
+  - `git diff --check` — passed.
+  - `./node_modules/.bin/tsc --noEmit` — passed.
+  - `npm run build` — passed; static output includes `/work/brief` and
+    `/work/brief/opengraph-image`.
+  - `/work/brief` — HTTP 200.
+  - `/work/human-node` — HTTP 308 permanent redirect to `/work/brief`.
+  - Browser review at 1440px and 390px — passed; title, self-initiated label,
+    Mid-flight placeholder, and supporting copy remain readable.
+  - All seven gallery states — present in the rendered page.
+  - Homepage portfolio card — passed; Brief and its custom placeholder are
+    present and Human Node is absent.
+  - Browser console warnings/errors — none.
+- Result: Passed. Brief now occupies case-study slot 04 as a clearly labelled
+  self-initiated product demo with seven ready-to-replace image placeholders.
+- Gotchas:
+  - Port 3001 remains occupied by the separate Margin prototype, so this
+    website continues running on port 3003 for review.
+  - Final product imagery is intentionally outside this story.
+- Next: Replace the Brief placeholders with the seven final product shots,
+  starting with Mid-flight.
