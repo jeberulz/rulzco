@@ -6,6 +6,15 @@ const withBundleAnalyzer = bundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/work/rinkl",
+        destination: "/work/margin",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     // Serve modern formats; Next negotiates per-browser.
     formats: ["image/avif", "image/webp"],

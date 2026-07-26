@@ -109,6 +109,21 @@ the production build passes.
     - `npx tsc --noEmit`.
     - `npm run build`.
 
+- [x] `WP01-S8` — Canonicalise the Margin case-study route
+  - Scope: `lib/projects.ts`, `components/Portfolio.tsx`, `next.config.ts`,
+    `docs/PROJECT_STRATEGY.md`, `docs/wp/wp01-stories.md`,
+    `docs/wp/wp01-progress.md`
+  - Acceptance criteria:
+    - Margin’s canonical public URL is `/work/margin`.
+    - Homepage, work index, adjacent-project links, metadata, structured data,
+      and generated Open Graph routes use the Margin slug.
+    - `/work/rinkl` permanently redirects to `/work/margin`.
+    - The separate Rinkl partnership/proposal references remain untouched.
+  - Verification:
+    - TypeScript and production build.
+    - Browser check of `/work/margin`.
+    - Redirect check from `/work/rinkl`.
+
 ## Out of Scope
 
 - Redesigning the visual system, page layout, motion, or component architecture.

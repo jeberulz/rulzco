@@ -227,3 +227,34 @@ Append-only progress log. Do not rely on chat history for project state.
   - Final product imagery is intentionally not part of this story.
 - Next: Replace the Margin placeholders with the final seven product shots,
   starting with Margin note linked.
+
+## 2026-07-26 — WP01-S8 setup
+
+- User correction: The case-study title had changed, but the page slug still
+  exposed Rinkl. “Page name” includes the canonical URL, not only the rendered
+  heading and browser title.
+- Assignment: Move Margin to `/work/margin` and retain `/work/rinkl` only as a
+  permanent compatibility redirect.
+- File boundaries: Margin ids in `lib/projects.ts` and
+  `components/Portfolio.tsx`, redirect configuration in `next.config.ts`, and
+  WP01 registry/story/progress documents.
+- Guardrail: Do not rename the separate Rinkl references in partnership and
+  proposal content; those describe different work.
+
+## 2026-07-26 — WP01-S8 complete
+
+- Actions taken:
+  - Changed the case-study and homepage portfolio ids from `rinkl` to `margin`.
+  - Added a permanent redirect from `/work/rinkl` to `/work/margin`.
+  - Left the independent Rinkl partnership and proposal references unchanged.
+- Checks run:
+  - `git diff --check` — passed.
+  - `./node_modules/.bin/tsc --noEmit` — passed.
+  - `npm run build` — passed; static output now includes `/work/margin` and
+    `/work/margin/opengraph-image`.
+  - `/work/margin` — HTTP 200.
+  - `/work/rinkl` — HTTP 308 permanent redirect to `/work/margin`.
+  - Browser redirect check — passed; the final URL, page title, heading, and
+    breadcrumb all use Margin.
+- Result: Passed. Margin is now the canonical page name and URL while the
+  former address remains safe for existing links.

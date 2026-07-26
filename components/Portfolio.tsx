@@ -25,7 +25,7 @@ const projects: FeaturedProject[] = [
     col: 1,
   },
   {
-    id: "rinkl",
+    id: "margin",
     title: "Margin",
     description:
       "A self-initiated finance interface that turns six months of trading data into one action, with every claim linked to the chart behind it.",

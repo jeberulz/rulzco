@@ -184,7 +184,7 @@ export const projects: Project[] = [
     stats: [],
   },
   {
-    id: "rinkl",
+    id: "margin",
     num: "02",
     title: "Margin",
     tagline:
