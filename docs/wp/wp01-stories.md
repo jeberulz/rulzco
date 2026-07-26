@@ -167,6 +167,27 @@ the production build passes.
     - `npm run build`.
     - Redirect check from `/work/human-node`.
 
+- [x] `WP01-S11` — Replace the fifth case study with Watch
+  - Scope: `lib/projects.ts`, `components/Portfolio.tsx`, `next.config.ts`,
+    `docs/PROJECT_STRATEGY.md`, `docs/wp/wp01-stories.md`,
+    `docs/wp/wp01-progress.md`
+  - Acceptance criteria:
+    - Case-study slot 05 is titled Watch, clearly labelled as a self-initiated
+      product demo, and canonical at `/work/watch`.
+    - `/work/scan-com` permanently redirects to `/work/watch`.
+    - The case study uses the supplied Halstead Joinery run, supplier timeout,
+      price intervention, component inventory, proof close, and CTA without
+      implying client work or real procurement data.
+    - Seven numbered placeholder states are present, with Stopped as the lead
+      visual.
+    - The homepage portfolio card presents Watch as direct agentic-interface
+      proof and uses a placeholder rather than the missing Scan.com image.
+  - Verification:
+    - Browser review at desktop and 390px.
+    - `./node_modules/.bin/tsc --noEmit`.
+    - `npm run build`.
+    - Redirect check from `/work/scan-com`.
+
 ## Out of Scope
 
 - Redesigning the visual system, page layout, motion, or component architecture.
@@ -177,6 +198,8 @@ the production build passes.
 - Building the working Draft product or replacing its placeholders with final
   product screenshots.
 - Building the working Brief product or replacing its placeholders with final
+  product screenshots.
+- Building the working Watch product or replacing its placeholders with final
   product screenshots.
 - Rewriting long-form articles, individual case-study bodies, proposals, or the
   partnership business model.

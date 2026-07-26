@@ -520,64 +520,116 @@ export const projects: Project[] = [
     stats: [],
   },
   {
-    id: "scan-com",
+    id: "watch",
     num: "05",
-    title: "Scan.com",
-    tagline: "Healthcare, found faster.",
-    year: "2023",
-    tags: ["Brand", "Health"],
+    title: "Watch",
+    tagline: "An agent working, on a track you can stop.",
+    year: "2026",
+    tags: ["AI", "Agents"],
     description:
-      "Search, intake, and routing for a medical scan platform—making a high-friction path from patient need to diagnostic centre feel clear.",
-    outcome: "Search, intake + routing redesign",
+      "A self-initiated agent-control interface that lays a run out on a time axis and puts intervention controls on its live edge.",
+    outcome: "Self-initiated live-edge intervention demo",
+    projectType: "Self-initiated product demo",
     interfaceProof:
-      "Scan.com was not an agentic product. It is evidence of the workflow design beneath good agentic experiences: gather the right information, route it through a complex system, expose progress, and help a person recover when the path changes.",
+      "This pattern belongs to any agent that acts on a company’s behalf: procurement, ticket resolution, outbound sequences, data pipelines, and deployment. The agent working is not the product. The moment someone can stop it is.",
     proofPoints: [
-      "Turn a complex service into a clear sequence",
-      "Reduce uncertainty at high-stakes moments",
-      "Connect user intent to the right operational route",
+      "Separate completed work from the agent’s remaining plan",
+      "Put stop and redirect controls directly on the live edge",
+      "Use colour only where a person changed the run",
     ],
-    gradient: "linear-gradient(135deg, #0f1f0f 0%, #1a3a1a 50%, #0d2a1a 100%)",
-    accent: "#4CAF7D",
-    size: "medium",
-    role: "Brand Design + Product Strategy",
-    timeline: "12 weeks",
-    deliverables: ["Brand Refresh", "Design System", "Web UI", "Patient Booking Flow", "Provider Portal UX"],
+    gallery: [
+      {
+        number: "01",
+        label: "Planned",
+        caption:
+          "Before the run, every intended step is laid out to the right of the live edge.",
+      },
+      {
+        number: "02",
+        label: "Running",
+        caption:
+          "The edge advances with completed work behind it and the remaining plan ahead.",
+      },
+      {
+        number: "03",
+        label: "Long step",
+        caption:
+          "The supplier price fetch extends across the time axis as it runs.",
+      },
+      {
+        number: "04",
+        label: "Stopped",
+        caption:
+          "The edge holds, the reason is stated, and the intervention controls sit on the line.",
+        lead: true,
+      },
+      {
+        number: "05",
+        label: "Redirected",
+        caption:
+          "The human change is applied and the planned steps ahead of the edge rewrite to match.",
+      },
+      {
+        number: "06",
+        label: "Step failed",
+        caption:
+          "A timed-out supplier stays marked on the track while the run continues.",
+      },
+      {
+        number: "07",
+        label: "Complete",
+        caption:
+          "The finished run shows two marks of human colour and an approval gate before submission.",
+      },
+    ],
+    builtWith: [
+      "Board",
+      "Track",
+      "Step",
+      "LiveEdge",
+      "Intervention",
+      "GapMark",
+      "ErrorState",
+    ],
+    ctaLine: "Running agents that act on your behalf. Let’s talk.",
+    gradient:
+      "linear-gradient(135deg, #090909 0%, #161616 55%, #2b211d 100%)",
+    accent: "#F08A5D",
+    size: "large",
+    role: "Agentic Interface Design + Build",
+    timeline: "Ongoing",
+    deliverables: [
+      "Run Plan",
+      "Live Edge",
+      "Intervention Controls",
+      "Failure Recovery",
+      "Approval Gate",
+    ],
     challenge:
-      "Scan.com had built genuine scale — thousands of diagnostic centres, millions in bookings — but the brand and product had grown organically and felt fragmented. The booking experience was confusing at exactly the moment patients needed clarity the most: when they were anxious about their health.",
+      "Agent tools usually show a scrolling log or a spinner, then a result. Neither tells a person what the agent is about to do or creates a place to stop it before it acts. By the time a log explains the problem, the consequential step has already happened.",
     approach:
-      "Healthcare design has a history of defaulting to clinical coldness or patronising warmth. We chose neither. Scan.com needed to feel like a trusted, capable friend in the system — reassuringly clear, never scary. The refresh prioritised cognitive load reduction at every step of the booking journey.",
+      "Watch lays the run out on a time axis. Everything left of LiveEdge has happened; everything right remains a plan. Stop and redirect controls live on that edge, while colour appears only where a person touched the run. A finished board shows both autonomy and the exact moments oversight changed the outcome.",
     sections: [
       {
-        label: "Brand",
-        heading: "Trust through clarity.",
+        label: "Plan ahead",
+        heading: "The live edge separates fact from intent.",
         body:
-          "The brand refresh retained Scan.com's green equity but made it work harder. Darker, richer tones that felt serious without being alarming. Typography cleaned up into a clear hierarchy. A new photography direction that showed real people — not stock model patients — in real environments.",
+          "Halstead Joinery runs a ten-step weekly materials reorder. The agent reads stock, checks open orders against forecast, finds four items below reorder point, fetches prices from three suppliers, compares them with last quarter, and drafts the purchase orders. Track makes that whole plan visible before each step runs.",
       },
       {
-        label: "Patient Experience",
-        heading: "Reducing friction at the hardest moment.",
+        label: "Intervention",
+        heading: "The controls sit where the decision is.",
         body:
-          "Booking a medical scan means understanding what you need, finding a centre, checking availability, reviewing costs, and confirming clinical details. We mapped that chain against moments of uncertainty and designed the interface to explain what was happening, what came next, and where the person still had a choice.",
+          "Oak veneer from Calder Timber rises from £34.20 to £41.75 a sheet—up 22%. The agent stops at the live edge and asks. A person redirects that line to Wexford Panels at £36.90, and the planned comparison and purchase-order steps to the right of the edge update before anything continues.",
       },
       {
-        label: "Provider Portal",
-        heading: "The other side of the marketplace.",
+        label: "Oversight",
+        heading: "Human touch is the only colour on the board.",
         body:
-          "Diagnostic centre operators were managing bookings through an interface that hadn't been touched in years. We rebuilt the provider portal around their actual workflow — bulk availability management, patient communication templates, and a dashboard that surfaced actionable information rather than raw data.",
+          "One supplier’s price API times out. GapMark keeps the failed step on the track while the run continues with two suppliers instead of collapsing. The complete board remains monochrome except for that handled gap and the redirect, then ends at an approval gate. Nobody has to infer where oversight mattered, and nothing is submitted on the agent’s authority alone.",
       },
     ],
-    stats: [
-      { value: "34", suffix: "%", label: "Reduction in booking drop-off" },
-      { value: "12", suffix: " weeks", label: "Full brand + product refresh" },
-      { value: "200", suffix: "+", label: "Diagnostic centre partners" },
-      { value: "1", suffix: "st", label: "Redesign in company history" },
-    ],
-    testimonial: {
-      quote:
-        "The Rulz&Co team understood that this wasn't just a visual exercise — our patients are often anxious. They designed with that empathy from the very first sketch.",
-      author: "Head of Product, Scan.com",
-      title: "Series B stage, 2023",
-    },
+    stats: [],
   },
   {
     id: "novamind",

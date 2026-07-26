@@ -55,12 +55,13 @@ const projects: FeaturedProject[] = [
     col: 1,
   },
   {
-    id: "scan-com",
-    title: "Scan.com",
+    id: "watch",
+    title: "Watch",
     description:
-      "Search, intake, and routing for a medical scan platform—making a high-friction path from patient need to diagnostic centre feel clear.",
-    tags: ["Complex workflow", "Search & routing", "Health"],
-    image: "/images/scan-card.png",
+      "A self-initiated agent-control interface that shows the plan ahead and puts stop and redirect controls on the live edge.",
+    tags: ["Live edge", "Intervention", "Agent control"],
+    accent: "#F08A5D",
+    placeholderLines: ["See the plan.", "Stop the run."],
     col: 2,
   },
 ];

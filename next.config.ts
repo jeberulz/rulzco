@@ -23,6 +23,11 @@ const nextConfig: NextConfig = {
         destination: "/work/brief",
         permanent: true,
       },
+      {
+        source: "/work/scan-com",
+        destination: "/work/watch",
+        permanent: true,
+      },
     ];
   },
   images: {

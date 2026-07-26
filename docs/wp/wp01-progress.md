@@ -389,3 +389,73 @@ Append-only progress log. Do not rely on chat history for project state.
   - Final product imagery is intentionally outside this story.
 - Next: Replace the Brief placeholders with the seven final product shots,
   starting with Mid-flight.
+
+## 2026-07-26 — WP01-S11 setup
+
+- Assignment: Replace case-study slot 05 with Watch, a self-initiated agent
+  control demo, while keeping all case-study work on
+  `feat/wp01-agentic-interface-positioning`.
+- Route decision: Make `/work/watch` canonical and retain `/work/scan-com`
+  only as a permanent compatibility redirect.
+- File boundaries: `lib/projects.ts`, `components/Portfolio.tsx`,
+  `next.config.ts`, and the WP01 registry/story/progress documents.
+- Required checks: `git diff --check`, TypeScript, production build, redirect
+  checks, and browser review at desktop and 390px.
+- Content guardrails:
+  - Label the work as a self-initiated product demo.
+  - Treat Halstead Joinery, the suppliers, prices, and timings as invented but
+    internally consistent demonstration data.
+  - Use placeholders for all seven gallery states until real product shots are
+    supplied, with Stopped as the lead state.
+  - Keep intervention controls on the live edge, where completed work and the
+    remaining plan meet.
+  - Reserve colour in the described product for human intervention; keep the
+    agent’s own work monochrome.
+  - The supplier timeout may degrade the run, but it must remain visible.
+  - Nothing is submitted without the final human approval gate.
+  - Never imply a client relationship, live deployment, measured outcome, or
+    autonomous procurement.
+
+## 2026-07-26 — WP01-S11 complete
+
+- Actions taken:
+  - Replaced case-study slot 05 and its homepage card with Watch.
+  - Made `/work/watch` the canonical project route and added a permanent
+    redirect from `/work/scan-com`.
+  - Added the supplied Halstead Joinery ten-step reorder run, supplier timeout,
+    Calder Timber price rise, Wexford Panels redirect, rewritten plan, component
+    inventory, proof close, and project CTA.
+  - Added seven numbered image placeholders and made Stopped the lead visual.
+  - Removed the former Scan.com client framing, testimonial, metrics,
+    deliverables, and missing homepage card image from the case-study slot.
+- Decisions made:
+  - Treat the live edge as the product’s control boundary: completed work sits
+    to its left, the remaining plan sits to its right, and intervention controls
+    sit directly on it.
+  - Reserve colour for the two moments where human oversight changes or
+    recovers the run.
+  - Keep the supplier timeout visible while allowing the run to degrade
+    gracefully to two suppliers.
+  - Preserve a final human approval gate before any purchase order is
+    submitted.
+- Checks run:
+  - `git diff --check` — passed.
+  - `./node_modules/.bin/tsc --noEmit` — passed.
+  - `npm run build` — passed; static output includes `/work/watch` and
+    `/work/watch/opengraph-image`.
+  - `/work/watch` — HTTP 200.
+  - `/work/scan-com` — HTTP 308 permanent redirect to `/work/watch`.
+  - Browser review at 1440px and 390px — passed; title, self-initiated label,
+    Stopped placeholder, and supporting copy remain readable.
+  - All seven gallery states — present in the rendered page.
+  - Homepage portfolio card — passed; Watch and its custom placeholder are
+    present and Scan.com is absent.
+  - Browser console warnings/errors — none.
+- Result: Passed. Watch now occupies case-study slot 05 as a clearly labelled
+  self-initiated product demo with seven ready-to-replace image placeholders.
+- Gotchas:
+  - Port 3001 remains occupied by the separate Margin prototype, so this
+    website continues running on port 3003 for review.
+  - Final product imagery is intentionally outside this story.
+- Next: Replace the Watch placeholders with the seven final product shots,
+  starting with Stopped and then Complete.
