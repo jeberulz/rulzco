@@ -166,3 +166,64 @@ Append-only progress log. Do not rely on chat history for project state.
   both mobile and desktop breakpoints.
 - Gotchas: None.
 - Next: Continue with the existing WP01 proof-building and page-alignment work.
+
+## 2026-07-26 — WP01-S7 setup
+
+- Assignment: Replace the second portfolio case study with Margin, a
+  self-initiated finance-dashboard product demo, while keeping all case-study
+  work on `feat/wp01-agentic-interface-positioning`.
+- Route decision: Keep the existing `/work/rinkl` slug so current links and
+  case-study ordering remain stable; change the public title and content to
+  Margin.
+- File boundaries: `lib/projects.ts`, `components/Portfolio.tsx`, and the WP01
+  registry/story/progress documents.
+- Required checks: `git diff --check`, TypeScript, production build, and browser
+  review at desktop and 390px.
+- Content guardrails:
+  - Label the work as a self-initiated product demo.
+  - Treat Cobble Lane Coffee Roasters and all figures as invented, internally
+    consistent demonstration data.
+  - Use placeholders for all seven gallery states until real product shots are
+    supplied.
+  - Never imply a client relationship, live deployment, measured outcome, or
+    autonomous commitment.
+
+## 2026-07-26 — WP01-S7 complete
+
+- Actions taken:
+  - Replaced all Rinkl public case-study content with Margin while preserving
+    the `/work/rinkl` route and slot 02 ordering.
+  - Added the seven supplied states and made Margin note linked the lead
+    placeholder.
+  - Added the Cobble Lane Coffee Roasters subject, internally consistent cost
+    and margin figures, component inventory, proof close, and project CTA.
+  - Removed the former client testimonial, delivery metrics, and adjacent-proof
+    framing.
+  - Updated the homepage portfolio card to present Margin with a custom
+    self-initiated placeholder rather than the missing Rinkl product image.
+- Decisions made:
+  - Keep the current route stable until a separate slug/redirect decision is
+    requested.
+  - Treat Margin as direct agentic-interface proof rather than reframing a
+    non-agentic client project.
+  - Keep every gallery visual as an explicit placeholder until final product
+    shots are provided.
+- Checks run:
+  - `git diff --check` — passed.
+  - `./node_modules/.bin/tsc --noEmit` — passed.
+  - `npm run build` — passed; all 60 generated pages completed, including
+    `/work/rinkl` and its Open Graph image.
+  - Browser review at the default desktop viewport — passed.
+  - Browser review at 390px — passed; the title, self-initiated label, tags,
+    lead placeholder, and caption remain readable without overflow.
+  - Homepage portfolio card check — passed; Margin and its custom placeholder
+    copy are present.
+  - Browser console warnings/errors — none.
+- Result: Passed. Margin now occupies case-study slot 02 as a clearly labelled
+  self-initiated product demo with seven ready-to-replace image placeholders.
+- Gotchas:
+  - The stable route remains `/work/rinkl`; changing it to `/work/margin`
+    requires a separate redirect and internal-link update.
+  - Final product imagery is intentionally not part of this story.
+- Next: Replace the Margin placeholders with the final seven product shots,
+  starting with Margin note linked.

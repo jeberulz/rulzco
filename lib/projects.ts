@@ -186,62 +186,115 @@ export const projects: Project[] = [
   {
     id: "rinkl",
     num: "02",
-    title: "Rinkl",
-    tagline: "Owning your money starts with understanding it.",
-    year: "2024",
-    tags: ["App", "Fintech"],
+    title: "Margin",
+    tagline:
+      "A finance dashboard that names one thing to do, and shows its working.",
+    year: "2026",
+    tags: ["AI", "Fintech"],
     description:
-      "Interaction logic that turns live transaction data into timely, useful nudges—surfacing the next financial decision without adding noise.",
-    outcome: "Interaction model + mobile product interface",
+      "A finance dashboard that names one thing to do, and shows its working.",
+    outcome: "Self-initiated traceable data-action demo",
+    projectType: "Self-initiated product demo",
     interfaceProof:
-      "Rinkl was not an agentic product. It proves the interaction craft agentic products still depend on: deciding when a system should speak, what it should surface, and how to help a person act without taking control away.",
+      "This is the pattern behind any product where AI reads data and a person has to act on it: sales reporting, ops dashboards, portfolio reviews, and clinical metrics. The chart is not the answer. The action is—and it has to be traceable.",
     proofPoints: [
-      "Turn live system signals into a clear next action",
-      "Make proactive prompts useful rather than intrusive",
-      "Keep the person oriented on a small, high-pressure surface",
+      "Turn a dashboard into one traceable next action",
+      "Tie every claim to exact months and figures",
+      "Keep uncertainty and commitment under human control",
     ],
-    gradient: "linear-gradient(135deg, #0f0c29 0%, #1a1a6e 50%, #24243e 100%)",
-    accent: "#6C63FF",
+    gallery: [
+      {
+        number: "01",
+        label: "Idle",
+        caption:
+          "The figures are laid out as a ledger. No AI commentary yet—just one ask bar.",
+      },
+      {
+        number: "02",
+        label: "Reading",
+        caption:
+          "The system works through the data pass by pass, making progress visible without a generic spinner.",
+      },
+      {
+        number: "03",
+        label: "The one action",
+        caption:
+          "One action sits at the top of the sheet in plain language, beside the number that drives it.",
+      },
+      {
+        number: "04",
+        label: "Margin note linked",
+        caption:
+          "A hairline connects the claim to the exact months in the chart that support it.",
+        lead: true,
+      },
+      {
+        number: "05",
+        label: "Show the working",
+        caption:
+          "The recommendation expands into the calculation, comparisons, and figures behind it.",
+      },
+      {
+        number: "06",
+        label: "Not sure",
+        caption:
+          "Uncertainty is attached to the specific claim the system cannot confirm, with a reason.",
+      },
+      {
+        number: "07",
+        label: "Act or dismiss",
+        caption:
+          "The person decides whether to act or dismiss. Nothing commits on its own.",
+      },
+    ],
+    builtWith: [
+      "AskBar",
+      "ActionCard",
+      "MarginNote",
+      "LinkedChart",
+      "Certainty",
+      "Trace",
+      "ErrorState",
+    ],
+    ctaLine: "Have data your team looks at but doesn’t act on. Let’s talk.",
+    gradient:
+      "linear-gradient(135deg, #090b09 0%, #141914 55%, #252016 100%)",
+    accent: "#A8C77A",
     size: "large",
-    role: "Product Design + Strategy",
-    timeline: "6 weeks",
-    deliverables: ["Product Strategy", "UX Flows", "UI Design", "Design System", "Prototype"],
+    role: "Agentic Interface Design + Build",
+    timeline: "Ongoing",
+    deliverables: [
+      "Action Model",
+      "Linked Data Evidence",
+      "Visible Reasoning",
+      "Certainty States",
+      "Working Prototype",
+    ],
     challenge:
-      "Students were haemorrhaging money because their banking apps were built for adults — not for people juggling rent, student loans, subscriptions, and a £3 coffee habit. Rinkl came in with a sharp insight: students don't need more data, they need a financial friend who actually pays attention.",
+      "Dashboards show numbers. They rarely tell a person what those numbers mean or what to do next. Margin reads a small business’s monthly figures and states one action, with every claim tied to the exact part of the chart it came from.",
     approach:
-      "We ran a rapid discovery sprint with 14 university students across three cities. The recurring theme: shame. People felt judged by their own bank. From there, we designed around three principles — be honest without being brutal, surface insights before they become problems, and make the act of checking your money feel good.",
+      "Most AI added to data produces a paragraph beside a graph. Margin makes the recommendation part of the chart instead. The statement sits in its margin, a trace links it to the supporting months and figures, the working can be expanded, and uncertainty stays attached to the specific claim the system cannot confirm.",
     sections: [
       {
-        label: "Discovery",
-        heading: "The research that changed the brief.",
+        label: "Trace",
+        heading: "The claim and the chart share one surface.",
         body:
-          "What started as 'build a budgeting app' became something more nuanced. Through contextual interviews and diary studies, we discovered that students weren't failing at budgets — they were avoiding their finances entirely because existing tools made them feel judged. We reframed the product from 'budget tracker' to 'financial companion'. That shift changed everything downstream.",
+          "The hero interaction is a MarginNote connected to a LinkedChart by a single hairline. Reading the recommendation highlights the exact months behind it, removing the manual search that normally separates an AI statement from its evidence.",
       },
       {
-        label: "Design",
-        heading: "A system built around emotion, not spreadsheets.",
+        label: "Working",
+        heading: "Revenue is rising. Margin is collapsing.",
         body:
-          "We designed a dashboard that leads with feeling before figures. The opening state shows a 'financial health score' — a single, honest number — rather than a wall of transactions. AI nudges are written in plain English, with warmth: 'You've spent £48 on coffee this month. That's fine — just so you know.' Every interaction was stress-tested against one question: does this make the user feel more in control, or less?",
+          "Cobble Lane Coffee Roasters appears to be having a good year across January to June 2026. But green coffee cost per kilo rises from £6.80 to £8.05 while the wholesale bag price stays fixed. Show the working reveals the consequence: gross margin falls from 50.5% to 34.7%.",
       },
       {
-        label: "Delivery",
-        heading: "MVP-ready in six weeks.",
+        label: "Human control",
+        heading: "Uncertainty is local. The decision stays human.",
         body:
-          "We translated the product decisions into annotated interface states, reusable components, and explicit rules for when a nudge appears, changes, or stays quiet. The handoff described system behaviour as clearly as visual design — the same discipline a dependable agentic interface needs.",
+          "Certainty flags the exact part of a recommendation the system cannot establish and explains why, rather than weakening the whole answer with a vague hedge. The final state offers act or dismiss. Margin can recommend; it cannot commit.",
       },
     ],
-    stats: [
-      { value: "6", suffix: " weeks", label: "Concept to MVP" },
-      { value: "14", suffix: "", label: "User interviews" },
-      { value: "3", suffix: "x", label: "Increase in DAU post-redesign" },
-      { value: "300", suffix: "k", label: "Pre-seed secured (£)" },
-    ],
-    testimonial: {
-      quote:
-        "Rulz&Co didn't just design an app — they helped us understand what product we were actually building. The clarity they brought in week one saved us months of wrong turns.",
-      author: "Founder, Rinkl",
-      title: "Pre-seed stage, 2024",
-    },
+    stats: [],
   },
   {
     id: "deskscapes",

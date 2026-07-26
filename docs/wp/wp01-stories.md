@@ -87,12 +87,35 @@ the production build passes.
     - Browser review at 390px and 1280px.
     - TypeScript and production build.
 
+- [x] `WP01-S7` — Replace the second case study with Margin
+  - Scope: `lib/projects.ts`, `components/Portfolio.tsx`,
+    `docs/PROJECT_STRATEGY.md`, `docs/wp/wp01-stories.md`,
+    `docs/wp/wp01-progress.md`
+  - Acceptance criteria:
+    - Case-study slot 02 is titled Margin and clearly labelled as a
+      self-initiated product demo.
+    - The existing `/work/rinkl` route remains valid while its public content,
+      metadata, and portfolio summary describe Margin.
+    - The case study uses the supplied overview, interaction problem, Cobble
+      Lane subject, proof framing, components, close, and CTA without implying
+      client work or real business data.
+    - Seven numbered placeholder states are present, with Margin note linked as
+      the lead visual.
+    - The homepage portfolio card also presents Margin as direct agentic
+      interface proof and uses a placeholder rather than a missing product
+      image.
+  - Verification:
+    - Browser review at desktop and 390px.
+    - `npx tsc --noEmit`.
+    - `npm run build`.
+
 ## Out of Scope
 
 - Redesigning the visual system, page layout, motion, or component architecture.
 - Inventing new case-study results, testimonials, client metrics, or compliance
   claims.
-- Building the agentic interface demo portfolio described in the playbooks.
+- Building the working Margin product or replacing its placeholders with final
+  product screenshots.
 - Rewriting long-form articles, individual case-study bodies, proposals, or the
   partnership business model.
 - Changing service price floors without owner approval.

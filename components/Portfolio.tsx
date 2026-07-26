@@ -10,6 +10,7 @@ type FeaturedProject = {
   tags: string[];
   image?: string;
   accent?: string;
+  placeholderLines?: [string, string];
   col: number;
 };
 
@@ -25,11 +26,12 @@ const projects: FeaturedProject[] = [
   },
   {
     id: "rinkl",
-    title: "Rinkl",
+    title: "Margin",
     description:
-      "Interaction logic that turns live transaction data into timely, useful nudges—surfacing the next financial decision without adding noise.",
-    tags: ["Interaction logic", "Real-time nudges", "Fintech"],
-    image: "/images/rinkl-card.png",
+      "A self-initiated finance interface that turns six months of trading data into one action, with every claim linked to the chart behind it.",
+    tags: ["Linked evidence", "Visible reasoning", "Finance AI"],
+    accent: "#A8C77A",
+    placeholderLines: ["Read the chart.", "Trace the action."],
     col: 1,
   },
   {
@@ -85,6 +87,11 @@ const fitItems = [
 ];
 
 function ProjectCard({ project }: { project: FeaturedProject }) {
+  const placeholderLines = project.placeholderLines ?? [
+    "Click a field.",
+    "See its source.",
+  ];
+
   return (
     <Link
       href={`/work/${project.id}`}
@@ -121,9 +128,9 @@ function ProjectCard({ project }: { project: FeaturedProject }) {
             </div>
             <div className="absolute inset-x-6 bottom-6 border-t border-white/15 pt-4">
               <p className="text-xl leading-tight text-white md:text-2xl">
-                Click a field.
+                {placeholderLines[0]}
                 <br />
-                See its source.
+                {placeholderLines[1]}
               </p>
             </div>
           </>

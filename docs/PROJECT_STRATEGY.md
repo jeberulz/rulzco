@@ -16,4 +16,4 @@ clear, trustworthy product people will adopt.
 
 | WP | Status | Branch | Definition of done |
 |---|---|---|---|
-| WP01 — Agentic interface positioning and website copy | Complete | `feat/wp01-agentic-interface-positioning` | The homepage, services page, shared brand surfaces, and machine-readable positioning consistently present Rulz&Co as an agentic interface design-and-build studio; copy is verified in the rendered site and the production build passes. |
+| WP01 — Agentic interface positioning and website copy | Complete | `feat/wp01-agentic-interface-positioning` | The homepage, services page, shared brand surfaces, machine-readable positioning, and the Extract and Margin self-initiated case studies consistently present Rulz&Co as an agentic interface design-and-build studio; copy is verified in the rendered site and the production build passes. |
