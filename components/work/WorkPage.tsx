@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -26,8 +27,18 @@ function ProjectCard({
 }) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const baseContentRef = useRef<HTMLDivElement>(null);
+  const coverSizes =
+    project.id === "extract"
+      ? "(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 66vw"
+      : "(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw";
 
   const handleMouseEnter = () => {
+    gsap.to(baseContentRef.current, {
+      opacity: 0,
+      duration: 0.12,
+      ease: "power1.out",
+    });
     gsap.to(overlayRef.current, {
       opacity: 1,
       duration: 0.35,
@@ -42,6 +53,12 @@ function ProjectCard({
   };
 
   const handleMouseLeave = () => {
+    gsap.to(baseContentRef.current, {
+      opacity: 1,
+      duration: 0.2,
+      delay: 0.18,
+      ease: "power1.out",
+    });
     gsap.to(overlayRef.current, {
       opacity: 0,
       duration: 0.3,
@@ -62,28 +79,43 @@ function ProjectCard({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Placeholder image — gradient bg */}
-      <div
-        className="w-full h-full absolute inset-0"
-        style={{ background: project.gradient }}
-      />
+      {project.coverImage ? (
+        <Image
+          src={project.coverImage}
+          alt={project.coverImageAlt ?? `${project.title} project cover`}
+          fill
+          priority={project.id === "extract"}
+          quality={90}
+          sizes={coverSizes}
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.015]"
+          style={{ objectPosition: project.coverImagePosition ?? "center" }}
+        />
+      ) : (
+        <>
+          {/* Placeholder image — gradient bg */}
+          <div
+            className="w-full h-full absolute inset-0"
+            style={{ background: project.gradient }}
+          />
 
-      {/* Accent glow */}
-      <div
-        className="absolute inset-0 opacity-20"
-        style={{
-          background: `radial-gradient(circle at 30% 70%, ${project.accent}44 0%, transparent 60%)`,
-        }}
-      />
+          {/* Accent glow */}
+          <div
+            className="absolute inset-0 opacity-20"
+            style={{
+              background: `radial-gradient(circle at 30% 70%, ${project.accent}44 0%, transparent 60%)`,
+            }}
+          />
 
-      {/* Noise texture overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`,
-          backgroundSize: "200px 200px",
-        }}
-      />
+          {/* Noise texture overlay */}
+          <div
+            className="absolute inset-0 opacity-[0.04]"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`,
+              backgroundSize: "200px 200px",
+            }}
+          />
+        </>
+      )}
 
       {/* Permanent bottom gradient */}
       <div className="absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -109,7 +141,10 @@ function ProjectCard({
       </div>
 
       {/* Always-visible bottom info */}
-      <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+      <div
+        ref={baseContentRef}
+        className="absolute bottom-0 left-0 right-0 p-6 z-10"
+      >
         <div className="flex items-end justify-between">
           <div>
             <h3 className="text-white text-xl md:text-2xl font-medium tracking-tight leading-tight">
@@ -145,18 +180,6 @@ function ProjectCard({
           <p className="text-white/80 text-sm leading-relaxed max-w-xs">
             {project.description}
           </p>
-          <div className="flex items-center gap-1.5">
-            <div
-              className="w-1 h-1 rounded-full"
-              style={{ background: project.accent }}
-            />
-            <span
-              className="text-xs font-medium tracking-wide"
-              style={{ color: project.accent }}
-            >
-              {project.outcome}
-            </span>
-          </div>
           <span className="text-xs uppercase tracking-widest text-white/60 hover:text-white flex items-center gap-1.5 mt-2 transition-colors">
             View case study <ArrowUpRight size={11} />
           </span>

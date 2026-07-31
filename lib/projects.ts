@@ -21,6 +21,9 @@ export type Project = {
   }[];
   builtWith?: string[];
   ctaLine?: string;
+  coverImage?: string;
+  coverImageAlt?: string;
+  coverImagePosition?: string;
   gradient: string;
   accent: string;
   size: string;
@@ -144,6 +147,10 @@ export const projects: Project[] = [
       "ErrorState",
     ],
     ctaLine: "Have a document workflow like this? Let’s talk.",
+    coverImage: "/images/work/extract/cover.png",
+    coverImageAlt:
+      "Extract interface fields lifted above an invoice verification workspace.",
+    coverImagePosition: "center",
     gradient:
       "linear-gradient(135deg, #0A0A0B 0%, #141416 55%, #2A251C 100%)",
     accent: "#C9A96A",
@@ -208,18 +215,30 @@ export const projects: Project[] = [
         label: "Idle",
         caption:
           "The figures are laid out as a ledger. No AI commentary yet—just one ask bar.",
+        image: "/images/work/margin/idle.jpg",
+        imageAlt:
+          "Margin idle state with an empty ask bar above the wholesale ledger.",
+        imageFit: "contain",
       },
       {
         number: "02",
         label: "Reading",
         caption:
           "The system works through the data pass by pass, making progress visible without a generic spinner.",
+        image: "/images/work/margin/reading.jpg",
+        imageAlt:
+          "Margin reading state highlighting one month across the chart and ledger.",
+        imageFit: "contain",
       },
       {
         number: "03",
         label: "The one action",
         caption:
           "One action sits at the top of the sheet in plain language, beside the number that drives it.",
+        image: "/images/work/margin/one-action.jpg",
+        imageAlt:
+          "Margin action state recommending a wholesale price change beside the gross-margin decline.",
+        imageFit: "cover",
       },
       {
         number: "04",
@@ -227,24 +246,40 @@ export const projects: Project[] = [
         caption:
           "A hairline connects the claim to the exact months in the chart that support it.",
         lead: true,
+        image: "/images/work/margin/margin-note-linked.jpg",
+        imageAlt:
+          "Margin note connected by a hairline to the supporting months in the chart.",
+        imageFit: "cover",
       },
       {
         number: "05",
         label: "Show the working",
         caption:
           "The recommendation expands into the calculation, comparisons, and figures behind it.",
+        image: "/images/work/margin/show-working.jpg",
+        imageAlt:
+          "Margin trace expanded to show the calculations behind the recommendation.",
+        imageFit: "cover",
       },
       {
         number: "06",
         label: "Not sure",
         caption:
           "Uncertainty is attached to the specific claim the system cannot confirm, with a reason.",
+        image: "/images/work/margin/not-sure.jpg",
+        imageAlt:
+          "Margin uncertainty state linking an unconfirmed June cost claim to the chart.",
+        imageFit: "cover",
       },
       {
         number: "07",
         label: "Act or dismiss",
         caption:
           "The person decides whether to act or dismiss. Nothing commits on its own.",
+        image: "/images/work/margin/act-or-dismiss.jpg",
+        imageAlt:
+          "Margin decision state with Accept and Dismiss controls beneath the recommended action.",
+        imageFit: "cover",
       },
     ],
     builtWith: [
@@ -257,6 +292,10 @@ export const projects: Project[] = [
       "ErrorState",
     ],
     ctaLine: "Have data your team looks at but doesn’t act on. Let’s talk.",
+    coverImage: "/images/work/margin/cover.png",
+    coverImageAlt:
+      "Descending forest-green steps beside a margin reduction marker.",
+    coverImagePosition: "center",
     gradient:
       "linear-gradient(135deg, #090b09 0%, #141914 55%, #252016 100%)",
     accent: "#A8C77A",

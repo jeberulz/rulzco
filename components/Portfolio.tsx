@@ -9,6 +9,8 @@ type FeaturedProject = {
   description: string;
   tags: string[];
   image?: string;
+  imageAlt?: string;
+  imagePosition?: string;
   accent?: string;
   placeholderLines?: [string, string];
   col: number;
@@ -21,6 +23,10 @@ const projects: FeaturedProject[] = [
     description:
       "A self-initiated document interface where every extracted field links to its source, uncertainty is visible, and the user approves the final data.",
     tags: ["Click-to-source", "Confidence states", "Document AI"],
+    image: "/images/work/extract/cover.png",
+    imageAlt:
+      "Extract interface fields lifted above an invoice verification workspace.",
+    imagePosition: "center",
     accent: "#C9A96A",
     col: 1,
   },
@@ -30,6 +36,10 @@ const projects: FeaturedProject[] = [
     description:
       "A self-initiated finance interface that turns six months of trading data into one action, with every claim linked to the chart behind it.",
     tags: ["Linked evidence", "Visible reasoning", "Finance AI"],
+    image: "/images/work/margin/cover.png",
+    imageAlt:
+      "Descending forest-green steps beside a margin reduction marker.",
+    imagePosition: "center",
     accent: "#A8C77A",
     placeholderLines: ["Read the chart.", "Trace the action."],
     col: 1,
@@ -104,9 +114,11 @@ function ProjectCard({ project }: { project: FeaturedProject }) {
         {project.image ? (
           <Image
             src={project.image}
-            alt={project.title}
+            alt={project.imageAlt ?? `${project.title} project cover`}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
+            style={{ objectPosition: project.imagePosition ?? "center" }}
+            quality={90}
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
         ) : (
@@ -122,13 +134,6 @@ function ProjectCard({ project }: { project: FeaturedProject }) {
             />
             <div className="absolute inset-x-0 top-1/2 h-px bg-white/10" />
             <div className="absolute inset-y-0 left-1/2 w-px bg-white/10" />
-            <div className="absolute left-5 top-5 flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-white/45">
-              <span
-                className="h-2.5 w-2.5"
-                style={{ backgroundColor: project.accent }}
-              />
-              Self-initiated demo
-            </div>
             <div className="absolute inset-x-6 bottom-6 border-t border-white/15 pt-4">
               <p className="text-xl leading-tight text-white md:text-2xl">
                 {placeholderLines[0]}

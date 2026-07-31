@@ -59,6 +59,7 @@ function VisualPlaceholder({
               src={image}
               alt={imageAlt ?? `${project.title}: ${label}`}
               fill
+              quality={90}
               sizes="(max-width: 768px) 100vw, 92vw"
               className={
                 imageFit === "contain"
@@ -258,7 +259,7 @@ export function CaseStudyPage({ project }: { project: Project }) {
               {project.title.split(" ").map((word, index) => (
                 <span
                   key={`${word}-${index}`}
-                  className="mr-[0.16em] inline-block overflow-hidden last:mr-0"
+                  className="-mb-[0.16em] mr-[0.16em] inline-block overflow-hidden pb-[0.16em] last:mr-0"
                 >
                   <span className="case-hero-line inline-block">{word}</span>
                 </span>
