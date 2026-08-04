@@ -470,12 +470,20 @@ export const projects: Project[] = [
         number: "01",
         label: "Ask",
         caption: "Bare ground and one question. There is no document yet.",
+        image: "/images/work/brief/ask.png",
+        imageAlt:
+          "Brief ask state with the Pennine Freight electrification question ready to research.",
+        imageFit: "cover",
       },
       {
         number: "02",
         label: "Gathering",
         caption:
           "Sources arrive in the rail before a word of the brief is written.",
+        image: "/images/work/brief/gathering.png",
+        imageAlt:
+          "Brief gathering state with sources landing in the rail while the page waits for prose.",
+        imageFit: "cover",
       },
       {
         number: "03",
@@ -483,30 +491,50 @@ export const projects: Project[] = [
         caption:
           "Prose streams onto the page while the source rail fills alongside it.",
         lead: true,
+        image: "/images/work/brief/mid-flight.png",
+        imageAlt:
+          "Brief mid-flight state with purchase and running cost sections streaming beside an active source rail.",
+        imageFit: "cover",
       },
       {
         number: "04",
         label: "Aligned",
         caption:
           "A finished section keeps its sources locked level with the sentences they support.",
+        image: "/images/work/brief/aligned.png",
+        imageAlt:
+          "Brief aligned state with source entries locked beside the passages they support.",
+        imageFit: "cover",
       },
       {
         number: "05",
         label: "Slow source",
         caption:
           "A source running long is named and timed instead of hidden behind progress.",
+        image: "/images/work/brief/slow-source.png",
+        imageAlt:
+          "Brief slow-source state naming the Northern Charging Atlas as still open with a live clock.",
+        imageFit: "cover",
       },
       {
         number: "06",
         label: "Gap marked",
         caption:
           "A failed source leaves a visible gap exactly where its evidence would have contributed.",
+        image: "/images/work/brief/gap-marked.png",
+        imageAlt:
+          "Brief gap-marked state showing the unread Voltaris whitepaper and a paywall gap tooltip on payback.",
+        imageFit: "cover",
       },
       {
         number: "07",
         label: "Complete",
         caption:
           "The full brief retains its evidence apparatus and waits for human sign-off.",
+        image: "/images/work/brief/complete.png",
+        imageAlt:
+          "Brief complete state ready for review with human sign-off before export.",
+        imageFit: "cover",
       },
     ],
     builtWith: [
@@ -519,6 +547,10 @@ export const projects: Project[] = [
       "ErrorState",
     ],
     ctaLine: "Running AI tasks your users have to wait for. Let’s talk.",
+    coverImage: "/images/work/brief/cover.png",
+    coverImageAlt:
+      "Brief research interface showing sources landing as the brief grows.",
+    coverImagePosition: "center",
     gradient:
       "linear-gradient(135deg, #090b10 0%, #131923 55%, #202b3a 100%)",
     accent: "#91A7D0",

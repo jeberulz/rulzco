@@ -60,8 +60,11 @@ const projects: FeaturedProject[] = [
     description:
       "A self-initiated research interface where sources arrive as they are read and remain aligned with the passages they support.",
     tags: ["Visible progress", "Source alignment", "Research AI"],
+    image: "/images/work/brief/cover.png",
+    imageAlt:
+      "Brief research interface showing sources landing as the brief grows.",
+    imagePosition: "center",
     accent: "#91A7D0",
-    placeholderLines: ["Watch sources land.", "See the brief grow."],
     col: 1,
   },
   {
