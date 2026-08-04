@@ -359,24 +359,40 @@ export const projects: Project[] = [
         label: "Queue",
         caption:
           "Tickets wait without AI commentary until a person opens the work.",
+        image: "/images/work/draft/queue.png",
+        imageAlt:
+          "Draft ticket queue with open support tickets and an empty composer ready to draft.",
+        imageFit: "cover",
       },
       {
         number: "02",
         label: "The message",
         caption:
           "The customer’s words stay at reading size and in their own voice.",
+        image: "/images/work/draft/the-message.png",
+        imageAlt:
+          "Draft thread showing Helen Ashworth’s warranty message at reading size.",
+        imageFit: "cover",
       },
       {
         number: "03",
         label: "Drafting",
         caption:
           "The reply builds in the brand’s voice, visibly separate from the customer.",
+        image: "/images/work/draft/drafting.png",
+        imageAlt:
+          "Draft AI drafting state with the reply streaming into the composer.",
+        imageFit: "cover",
       },
       {
         number: "04",
         label: "Marked",
         caption:
           "Every claim is underlined: solid where sourced, dashed where unsupported.",
+        image: "/images/work/draft/marked.png",
+        imageAlt:
+          "Draft reply with sourced claims solid-underlined and one unsupported claim dashed.",
+        imageFit: "cover",
       },
       {
         number: "05",
@@ -384,18 +400,30 @@ export const projects: Project[] = [
         caption:
           "The send gate stays shut and names the single unsupported claim holding it.",
         lead: true,
+        image: "/images/work/draft/gate-closed.png",
+        imageAlt:
+          "Draft send gate blocked and held by the unsupported Thornbury warranty claim.",
+        imageFit: "cover",
       },
       {
         number: "06",
         label: "Resolving the claim",
         caption:
           "The agent rewrites the sentence or confirms it against an approved source.",
+        image: "/images/work/draft/resolving-the-claim.png",
+        imageAlt:
+          "Draft source card open on the unsupported claim with Confirm as written and Rewrite.",
+        imageFit: "cover",
       },
       {
         number: "07",
         label: "Cleared",
         caption:
           "The gate gains solid weight, the agent sends, and the approval is logged.",
+        image: "/images/work/draft/cleared.png",
+        imageAlt:
+          "Draft cleared state after send, showing approval logged by Priya Raman.",
+        imageFit: "cover",
       },
     ],
     builtWith: [
@@ -408,6 +436,10 @@ export const projects: Project[] = [
       "ErrorState",
     ],
     ctaLine: "Sending AI-written messages to real customers. Let’s talk.",
+    coverImage: "/images/work/draft/cover.png",
+    coverImageAlt:
+      "Draft support interface marking claims and holding send until each one is backed up.",
+    coverImagePosition: "center",
     gradient:
       "linear-gradient(135deg, #0b0909 0%, #191313 55%, #2b1915 100%)",
     accent: "#D97A5E",

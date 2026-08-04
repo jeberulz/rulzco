@@ -50,8 +50,11 @@ const projects: FeaturedProject[] = [
     description:
       "A self-initiated support interface that marks every claim in an AI-written reply and holds send until each one can be backed up.",
     tags: ["Claim-level proof", "Send gate", "Support AI"],
+    image: "/images/work/draft/cover.png",
+    imageAlt:
+      "Draft support interface marking claims and holding send until each one is backed up.",
+    imagePosition: "center",
     accent: "#D97A5E",
-    placeholderLines: ["Mark the claim.", "Hold the send."],
     col: 2,
   },
   {
