@@ -646,24 +646,40 @@ export const projects: Project[] = [
         label: "Planned",
         caption:
           "Before the run, every intended step is laid out to the right of the live edge.",
+        image: "/images/work/watch/planned.jpg",
+        imageAlt:
+          "Watch planned state with the weekly materials reorder laid out across the time axis.",
+        imageFit: "cover",
       },
       {
         number: "02",
         label: "Running",
         caption:
           "The edge advances with completed work behind it and the remaining plan ahead.",
+        image: "/images/work/watch/running.jpg",
+        imageAlt:
+          "Watch running state with pause and redirect controls attached to the live edge.",
+        imageFit: "cover",
       },
       {
         number: "03",
         label: "Long step",
         caption:
           "The supplier price fetch extends across the time axis as it runs.",
+        image: "/images/work/watch/long-step.jpg",
+        imageAlt:
+          "Watch long-running supplier price fetch extending across the execution timeline.",
+        imageFit: "cover",
       },
       {
         number: "04",
         label: "Stopped",
         caption:
           "The edge holds, the reason is stated, and the intervention controls sit on the line.",
+        image: "/images/work/watch/stopped.jpg",
+        imageAlt:
+          "Watch held state showing the oak veneer price increase with approve and redirect controls.",
+        imageFit: "cover",
         lead: true,
       },
       {
@@ -671,18 +687,30 @@ export const projects: Project[] = [
         label: "Redirected",
         caption:
           "The human change is applied and the planned steps ahead of the edge rewrite to match.",
+        image: "/images/work/watch/redirected.jpg",
+        imageAlt:
+          "Watch redirected state with the human change marked in orange and the future plan rewritten.",
+        imageFit: "cover",
       },
       {
         number: "06",
         label: "Step failed",
         caption:
           "A timed-out supplier stays marked on the track while the run continues.",
+        image: "/images/work/watch/step-failed.jpg",
+        imageAlt:
+          "Watch failure state explaining the supplier timeout while the run continues on alternatives.",
+        imageFit: "cover",
       },
       {
         number: "07",
         label: "Complete",
         caption:
           "The finished run shows two marks of human colour and an approval gate before submission.",
+        image: "/images/work/watch/complete.jpg",
+        imageAlt:
+          "Watch completed state showing redirect, approval, and final submission marks on the timeline.",
+        imageFit: "cover",
       },
     ],
     builtWith: [
@@ -695,6 +723,10 @@ export const projects: Project[] = [
       "ErrorState",
     ],
     ctaLine: "Running agents that act on your behalf. Let’s talk.",
+    coverImage: "/images/work/watch/cover.jpg",
+    coverImageAlt:
+      "Watch live agent timeline held at a price-change decision with approve and redirect controls.",
+    coverImagePosition: "center",
     gradient:
       "linear-gradient(135deg, #090909 0%, #161616 55%, #2b211d 100%)",
     accent: "#F08A5D",
